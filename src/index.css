@@ -1,0 +1,139 @@
+/* ==========================================================================
+   CSS CUSTOM VARIABLES & COLOR PALETTE
+   Design Theme: Dark + Deep Purple Futuristic AI Developer Portfolio
+   ========================================================================== */
+
+:root {
+  /* Required Color Palette */
+  --color-bg: #090710;
+  --color-bg-secondary: #120D1F;
+  --color-dark-purple: #170D2B;
+  --color-electric-purple: #8B5CF6;
+  --color-light-violet: #A78BFA;
+  --color-text: #F5F3FF;
+
+  /* Extended Futuristic Tones */
+  --color-text-muted: #B3A8CA;
+  --color-text-dim: #7C7392;
+  --color-border: rgba(139, 92, 246, 0.18);
+  --color-border-glow: rgba(167, 139, 250, 0.45);
+  --color-card-bg: rgba(18, 13, 31, 0.85);
+  --color-card-hover: rgba(23, 13, 43, 0.95);
+  --color-card-inner: #150E26;
+  --color-surface-tint: rgba(139, 92, 246, 0.08);
+
+  /* Gradients */
+  --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+  --gradient-deep-purple: linear-gradient(180deg, #170D2B 0%, #090710 100%);
+  --gradient-cyber: linear-gradient(90deg, #8B5CF6 0%, #C084FC 50%, #A78BFA 100%);
+  --gradient-card: linear-gradient(145deg, rgba(23, 13, 43, 0.8) 0%, rgba(18, 13, 31, 0.95) 100%);
+
+  /* Neon Glow Shadows */
+  --glow-electric: 0 0 25px rgba(139, 92, 246, 0.35);
+  --glow-subtle: 0 4px 20px rgba(139, 92, 246, 0.15);
+  --glow-strong: 0 0 35px rgba(167, 139, 250, 0.5);
+
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 72px;
+  --border-radius: 12px;
+  --border-radius-lg: 18px;
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --color-bg: #F7F5FC;
+  --color-bg-secondary: #FFFFFF;
+  --color-dark-purple: #EDE8F8;
+  --color-electric-purple: #7C3AED;
+  --color-light-violet: #6D28D9;
+  --color-text: #170D2B;
+  --color-text-muted: #564F6B;
+  --color-text-dim: #7B7293;
+  --color-border: rgba(124, 58, 237, 0.2);
+  --color-border-glow: rgba(124, 58, 237, 0.4);
+  --color-card-bg: rgba(255, 255, 255, 0.9);
+  --color-card-hover: #FFFFFF;
+  --color-card-inner: #FAF8FE;
+  --color-surface-tint: rgba(124, 58, 237, 0.05);
+
+  --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+  --gradient-deep-purple: linear-gradient(180deg, #F0EBFB 0%, #F7F5FC 100%);
+  --gradient-cyber: linear-gradient(90deg, #7C3AED 0%, #8B5CF6 50%, #6D28D9 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FAF8FE 100%);
+
+  --glow-electric: 0 6px 20px rgba(124, 58, 237, 0.18);
+  --glow-subtle: 0 4px 15px rgba(124, 58, 237, 0.1);
+  --glow-strong: 0 8px 30px rgba(124, 58, 237, 0.25);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-electric-purple);
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-purple);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-electric-purple);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea {
+  font-family: inherit;
+}
