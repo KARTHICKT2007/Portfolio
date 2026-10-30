@@ -193,7 +193,6 @@
   pointer-events: none;
 }
 
-/* Base Stage (Mobile-first, preserved exactly) */
 .preloader-stage {
   position: relative;
   z-index: 1;
@@ -201,152 +200,104 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
   padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
-/* Top Floating HUD */
-.preloader-top-hud {
+/* Top Floating Sound-Only HUD */
+.preloader-sound-only-hud {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  z-index: 10;
+  top: 1.8rem;
+  right: 2rem;
+  z-index: 30;
   pointer-events: auto;
 }
 
-.preloader-brand-pill {
+@media (max-width: 600px) {
+  .preloader-sound-only-hud {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+}
+
+.sound-only-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  background: rgba(9, 7, 16, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 999px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  white-space: nowrap;
-}
-
-.hud-radar-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-  flex-shrink: 0;
-}
-
-.hud-brand-name {
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #F5F3FF;
-  white-space: nowrap;
-}
-
-.preloader-phase-indicator {
-  display: none;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.9rem;
-  background: rgba(23, 13, 43, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(167, 139, 250, 0.3);
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.hud-term-icon {
-  color: var(--color-electric-purple);
-  flex-shrink: 0;
-}
-
-.phase-indicator-text {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--color-light-violet);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-.preloader-top-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.hud-action-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(9, 7, 16, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  color: #F5F3FF;
-  transition: all 0.25s ease;
-  flex-shrink: 0;
-}
-
-.hud-action-btn:hover {
-  border-color: var(--color-electric-purple);
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
-  transform: scale(1.06);
-}
-
-.hud-skip-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.9rem;
+  padding: 0.55rem 1.15rem;
   background: rgba(9, 7, 16, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--color-electric-purple);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(139, 92, 246, 0.45);
   border-radius: 999px;
   color: #F5F3FF;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-  transition: all 0.25s ease;
-  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(139, 92, 246, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hud-skip-btn:hover {
+.sound-only-btn:hover {
+  border-color: var(--color-electric-purple);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.65);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+.sound-only-btn.active-sound {
   background: var(--gradient-purple);
+  border-color: transparent;
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
-  transform: translateY(-1px);
 }
 
-/* Video Stage Frame (Mobile) */
+.sound-icon-muted {
+  color: var(--color-light-violet);
+  transition: transform 0.2s ease;
+}
+
+.sound-icon-playing {
+  color: #FFFFFF;
+  animation: soundPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes soundPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.sound-pill-label {
+  letter-spacing: 0.04em;
+}
+
+/* Video Stage Frame - Full Height (Zero Gap Up and Down) */
 .preloader-video-wrapper {
   position: relative;
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
-  overflow: hidden;
-  background: #12062E;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: #090710;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .preloader-core-video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 100vh;
+  max-height: 100vh;
+  object-fit: contain;
   display: block;
 }
 
@@ -367,231 +318,23 @@
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
 }
 
-/* Bottom Progress HUD (Mobile) */
-.preloader-bottom-hud {
+/* Minimal Bottom Progress Track */
+.preloader-minimal-progress {
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  max-width: 480px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(23, 13, 43, 0.6);
   z-index: 10;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
-.hud-progress-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.hud-status-label {
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.hud-percent-text {
-  font-weight: 700;
-  color: var(--color-light-violet);
-  white-space: nowrap;
-}
-
-.hud-progress-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(23, 13, 43, 0.8);
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.hud-progress-bar {
+.minimal-progress-bar {
   height: 100%;
   background: var(--gradient-purple);
-  box-shadow: 0 0 12px var(--color-electric-purple);
+  box-shadow: 0 0 10px var(--color-electric-purple);
   transition: width 0.15s linear;
-}
-
-/* ==========================================================================
-   DESKTOP & PC PRELOADER ENHANCEMENTS (Responsive Media Queries)
-   ========================================================================== */
-@media (min-width: 768px) {
-  /* Rich deep purple canvas filling 100% of the desktop viewport without black borders */
-  .video-preloader-root {
-    background: radial-gradient(circle at 50% 50%, #220646 0%, #170432 40%, #0d021e 75%, #080114 100%);
-  }
-
-  .preloader-bg-ambient {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 18% 45%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
-      radial-gradient(circle at 82% 45%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
-      radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
-    filter: blur(50px);
-    opacity: 0.95;
-  }
-
-  .preloader-stage {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    padding: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Fixed Top HUD on Desktop with expansive width across the screen */
-  .preloader-top-hud {
-    position: fixed;
-    top: 2rem;
-    left: 3rem;
-    right: 3rem;
-    width: auto;
-    max-width: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    z-index: 100;
-  }
-
-  .preloader-brand-pill {
-    padding: 0.55rem 1.25rem;
-    font-size: 0.92rem;
-    background: rgba(14, 5, 28, 0.85);
-    border: 1px solid rgba(139, 92, 246, 0.45);
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(139, 92, 246, 0.25);
-    white-space: nowrap;
-  }
-
-  .hud-brand-name {
-    font-size: 0.92rem;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  /* Centered Phase Indicator on Desktop */
-  .preloader-phase-indicator {
-    display: inline-flex;
-    padding: 0.55rem 1.4rem;
-    background: rgba(26, 10, 52, 0.85);
-    border: 1px solid rgba(167, 139, 250, 0.45);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.25);
-    white-space: nowrap;
-  }
-
-  .phase-indicator-text {
-    font-size: 0.86rem;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  /* Sound & Skip neatly grouped on top-right corner */
-  .preloader-top-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-  }
-
-  .hud-action-btn {
-    width: 42px;
-    height: 42px;
-    background: rgba(14, 5, 28, 0.85);
-    border: 1px solid rgba(139, 92, 246, 0.45);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  }
-
-  .hud-skip-btn {
-    padding: 0.55rem 1.35rem;
-    font-size: 0.86rem;
-    background: rgba(14, 5, 28, 0.9);
-    border: 1px solid var(--color-electric-purple);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
-    white-space: nowrap;
-  }
-
-  .hud-skip-btn:hover {
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
-    transform: translateY(-2px);
-  }
-
-  /* Video Display on Desktop: Full height, perfect aspect ratio, seamless edges */
-  .preloader-video-wrapper {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .preloader-core-video {
-    height: 100vh;
-    width: auto;
-    max-width: 100vw;
-    max-height: 100vh;
-    aspect-ratio: 9 / 16;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    /* Soft ambient glow on video edges */
-    filter: drop-shadow(0 0 45px rgba(139, 92, 246, 0.35));
-  }
-
-  /* Bottom Progress HUD on Desktop */
-  .preloader-bottom-hud {
-    position: fixed;
-    bottom: 2.2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 620px;
-    margin: 0;
-    z-index: 100;
-    gap: 0.65rem;
-  }
-
-  .hud-progress-info {
-    font-size: 0.82rem;
-    white-space: nowrap;
-  }
-
-  .hud-progress-track {
-    height: 5px;
-    background: rgba(23, 13, 43, 0.9);
-  }
-}
-
-/* Ultrawide & High-Resolution Display Adjustments */
-@media (min-width: 1440px) {
-  .preloader-top-hud {
-    top: 2.5rem;
-    left: 4.5rem;
-    right: 4.5rem;
-  }
-
-  .preloader-bottom-hud {
-    bottom: 2.8rem;
-    max-width: 680px;
-  }
 }
 
 /* ==========================================================================
