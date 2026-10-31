@@ -37,24 +37,17 @@ function DesktopPreloader({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState('INITIALIZING EXPERIENCE');
   const [isMuted, setIsMuted] = useState(true);
+  const isMutedRef = useRef(true);
   const [isExiting, setIsExiting] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [webGlAvailable, setWebGlAvailable] = useState(true);
 
-  // Check session storage to prevent repeated loader on page reload / navigation
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isReplayRequested = window.location.search.includes('replay=true');
-      const alreadyViewed = sessionStorage.getItem('karthick_cinematic_intro_viewed');
-
-      if (alreadyViewed === 'true' && !isReplayRequested) {
-        onComplete();
-      }
-    }
-  }, [onComplete]);
+    isMutedRef.current = isMuted;
+  }, [isMuted]);
 
   // High-Tech Audio Synthesis for Milestones
   const playTechPulse = (freq = 440) => {
-    if (isMuted) return;
+    if (isMutedRef.current) return;
     try {
       if (!audioContextRef.current) {
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
@@ -126,16 +119,23 @@ function DesktopPreloader({ onComplete }) {
         playTechPulse(780);
         setTimeout(() => {
           setIsExiting(true);
-          sessionStorage.setItem('karthick_cinematic_intro_viewed', 'true');
           setTimeout(() => {
             onComplete();
-          }, 750);
-        }, 400);
+          }, 700);
+        }, 350);
       }
     }, 55);
 
-    return () => clearInterval(interval);
-  }, [onComplete, isMuted]);
+    // Fallback safety timeout in case interval is blocked
+    const fallbackSafety = setTimeout(() => {
+      onComplete();
+    }, 4500);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(fallbackSafety);
+    };
+  }, [onComplete]);
 
   // Three.js WebGL 3D Metallic "K" & Atmospheric Scene
   useEffect(() => {
@@ -144,191 +144,210 @@ function DesktopPreloader({ onComplete }) {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance'
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
-    container.appendChild(renderer.domElement);
-
-    // Scene & Camera
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0.15, 5.2);
-
-    // 1. Build Precision-Engineered 3D "K" Shape
-    const kShape = new THREE.Shape();
-    kShape.moveTo(-1.25, -1.8);
-    kShape.lineTo(-1.25, 1.8);
-    kShape.lineTo(-0.62, 1.8);
-    kShape.lineTo(-0.62, 0.42);
-    kShape.lineTo(0.72, 1.8);
-    kShape.lineTo(1.48, 1.8);
-    kShape.lineTo(0.18, 0.12);
-    kShape.lineTo(1.52, -1.8);
-    kShape.lineTo(0.78, -1.8);
-    kShape.lineTo(-0.62, -0.32);
-    kShape.lineTo(-0.62, -1.8);
-    kShape.closePath();
-
-    const extrudeSettings = {
-      depth: 0.45,
-      bevelEnabled: true,
-      bevelSegments: 5,
-      steps: 1,
-      bevelSize: 0.055,
-      bevelThickness: 0.075
-    };
-
-    const kGeometry = new THREE.ExtrudeGeometry(kShape, extrudeSettings);
-    kGeometry.center();
-
-    // Premium Metallic Material with Deep Violet Clearcoat & Reflections
-    const kMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color('#1B0F33'),
-      emissive: new THREE.Color('#110620'),
-      emissiveIntensity: 0.2,
-      metalness: 0.92,
-      roughness: 0.16,
-      clearcoat: 0.88,
-      clearcoatRoughness: 0.12,
-      reflectivity: 0.96
-    });
-
-    const kMesh = new THREE.Mesh(kGeometry, kMaterial);
-
-    // Sharp Edge Contour Lines (Violet Specular Gleam)
-    const edgeGeo = new THREE.EdgesGeometry(kGeometry, 26);
-    const edgeMat = new THREE.LineBasicMaterial({
-      color: new THREE.Color('#C084FC'),
-      transparent: true,
-      opacity: 0.38,
-      blending: THREE.AdditiveBlending
-    });
-    const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
-    kMesh.add(edgeLines);
-
-    // Initial cinematic tilt
-    kMesh.rotation.y = prefersReducedMotion ? 0 : -0.52;
-    kMesh.rotation.x = prefersReducedMotion ? 0 : 0.16;
-    kMesh.position.y = 0.22;
-    scene.add(kMesh);
-
-    // 2. Cinematic Lighting Scheme
-    const ambientLight = new THREE.AmbientLight(0x0c0717, 1.3);
-    scene.add(ambientLight);
-
-    // Key Directional Light (Electric Purple #8B5CF6)
-    const keyLight = new THREE.DirectionalLight('#8B5CF6', 4.8);
-    keyLight.position.set(-3.5, 4.2, 5.0);
-    scene.add(keyLight);
-
-    // Rim Point Light (Light Violet #A78BFA specular highlight)
-    const rimLight = new THREE.PointLight('#C4B5FD', 7.5, 18);
-    rimLight.position.set(3.2, 2.0, -2.8);
-    scene.add(rimLight);
-
-    // Fill Light (Deep Purple)
-    const fillLight = new THREE.PointLight('#6D28D9', 3.2, 14);
-    fillLight.position.set(-2.2, -3.0, 3.2);
-    scene.add(fillLight);
-
-    // Moving Spotlight for specular sweep across the metallic face
-    const spotLight = new THREE.SpotLight('#F5F3FF', 7.5, 20, Math.PI / 5, 0.45, 1.2);
-    spotLight.position.set(0, 5, 4);
-    spotLight.target = kMesh;
-    scene.add(spotLight);
-
-    // 3. Subtle Floating Atmospheric Micro-Particles
-    const pCanvas = document.createElement('canvas');
-    pCanvas.width = 64;
-    pCanvas.height = 64;
-    const pCtx = pCanvas.getContext('2d');
-    const pGrad = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    pGrad.addColorStop(0.2, 'rgba(196, 181, 253, 0.85)');
-    pGrad.addColorStop(0.5, 'rgba(139, 92, 246, 0.3)');
-    pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    pCtx.fillStyle = pGrad;
-    pCtx.fillRect(0, 0, 64, 64);
-    const pTexture = new THREE.CanvasTexture(pCanvas);
-
-    const pCount = 130;
-    const pGeo = new THREE.BufferGeometry();
-    const pPositions = new Float32Array(pCount * 3);
-    const pYVels = new Float32Array(pCount);
-
-    for (let i = 0; i < pCount; i++) {
-      pPositions[i * 3] = (Math.random() - 0.5) * 11;
-      pPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
-      pPositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
-      pYVels[i] = 0.0018 + Math.random() * 0.0035;
-    }
-
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-    const pMat = new THREE.PointsMaterial({
-      size: 0.15,
-      map: pTexture,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-    const particles = new THREE.Points(pGeo, pMat);
-    scene.add(particles);
-
-    // 4. Animation Loop with Cinematic Camera & Specular Rotation
+    // Renderer with fallback detection
+    let renderer;
+    let scene;
+    let camera;
+    let kGeometry;
+    let kMaterial;
+    let edgeGeo;
+    let edgeMat;
+    let pGeo;
+    let pMat;
+    let pTexture;
     let animationFrameId;
-    const animStartTime = performance.now();
-    const totalDuration = 3200;
 
-    const renderLoop = (time) => {
-      animationFrameId = requestAnimationFrame(renderLoop);
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
 
-      const elapsed = time - animStartTime;
-      const t = Math.min(elapsed / totalDuration, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+      
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
 
-      // Smooth cinematic ease curve
-      const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      // Scene & Camera
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.15, 5.2);
 
-      if (!prefersReducedMotion) {
-        // Metallic K rotation smoothly settles toward majestic front angle
-        const targetRotY = -0.52 * (1 - ease) + Math.sin(time * 0.001) * 0.035;
-        const targetRotX = 0.16 * (1 - ease) + Math.cos(time * 0.0008) * 0.025;
-        kMesh.rotation.y = targetRotY;
-        kMesh.rotation.x = targetRotX;
+      // 1. Build Precision-Engineered 3D "K" Shape
+      const kShape = new THREE.Shape();
+      kShape.moveTo(-1.25, -1.8);
+      kShape.lineTo(-1.25, 1.8);
+      kShape.lineTo(-0.62, 1.8);
+      kShape.lineTo(-0.62, 0.42);
+      kShape.lineTo(0.72, 1.8);
+      kShape.lineTo(1.48, 1.8);
+      kShape.lineTo(0.18, 0.12);
+      kShape.lineTo(1.52, -1.8);
+      kShape.lineTo(0.78, -1.8);
+      kShape.lineTo(-0.62, -0.32);
+      kShape.lineTo(-0.62, -1.8);
+      kShape.closePath();
 
-        // Subtle camera track-in
-        camera.position.z = 5.2 - 0.5 * ease;
+      const extrudeSettings = {
+        depth: 0.45,
+        bevelEnabled: true,
+        bevelSegments: 5,
+        steps: 1,
+        bevelSize: 0.055,
+        bevelThickness: 0.075
+      };
 
-        // Sweeping specular spotlight across the metallic bevels
-        spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.5;
+      kGeometry = new THREE.ExtrudeGeometry(kShape, extrudeSettings);
+      kGeometry.center();
 
-        // Upward particle drift
-        const posAttr = pGeo.attributes.position;
-        for (let i = 0; i < pCount; i++) {
-          let y = posAttr.getY(i);
-          y += pYVels[i];
-          if (y > 4.2) y = -4.2;
-          posAttr.setY(i, y);
-        }
-        posAttr.needsUpdate = true;
-        particles.rotation.y = time * 0.00025;
+      // Premium Metallic Material with Deep Violet Clearcoat & Reflections
+      kMaterial = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color('#1B0F33'),
+        emissive: new THREE.Color('#110620'),
+        emissiveIntensity: 0.2,
+        metalness: 0.92,
+        roughness: 0.16,
+        clearcoat: 0.88,
+        clearcoatRoughness: 0.12,
+        reflectivity: 0.96
+      });
+
+      const kMesh = new THREE.Mesh(kGeometry, kMaterial);
+
+      // Sharp Edge Contour Lines (Violet Specular Gleam)
+      edgeGeo = new THREE.EdgesGeometry(kGeometry, 26);
+      edgeMat = new THREE.LineBasicMaterial({
+        color: new THREE.Color('#C084FC'),
+        transparent: true,
+        opacity: 0.38,
+        blending: THREE.AdditiveBlending
+      });
+      const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
+      kMesh.add(edgeLines);
+
+      // Initial cinematic tilt
+      kMesh.rotation.y = prefersReducedMotion ? 0 : -0.52;
+      kMesh.rotation.x = prefersReducedMotion ? 0 : 0.16;
+      kMesh.position.y = 0.22;
+      scene.add(kMesh);
+
+      // 2. Cinematic Lighting Scheme
+      const ambientLight = new THREE.AmbientLight(0x0c0717, 1.3);
+      scene.add(ambientLight);
+
+      // Key Directional Light (Electric Purple #8B5CF6)
+      const keyLight = new THREE.DirectionalLight('#8B5CF6', 4.8);
+      keyLight.position.set(-3.5, 4.2, 5.0);
+      scene.add(keyLight);
+
+      // Rim Point Light (Light Violet #A78BFA specular highlight)
+      const rimLight = new THREE.PointLight('#C4B5FD', 7.5, 18);
+      rimLight.position.set(3.2, 2.0, -2.8);
+      scene.add(rimLight);
+
+      // Fill Light (Deep Purple)
+      const fillLight = new THREE.PointLight('#6D28D9', 3.2, 14);
+      fillLight.position.set(-2.2, -3.0, 3.2);
+      scene.add(fillLight);
+
+      // Moving Spotlight for specular sweep across the metallic face
+      const spotLight = new THREE.SpotLight('#F5F3FF', 7.5, 20, Math.PI / 5, 0.45, 1.2);
+      spotLight.position.set(0, 5, 4);
+      spotLight.target = kMesh;
+      scene.add(spotLight);
+
+      // 3. Subtle Floating Atmospheric Micro-Particles
+      const pCanvas = document.createElement('canvas');
+      pCanvas.width = 64;
+      pCanvas.height = 64;
+      const pCtx = pCanvas.getContext('2d');
+      const pGrad = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      pGrad.addColorStop(0.2, 'rgba(196, 181, 253, 0.85)');
+      pGrad.addColorStop(0.5, 'rgba(139, 92, 246, 0.3)');
+      pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      pCtx.fillStyle = pGrad;
+      pCtx.fillRect(0, 0, 64, 64);
+      pTexture = new THREE.CanvasTexture(pCanvas);
+
+      const pCount = 130;
+      pGeo = new THREE.BufferGeometry();
+      const pPositions = new Float32Array(pCount * 3);
+      const pYVels = new Float32Array(pCount);
+
+      for (let i = 0; i < pCount; i++) {
+        pPositions[i * 3] = (Math.random() - 0.5) * 11;
+        pPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+        pPositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+        pYVels[i] = 0.0018 + Math.random() * 0.0035;
       }
 
-      renderer.render(scene, camera);
-    };
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+      pMat = new THREE.PointsMaterial({
+        size: 0.15,
+        map: pTexture,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+      const particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
 
-    animationFrameId = requestAnimationFrame(renderLoop);
-    setHasStarted(true);
+      // 4. Animation Loop with Cinematic Camera & Specular Rotation
+      const animStartTime = performance.now();
+      const totalDuration = 3200;
+
+      const renderLoop = (time) => {
+        animationFrameId = requestAnimationFrame(renderLoop);
+
+        const elapsed = time - animStartTime;
+        const t = Math.min(elapsed / totalDuration, 1);
+
+        // Smooth cinematic ease curve
+        const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        if (!prefersReducedMotion) {
+          // Metallic K rotation smoothly settles toward majestic front angle
+          const targetRotY = -0.52 * (1 - ease) + Math.sin(time * 0.001) * 0.035;
+          const targetRotX = 0.16 * (1 - ease) + Math.cos(time * 0.0008) * 0.025;
+          kMesh.rotation.y = targetRotY;
+          kMesh.rotation.x = targetRotX;
+
+          // Subtle camera track-in
+          camera.position.z = 5.2 - 0.5 * ease;
+
+          // Sweeping specular spotlight across the metallic bevels
+          spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.5;
+
+          // Upward particle drift
+          const posAttr = pGeo.attributes.position;
+          for (let i = 0; i < pCount; i++) {
+            let y = posAttr.getY(i);
+            y += pYVels[i];
+            if (y > 4.2) y = -4.2;
+            posAttr.setY(i, y);
+          }
+          posAttr.needsUpdate = true;
+          particles.rotation.y = time * 0.00025;
+        }
+
+        renderer.render(scene, camera);
+      };
+
+      animationFrameId = requestAnimationFrame(renderLoop);
+    } catch (err) {
+      console.warn('WebGL or Three.js scene error:', err);
+      setWebGlAvailable(false);
+      return;
+    }
 
     const handleWindowResize = () => {
-      if (!container) return;
+      if (!container || !renderer || !camera) return;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -337,19 +356,19 @@ function DesktopPreloader({ onComplete }) {
     window.addEventListener('resize', handleWindowResize);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleWindowResize);
-      if (container && renderer.domElement) {
+      if (container && renderer && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
-      kGeometry.dispose();
-      kMaterial.dispose();
-      edgeGeo.dispose();
-      edgeMat.dispose();
-      pGeo.dispose();
-      pMat.dispose();
-      pTexture.dispose();
-      renderer.dispose();
+      kGeometry?.dispose();
+      kMaterial?.dispose();
+      edgeGeo?.dispose();
+      edgeMat?.dispose();
+      pGeo?.dispose();
+      pMat?.dispose();
+      pTexture?.dispose();
+      renderer?.dispose();
     };
   }, []);
 
@@ -382,8 +401,14 @@ function DesktopPreloader({ onComplete }) {
         </button>
       </div>
 
-      {/* Three.js 3D WebGL Canvas Layer */}
-      <div ref={canvasContainerRef} className="cinematic-canvas-stage" />
+      {/* Three.js 3D WebGL Canvas Layer or High-Res CSS 3D Metallic K Fallback */}
+      {webGlAvailable ? (
+        <div ref={canvasContainerRef} className="cinematic-canvas-stage" />
+      ) : (
+        <div className="cinematic-fallback-stage">
+          <div className="cinematic-fallback-k">K</div>
+        </div>
+      )}
 
       {/* Minimal Cinematic Overlay Interface */}
       <div className="cinematic-ui-overlay">
@@ -509,7 +534,16 @@ function MobilePreloader({ onComplete }) {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    // Resilient safety timer: advance naturally if video hangs or autoplay is blocked on mobile
+    const safetyTimer = setTimeout(() => {
+      handleFinish();
+    }, 4200);
+
+    return () => {
+      clearTimeout(safetyTimer);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
@@ -544,6 +578,7 @@ function MobilePreloader({ onComplete }) {
             preload="auto"
             onTimeUpdate={handleTimeUpdate}
             onEnded={handleFinish}
+            onError={() => handleFinish()}
             onLoadedData={() => setVideoLoaded(true)}
             className="preloader-core-video"
           />
