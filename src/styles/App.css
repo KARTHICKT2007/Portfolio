@@ -225,22 +225,22 @@
 }
 
 .sound-only-btn {
-  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.15rem;
+  justify-content: center;
   background: rgba(9, 7, 16, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(139, 92, 246, 0.45);
-  border-radius: 999px;
-  color: #F5F3FF;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 600;
+  color: #A78BFA;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(139, 92, 246, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  outline: none;
 }
 
 .sound-only-btn:hover {

@@ -361,9 +361,6 @@ function MobilePreloader({ onComplete }) {
             ) : (
               <Volume2 size={20} className="sound-icon-playing" />
             )}
-            <span className="sound-pill-label">
-              {isMuted ? 'Sound Off' : 'Sound On'}
-            </span>
           </button>
         </div>
 
