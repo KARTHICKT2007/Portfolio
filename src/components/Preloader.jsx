@@ -1,18 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {
-  Volume2,
-  VolumeX,
-  Sparkles,
-  Atom,
-  FileCode2,
-  Database,
-  Cloud,
-  Code2,
-  Terminal,
-  Cpu,
-  Layers,
-  CheckCircle2
-} from 'lucide-react';
+import * as THREE from 'three';
+import { Volume2, VolumeX, Sparkles } from 'lucide-react';
 
 export default function Preloader({ onComplete }) {
   // Detect mobile vs desktop screen (threshold: 768px)
@@ -39,27 +27,33 @@ export default function Preloader({ onComplete }) {
 }
 
 /* ==========================================================================
-   DESKTOP PRELOADER - NEW, MODERN & PROFESSIONAL (NO FOOTER.MP4)
+   DESKTOP PRELOADER — PREMIUM CINEMATIC 3D DEVELOPER EXPERIENCE
    ========================================================================== */
 function DesktopPreloader({ onComplete }) {
-  const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isExiting, setIsExiting] = useState(false);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const canvasContainerRef = useRef(null);
   const audioRef = useRef(null);
   const audioContextRef = useRef(null);
 
-  // Web Development Animated Phases
-  const devSteps = [
-    { label: 'FRONTEND DEVELOPMENT', sub: 'Initializing React 19, Vite & Virtual DOM', tag: 'UI / UX' },
-    { label: 'REACT ARCHITECTURE', sub: 'Mounting Component Tree & State Hooks', tag: 'ES6+ MODERN' },
-    { label: 'BACKEND & SQL ANALYTICS', sub: 'Connecting Relational Database & Queries', tag: 'DATABASE' },
-    { label: 'ORACLE CLOUD INFRASTRUCTURE', sub: 'Deploying Virtual Networks & Cloud Pipelines', tag: 'OCI CLOUD' },
-    { label: 'SYSTEM VERIFIED • READY', sub: 'Finalizing Karthick Portfolio Interface', tag: 'COMPLETE' }
-  ];
+  const [progress, setProgress] = useState(0);
+  const [loadingMessage, setLoadingMessage] = useState('INITIALIZING EXPERIENCE');
+  const [isMuted, setIsMuted] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
-  // Synthesize clean high-tech audio chime when unmuted
-  const playTechChime = (freq = 520) => {
+  // Check session storage to prevent repeated loader on page reload / navigation
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isReplayRequested = window.location.search.includes('replay=true');
+      const alreadyViewed = sessionStorage.getItem('karthick_cinematic_intro_viewed');
+
+      if (alreadyViewed === 'true' && !isReplayRequested) {
+        onComplete();
+      }
+    }
+  }, [onComplete]);
+
+  // High-Tech Audio Synthesis for Milestones
+  const playTechPulse = (freq = 440) => {
     if (isMuted) return;
     try {
       if (!audioContextRef.current) {
@@ -73,13 +67,13 @@ function DesktopPreloader({ onComplete }) {
       const gain = ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.12);
-      gain.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.4, ctx.currentTime + 0.14);
+      gain.gain.setValueAtTime(0.045, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
-      osc.stop(ctx.currentTime + 0.16);
+      osc.stop(ctx.currentTime + 0.19);
     } catch {
       // AudioContext unavailable
     }
@@ -94,41 +88,48 @@ function DesktopPreloader({ onComplete }) {
       audioRef.current.muted = nextMuted;
       if (!nextMuted) {
         audioRef.current.play().catch(() => {});
-        playTechChime(640);
+        playTechPulse(540);
       } else {
         audioRef.current.pause();
       }
     }
   };
 
-  // Fast, smooth, and professional loading progress (approx 2.8s total)
+  // Loading Progress & Cinematic Messages Sequence (~3.2s total)
   useEffect(() => {
     let currentPercent = 0;
     const interval = setInterval(() => {
-      // Non-linear progression: quick burst -> smooth climb -> 100%
-      const increment = currentPercent < 40 ? 4 : currentPercent < 80 ? 3 : 2;
+      // Smooth non-linear progression
+      const increment = currentPercent < 30 ? 4 : currentPercent < 75 ? 3 : 2;
       currentPercent = Math.min(currentPercent + increment, 100);
       setProgress(currentPercent);
 
-      // Play soft sound pulse at milestones
-      if (currentPercent === 25 || currentPercent === 50 || currentPercent === 75 || currentPercent === 100) {
-        playTechChime(440 + currentPercent * 2);
+      // Milestone Messages
+      if (currentPercent < 28) {
+        setLoadingMessage('INITIALIZING EXPERIENCE');
+      } else if (currentPercent < 58) {
+        setLoadingMessage('PREPARING INTERFACE');
+      } else if (currentPercent < 88) {
+        setLoadingMessage('LOADING COMPONENTS');
+      } else if (currentPercent < 100) {
+        setLoadingMessage('ALMOST READY');
+      } else {
+        setLoadingMessage('SYSTEM READY');
       }
 
-      // Update compilation phase
-      const stepIdx = Math.min(
-        Math.floor((currentPercent / 100) * devSteps.length),
-        devSteps.length - 1
-      );
-      setCurrentStepIndex(stepIdx);
+      if (currentPercent === 30 || currentPercent === 60 || currentPercent === 88) {
+        playTechPulse(380 + currentPercent * 2.2);
+      }
 
       if (currentPercent >= 100) {
         clearInterval(interval);
+        playTechPulse(780);
         setTimeout(() => {
           setIsExiting(true);
+          sessionStorage.setItem('karthick_cinematic_intro_viewed', 'true');
           setTimeout(() => {
             onComplete();
-          }, 600);
+          }, 750);
         }, 400);
       }
     }, 55);
@@ -136,124 +137,292 @@ function DesktopPreloader({ onComplete }) {
     return () => clearInterval(interval);
   }, [onComplete, isMuted]);
 
-  return (
-    <div className={`desktop-preloader-root ${isExiting ? 'fade-out' : ''}`}>
-      {/* Background Ambience: Glowing Orbs, Cyber Grid, Deep Purple Gradient */}
-      <div className="dp-ambient-glow orb-1"></div>
-      <div className="dp-ambient-glow orb-2"></div>
-      <div className="dp-cyber-grid" aria-hidden="true"></div>
-      <div className="dp-scanlines" aria-hidden="true"></div>
+  // Three.js WebGL 3D Metallic "K" & Atmospheric Scene
+  useEffect(() => {
+    const container = canvasContainerRef.current;
+    if (!container) return;
 
-      {/* Standalone ambient audio track from project */}
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    container.appendChild(renderer.domElement);
+
+    // Scene & Camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.15, 5.2);
+
+    // 1. Build Precision-Engineered 3D "K" Shape
+    const kShape = new THREE.Shape();
+    kShape.moveTo(-1.25, -1.8);
+    kShape.lineTo(-1.25, 1.8);
+    kShape.lineTo(-0.62, 1.8);
+    kShape.lineTo(-0.62, 0.42);
+    kShape.lineTo(0.72, 1.8);
+    kShape.lineTo(1.48, 1.8);
+    kShape.lineTo(0.18, 0.12);
+    kShape.lineTo(1.52, -1.8);
+    kShape.lineTo(0.78, -1.8);
+    kShape.lineTo(-0.62, -0.32);
+    kShape.lineTo(-0.62, -1.8);
+    kShape.closePath();
+
+    const extrudeSettings = {
+      depth: 0.45,
+      bevelEnabled: true,
+      bevelSegments: 5,
+      steps: 1,
+      bevelSize: 0.055,
+      bevelThickness: 0.075
+    };
+
+    const kGeometry = new THREE.ExtrudeGeometry(kShape, extrudeSettings);
+    kGeometry.center();
+
+    // Premium Metallic Material with Deep Violet Clearcoat & Reflections
+    const kMaterial = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color('#1B0F33'),
+      emissive: new THREE.Color('#110620'),
+      emissiveIntensity: 0.2,
+      metalness: 0.92,
+      roughness: 0.16,
+      clearcoat: 0.88,
+      clearcoatRoughness: 0.12,
+      reflectivity: 0.96
+    });
+
+    const kMesh = new THREE.Mesh(kGeometry, kMaterial);
+
+    // Sharp Edge Contour Lines (Violet Specular Gleam)
+    const edgeGeo = new THREE.EdgesGeometry(kGeometry, 26);
+    const edgeMat = new THREE.LineBasicMaterial({
+      color: new THREE.Color('#C084FC'),
+      transparent: true,
+      opacity: 0.38,
+      blending: THREE.AdditiveBlending
+    });
+    const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
+    kMesh.add(edgeLines);
+
+    // Initial cinematic tilt
+    kMesh.rotation.y = prefersReducedMotion ? 0 : -0.52;
+    kMesh.rotation.x = prefersReducedMotion ? 0 : 0.16;
+    kMesh.position.y = 0.22;
+    scene.add(kMesh);
+
+    // 2. Cinematic Lighting Scheme
+    const ambientLight = new THREE.AmbientLight(0x0c0717, 1.3);
+    scene.add(ambientLight);
+
+    // Key Directional Light (Electric Purple #8B5CF6)
+    const keyLight = new THREE.DirectionalLight('#8B5CF6', 4.8);
+    keyLight.position.set(-3.5, 4.2, 5.0);
+    scene.add(keyLight);
+
+    // Rim Point Light (Light Violet #A78BFA specular highlight)
+    const rimLight = new THREE.PointLight('#C4B5FD', 7.5, 18);
+    rimLight.position.set(3.2, 2.0, -2.8);
+    scene.add(rimLight);
+
+    // Fill Light (Deep Purple)
+    const fillLight = new THREE.PointLight('#6D28D9', 3.2, 14);
+    fillLight.position.set(-2.2, -3.0, 3.2);
+    scene.add(fillLight);
+
+    // Moving Spotlight for specular sweep across the metallic face
+    const spotLight = new THREE.SpotLight('#F5F3FF', 7.5, 20, Math.PI / 5, 0.45, 1.2);
+    spotLight.position.set(0, 5, 4);
+    spotLight.target = kMesh;
+    scene.add(spotLight);
+
+    // 3. Subtle Floating Atmospheric Micro-Particles
+    const pCanvas = document.createElement('canvas');
+    pCanvas.width = 64;
+    pCanvas.height = 64;
+    const pCtx = pCanvas.getContext('2d');
+    const pGrad = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    pGrad.addColorStop(0.2, 'rgba(196, 181, 253, 0.85)');
+    pGrad.addColorStop(0.5, 'rgba(139, 92, 246, 0.3)');
+    pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    pCtx.fillStyle = pGrad;
+    pCtx.fillRect(0, 0, 64, 64);
+    const pTexture = new THREE.CanvasTexture(pCanvas);
+
+    const pCount = 130;
+    const pGeo = new THREE.BufferGeometry();
+    const pPositions = new Float32Array(pCount * 3);
+    const pYVels = new Float32Array(pCount);
+
+    for (let i = 0; i < pCount; i++) {
+      pPositions[i * 3] = (Math.random() - 0.5) * 11;
+      pPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      pPositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      pYVels[i] = 0.0018 + Math.random() * 0.0035;
+    }
+
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    const pMat = new THREE.PointsMaterial({
+      size: 0.15,
+      map: pTexture,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    // 4. Animation Loop with Cinematic Camera & Specular Rotation
+    let animationFrameId;
+    const animStartTime = performance.now();
+    const totalDuration = 3200;
+
+    const renderLoop = (time) => {
+      animationFrameId = requestAnimationFrame(renderLoop);
+
+      const elapsed = time - animStartTime;
+      const t = Math.min(elapsed / totalDuration, 1);
+
+      // Smooth cinematic ease curve
+      const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      if (!prefersReducedMotion) {
+        // Metallic K rotation smoothly settles toward majestic front angle
+        const targetRotY = -0.52 * (1 - ease) + Math.sin(time * 0.001) * 0.035;
+        const targetRotX = 0.16 * (1 - ease) + Math.cos(time * 0.0008) * 0.025;
+        kMesh.rotation.y = targetRotY;
+        kMesh.rotation.x = targetRotX;
+
+        // Subtle camera track-in
+        camera.position.z = 5.2 - 0.5 * ease;
+
+        // Sweeping specular spotlight across the metallic bevels
+        spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.5;
+
+        // Upward particle drift
+        const posAttr = pGeo.attributes.position;
+        for (let i = 0; i < pCount; i++) {
+          let y = posAttr.getY(i);
+          y += pYVels[i];
+          if (y > 4.2) y = -4.2;
+          posAttr.setY(i, y);
+        }
+        posAttr.needsUpdate = true;
+        particles.rotation.y = time * 0.00025;
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    animationFrameId = requestAnimationFrame(renderLoop);
+    setHasStarted(true);
+
+    const handleWindowResize = () => {
+      if (!container) return;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleWindowResize);
+      if (container && renderer.domElement) {
+        container.removeChild(renderer.domElement);
+      }
+      kGeometry.dispose();
+      kMaterial.dispose();
+      edgeGeo.dispose();
+      edgeMat.dispose();
+      pGeo.dispose();
+      pMat.dispose();
+      pTexture.dispose();
+      renderer.dispose();
+    };
+  }, []);
+
+  return (
+    <div className={`cinematic-preloader-root ${isExiting ? 'fade-out' : ''}`}>
+      {/* Background Cinematic Atmosphere */}
+      <div className="cinematic-backdrop" aria-hidden="true">
+        <div className="cinematic-ambient-radial"></div>
+        <div className="cinematic-beam"></div>
+        <div className="cinematic-anamorphic-streak"></div>
+        <div className="cinematic-vignette"></div>
+      </div>
+
+      {/* Standalone Ambient Audio Track */}
       <audio ref={audioRef} src="/soundtrack.m4a" loop preload="auto" />
 
       {/* Top Sound Control: ONLY Sound Icon with NO text beside it */}
-      <div className="dp-sound-hud">
+      <div className="cinematic-sound-hud">
         <button
           onClick={handleToggleMute}
-          className={`dp-sound-icon-btn ${!isMuted ? 'active' : ''}`}
+          className={`cinematic-sound-btn ${!isMuted ? 'active' : ''}`}
           title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-          aria-label={isMuted ? 'Unmute' : 'Mute'}
+          aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
         >
           {isMuted ? (
-            <VolumeX size={20} className="dp-sound-icon" />
+            <VolumeX size={19} className="cinematic-sound-icon" />
           ) : (
-            <Volume2 size={20} className="dp-sound-icon playing" />
+            <Volume2 size={19} className="cinematic-sound-icon playing" />
           )}
         </button>
       </div>
 
-      {/* Centerpiece Stage: Perfectly Centered & Aligned */}
-      <div className="dp-center-stage">
-        {/* Animated Central Orbital Ring & Tech Reactor */}
-        <div className="dp-reactor-wrapper">
-          {/* Outer dashed spinning ring */}
-          <div className="dp-ring dp-ring-outer"></div>
+      {/* Three.js 3D WebGL Canvas Layer */}
+      <div ref={canvasContainerRef} className="cinematic-canvas-stage" />
 
-          {/* Middle counter-rotating ring with brackets */}
-          <div className="dp-ring dp-ring-middle">
-            <span className="dp-orbital-tag tag-top">&lt;dev&gt;</span>
-            <span className="dp-orbital-tag tag-bottom">&#123;code&#125;</span>
-          </div>
-
-          {/* Inner glowing pulse ring */}
-          <div className="dp-ring dp-ring-inner"></div>
-
-          {/* Core Logo / Symbol */}
-          <div className="dp-reactor-core">
-            <Atom size={44} className="dp-core-atom-icon" />
-            <div className="dp-core-pulse"></div>
-          </div>
-
-          {/* Orbiting Web-Dev Tech Icons */}
-          <div className="dp-orbit-node node-react" title="React 19">
-            <Atom size={18} />
-          </div>
-          <div className="dp-orbit-node node-js" title="JavaScript ES6+">
-            <FileCode2 size={18} />
-          </div>
-          <div className="dp-orbit-node node-sql" title="SQL Database">
-            <Database size={18} />
-          </div>
-          <div className="dp-orbit-node node-cloud" title="Oracle Cloud">
-            <Cloud size={18} />
-          </div>
-        </div>
-
-        {/* Developer Branding Lockup */}
-        <div className="dp-brand-lockup">
-          <div className="dp-brand-badge">
-            <span className="dp-radar-dot"></span>
-            <span className="dp-badge-text">KARTHICK.DEV</span>
-          </div>
-          <h1 className="dp-brand-name">
-            <span className="dp-bracket">&lt;</span>
-            <span className="dp-name-text">Karthick</span>
-            <span className="dp-accent-dot">.dev</span>
-            <span className="dp-bracket"> /&gt;</span>
+      {/* Minimal Cinematic Overlay Interface */}
+      <div className="cinematic-ui-overlay">
+        {/* Gradually Revealed Brand Identity */}
+        <div className={`cinematic-brand-lockup ${progress > 18 ? 'revealed' : ''}`}>
+          <h1 className="cinematic-brand-title">
+            <span className="brand-char">K</span>
+            <span className="brand-char">A</span>
+            <span className="brand-char">R</span>
+            <span className="brand-char">T</span>
+            <span className="brand-char">H</span>
+            <span className="brand-char">I</span>
+            <span className="brand-char">C</span>
+            <span className="brand-char">K</span>
+            <span className="brand-dot">.</span>
+            <span className="brand-ext">DEV</span>
           </h1>
-          <p className="dp-brand-title">Aspiring Full Stack Developer & Data Analyst</p>
+          <p className="cinematic-brand-sub">FULL STACK DEVELOPER & DATA ANALYST</p>
         </div>
 
-        {/* Web Development Animated Phase Card */}
-        <div className="dp-phase-card">
-          <div className="dp-phase-header">
-            <span className="dp-terminal-prefix">&gt;_</span>
-            <span className="dp-phase-tag">{devSteps[currentStepIndex].tag}</span>
-            <span className="dp-phase-status">PROCESSING</span>
+        {/* Minimal Animated Progress Indicator */}
+        <div className="cinematic-progress-block">
+          <div className="cinematic-progress-header">
+            <span className="cinematic-step-message">{loadingMessage}</span>
+            <span className="cinematic-percent-value">{progress}%</span>
           </div>
-          <div className="dp-phase-content">
-            <div className="dp-phase-title">{devSteps[currentStepIndex].label}</div>
-            <div className="dp-phase-desc">{devSteps[currentStepIndex].sub}</div>
-          </div>
-        </div>
-
-        {/* Stylish Loading Progress Indicator */}
-        <div className="dp-progress-block">
-          <div className="dp-progress-header">
-            <span className="dp-progress-label">INITIALIZING ENVIRONMENT</span>
-            <span className="dp-progress-value">{progress}%</span>
-          </div>
-          <div className="dp-progress-track">
+          <div className="cinematic-progress-track">
             <div
-              className="dp-progress-bar"
+              className="cinematic-progress-fill"
               style={{ width: `${progress}%` }}
             >
-              <div className="dp-progress-glow-head"></div>
+              <div className="cinematic-progress-glow-head"></div>
             </div>
           </div>
         </div>
-
-        {/* Minimal High-Tech Tech Stack Ticker */}
-        <div className="dp-stack-pills">
-          <span className="dp-stack-chip">HTML5</span>
-          <span className="dp-stack-chip">CSS3</span>
-          <span className="dp-stack-chip">JAVASCRIPT</span>
-          <span className="dp-stack-chip active">REACT</span>
-          <span className="dp-stack-chip active">SQL</span>
-          <span className="dp-stack-chip active">ORACLE CLOUD</span>
-        </div>
       </div>
+
+      {/* Final Cinematic Transition Light Flare */}
+      <div className={`cinematic-reveal-flare ${isExiting ? 'flare-active' : ''}`}></div>
     </div>
   );
 }
