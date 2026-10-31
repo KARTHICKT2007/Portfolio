@@ -70,26 +70,37 @@ export default function Navbar({ theme, toggleTheme }) {
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
           className="mobile-top-brand"
+          title="Karthick Portfolio"
         >
-          KARTHICK
+          <span className="brand-text">Karthick K.</span>
         </a>
 
-        <button
-          onClick={toggleTheme}
-          className="mobile-theme-btn"
-          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-        >
-          {theme === 'dark' ? (
-            <Sun size={19} className="theme-icon sun-icon" />
-          ) : (
-            <Moon size={19} className="theme-icon moon-icon" />
-          )}
-        </button>
+        <div className="mobile-top-actions">
+          <button
+            onClick={toggleTheme}
+            className="mobile-theme-btn"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun size={18} strokeWidth={2.4} className="theme-icon sun-icon" />
+            ) : (
+              <Moon size={18} strokeWidth={2.4} className="theme-icon moon-icon" />
+            )}
+          </button>
+
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="mobile-top-hire-btn"
+          >
+            Hire me
+          </a>
+        </div>
       </header>
 
       {/* ====================================================================
-          MOBILE FLOATING BOTTOM DOCK (Icons Only — Exactly as Screenshot)
+          MOBILE FLOATING BOTTOM DOCK (Icons Only — Curved Purple Capsule)
           ==================================================================== */}
       <nav className="mobile-bottom-dock-wrapper" aria-label="Mobile Navigation">
         <div className="mobile-bottom-dock">
@@ -105,7 +116,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 aria-label={item.label}
                 title={item.label}
               >
-                <Icon size={20} strokeWidth={isActive ? 2.3 : 1.8} />
+                <Icon size={20} strokeWidth={isActive ? 2.4 : 1.8} />
               </a>
             );
           })}
@@ -142,7 +153,8 @@ export default function Navbar({ theme, toggleTheme }) {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`capsule-nav-item ${isActive ? 'active' : ''}`}
                 >
-                  <IconComponent size={16} strokeWidth={2} className="capsule-item-icon" />
+                  {isActive && <span className="capsule-light-beam" aria-hidden="true" />}
+                  <IconComponent size={16} strokeWidth={isActive ? 2.2 : 1.8} className="capsule-item-icon" />
                   <span className="capsule-item-label">{item.label}</span>
                 </a>
               );
@@ -160,9 +172,9 @@ export default function Navbar({ theme, toggleTheme }) {
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <Sun size={18} strokeWidth={2.2} className="capsule-sun-icon" />
+              <Sun size={18} strokeWidth={2.4} className="capsule-sun-icon" />
             ) : (
-              <Moon size={18} strokeWidth={2.2} className="capsule-moon-icon" />
+              <Moon size={18} strokeWidth={2.4} className="capsule-moon-icon" />
             )}
           </button>
 
