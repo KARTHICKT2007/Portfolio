@@ -22,9 +22,9 @@ export const personalInfo = {
     { label: "Commitment", value: "100%" }
   ],
   contact: {
-    email: "dineshkarthick1610@gmail.com",
-    github: "https://github.com/dineshkarthickd",
-    linkedin: "https://www.linkedin.com/in/dineshkarthickd",
+    email: "karthickt6190@gmail.com",
+    github: "https://github.com/KARTHICKT2007",
+    linkedin: "https://www.linkedin.com/in/karthick-thilagar-257a90375",
     location: "Tamil Nadu, India"
   }
 };
@@ -96,7 +96,7 @@ export const projectsData = [
     description: "A high-performance, real-time desktop automation system designed for complete hands-free navigation of Windows. Runs 100% locally with zero cloud dependencies using quantized Whisper speech recognition, Silero VAD noise rejection, and Win32 direct kernel control.",
     longDescription: "Engineered as an advanced hands-free operating system controller. Utilizes a thread-safe 16kHz audio circular ring buffer, deep-learning Voice Activity Detection (Silero VAD) to eliminate background noise, offline ONNX wake-word detection (<1% idle CPU), quantized Faster-Whisper INT8 ASR, and sub-5ms deterministic intent parsing to execute system commands via native Win32 API and UIAutomation.",
     tech: ["Python", "Faster-Whisper INT8", "Silero VAD", "Win32 API", "UIAutomation", "ONNX"],
-    github: "https://github.com/dineshkarthickd",
+    github: "https://github.com/KARTHICKT2007",
     demo: "#",
     metrics: ["100% Offline", "Sub-5ms Intent Latency", "<1% Idle CPU"],
     icon: "Cpu"
@@ -110,7 +110,7 @@ export const projectsData = [
     description: "A modern, responsive task and workflow management web application built with React and Vite. Features integrated Pomodoro focus cycles, smart priority categorization, productivity analytics, keyboard shortcuts, and JSON data backup.",
     longDescription: "Developed with modern React components and CSS styling. Includes an interactive Pomodoro timer with cycle states, color-coded priority tracking (High, Medium, Low), task checklist progress indicators, keyboard accessibility shortcuts, productivity statistics dashboards, and client-side persistence with exportable backup capability.",
     tech: ["React", "Vite", "JavaScript", "Bootstrap 5", "LocalStorage", "Analytics"],
-    github: "https://github.com/dineshkarthickd",
+    github: "https://github.com/KARTHICKT2007",
     demo: "#",
     metrics: ["Pomodoro Focus Timer", "Productivity Dashboard", "Instant Keyboard Shortcuts"],
     icon: "Layers"
@@ -124,7 +124,7 @@ export const projectsData = [
     description: "Dynamic React application showcasing mobile technology catalogs with interactive specification comparison, search filtration, responsive layout grids, and modern product presentation cards.",
     longDescription: "Features modular React components rendering real-time device specifications, price filters, category switching, and detailed specification modals, optimized for mobile, tablet, and desktop viewing.",
     tech: ["React", "JavaScript", "CSS3", "Vite", "Responsive Design"],
-    github: "https://github.com/dineshkarthickd",
+    github: "https://github.com/KARTHICKT2007",
     demo: "#",
     metrics: ["Dynamic Filtering", "Fully Responsive Grid", "Fast Vite Bundling"],
     icon: "Smartphone"
@@ -138,7 +138,7 @@ export const projectsData = [
     description: "Comprehensive relational database design and analytical SQL suite solving real-world business queries, transactional integrity, data aggregation, and structured reporting workflows.",
     longDescription: "Engineered robust SQL queries, multi-table joins, nested grouping, window functions, and indexing strategies. Designed relational schemas adhering to 3NF normalization rules for data consistency and high-efficiency query execution.",
     tech: ["SQL", "Relational Modeling", "Query Optimization", "Data Aggregation", "Indexing"],
-    github: "https://github.com/dineshkarthickd",
+    github: "https://github.com/KARTHICKT2007",
     demo: "#",
     metrics: ["3NF Normalization", "Optimized Query Plans", "Actionable Reporting"],
     icon: "Database"
@@ -164,7 +164,7 @@ export const certificationsData = [
     skills: ["React", "JavaScript ES6+", "HTML5 & CSS3", "Vite Ecosystem", "Component State"],
     description: "Comprehensive practical specialization in component-driven development, asynchronous JavaScript, dynamic routing, state architecture, and responsive UI engineering.",
     icon: "Code2",
-    verifyUrl: "https://github.com/dineshkarthickd"
+    verifyUrl: "https://github.com/KARTHICKT2007"
   },
   {
     id: "bsc-cs",
@@ -184,6 +184,6 @@ export const certificationsData = [
     skills: ["SQL", "Relational Modeling", "Data Analysis", "Schema Design", "Query Optimization"],
     description: "Specialized training covering structured query language, relational database engineering, data extraction, transformation, analytical reporting, and indexing optimization.",
     icon: "Database",
-    verifyUrl: "https://github.com/dineshkarthickd"
+    verifyUrl: "https://github.com/KARTHICKT2007"
   }
 ];

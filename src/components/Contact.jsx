@@ -162,7 +162,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="detail-value link"
                   >
-                    github.com/dineshkarthickd
+                    github.com/KARTHICKT2007
                   </a>
                 </div>
               </div>

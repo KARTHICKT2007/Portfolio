@@ -89,7 +89,7 @@ ${certificationsData.map(c => `* ${c.title} - ${c.issuer}`).join('\n')}
             <div className="resume-meta">
               <div><Mail size={13} /> {personalInfo.contact.email}</div>
               <div><MapPin size={13} /> {personalInfo.contact.location}</div>
-              <div><Code2 size={13} /> github.com/dineshkarthickd</div>
+              <div><Code2 size={13} /> github.com/KARTHICKT2007</div>
             </div>
           </div>
 
