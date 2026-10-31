@@ -19,13 +19,13 @@ export default function Skills() {
 
   const getSkillIcon = (iconName) => {
     switch (iconName) {
-      case 'Atom': return <Atom size={28} className="skill-svg-icon react-icon" />;
-      case 'FileCode2': return <FileCode2 size={28} className="skill-svg-icon js-icon" />;
-      case 'Code2': return <Code2 size={28} className="skill-svg-icon html-icon" />;
-      case 'Palette': return <Palette size={28} className="skill-svg-icon css-icon" />;
-      case 'Database': return <Database size={28} className="skill-svg-icon sql-icon" />;
-      case 'Cloud': return <Cloud size={28} className="skill-svg-icon oci-icon" />;
-      default: return <Code2 size={28} className="skill-svg-icon" />;
+      case 'Atom': return <Atom size={22} className="skill-svg-icon react-icon" />;
+      case 'FileCode2': return <FileCode2 size={22} className="skill-svg-icon js-icon" />;
+      case 'Code2': return <Code2 size={22} className="skill-svg-icon html-icon" />;
+      case 'Palette': return <Palette size={22} className="skill-svg-icon css-icon" />;
+      case 'Database': return <Database size={22} className="skill-svg-icon sql-icon" />;
+      case 'Cloud': return <Cloud size={22} className="skill-svg-icon oci-icon" />;
+      default: return <Code2 size={22} className="skill-svg-icon" />;
     }
   };
 
@@ -35,7 +35,7 @@ export default function Skills() {
         {/* Section Header */}
         <div className="section-header-block">
           <div className="section-tag">
-            <span className="tag-bracket">//</span> 02. TECHNICAL PROFICIENCY
+            <span className="section-tag-number">02</span> TECHNICAL PROFICIENCY
           </div>
           <h2 className="section-title">
             Core <span className="text-gradient">Skills</span> & Technologies

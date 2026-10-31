@@ -63,16 +63,16 @@ export default function Navbar({ theme, toggleTheme }) {
   return (
     <>
       {/* ====================================================================
-          MOBILE TOP HEADER (Visible on Mobile / Tablet < 900px)
+          MOBILE TOP HEADER (Visible on Mobile / Tablet < 768px)
           ==================================================================== */}
       <header className={`mobile-top-header ${isScrolled ? 'scrolled' : ''}`}>
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
           className="mobile-top-brand"
-          title="Karthick Portfolio"
+          title="Karthick T. Portfolio"
         >
-          <span className="brand-text">Karthick</span>
+          <span className="brand-text">Karthick T.</span>
         </a>
 
         <div className="mobile-top-actions">
@@ -83,9 +83,9 @@ export default function Navbar({ theme, toggleTheme }) {
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <Sun size={18} strokeWidth={2.4} className="theme-icon sun-icon" />
+              <Sun size={16} strokeWidth={2.4} className="theme-icon sun-icon" />
             ) : (
-              <Moon size={18} strokeWidth={2.4} className="theme-icon moon-icon" />
+              <Moon size={16} strokeWidth={2.4} className="theme-icon moon-icon" />
             )}
           </button>
 
@@ -100,7 +100,7 @@ export default function Navbar({ theme, toggleTheme }) {
       </header>
 
       {/* ====================================================================
-          MOBILE FLOATING BOTTOM DOCK (Icons Only — Curved Purple Capsule)
+          MOBILE FLOATING BOTTOM DOCK (Icons Only — Compact Purple Capsule)
           ==================================================================== */}
       <nav className="mobile-bottom-dock-wrapper" aria-label="Mobile Navigation">
         <div className="mobile-bottom-dock">
@@ -116,7 +116,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 aria-label={item.label}
                 title={item.label}
               >
-                <Icon size={20} strokeWidth={isActive ? 2.4 : 1.8} />
+                <Icon size={18} strokeWidth={isActive ? 2.2 : 1.7} />
               </a>
             );
           })}
@@ -124,7 +124,7 @@ export default function Navbar({ theme, toggleTheme }) {
       </nav>
 
       {/* ====================================================================
-          DESKTOP FLOATING CAPSULE NAVBAR (Visible on Desktop >= 900px)
+          DESKTOP FLOATING CAPSULE NAVBAR (Visible on Desktop >= 768px)
           ==================================================================== */}
       <div className="desktop-pill-wrapper">
         <nav className={`capsule-navbar ${isScrolled ? 'scrolled' : ''}`} aria-label="Main Navigation">
@@ -133,9 +133,9 @@ export default function Navbar({ theme, toggleTheme }) {
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className="capsule-logo"
-            title="Karthick Portfolio"
+            title="Karthick T. Portfolio"
           >
-            <span className="capsule-logo-text">Karthick</span>
+            <span className="capsule-logo-text">Karthick T.</span>
           </a>
 
           {/* Vertical Divider 1 */}
@@ -154,7 +154,7 @@ export default function Navbar({ theme, toggleTheme }) {
                   className={`capsule-nav-item ${isActive ? 'active' : ''}`}
                 >
                   {isActive && <span className="capsule-light-beam" aria-hidden="true" />}
-                  <IconComponent size={16} strokeWidth={isActive ? 2.2 : 1.8} className="capsule-item-icon" />
+                  <IconComponent size={15} strokeWidth={isActive ? 2.1 : 1.7} className="capsule-item-icon" />
                   <span className="capsule-item-label">{item.label}</span>
                 </a>
               );
@@ -172,9 +172,9 @@ export default function Navbar({ theme, toggleTheme }) {
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <Sun size={18} strokeWidth={2.4} className="capsule-sun-icon" />
+              <Sun size={16} strokeWidth={2.4} className="capsule-sun-icon" />
             ) : (
-              <Moon size={18} strokeWidth={2.4} className="capsule-moon-icon" />
+              <Moon size={16} strokeWidth={2.4} className="capsule-moon-icon" />
             )}
           </button>
 

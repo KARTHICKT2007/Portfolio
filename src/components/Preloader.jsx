@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function Preloader({ onComplete }) {
   // Detect mobile vs desktop screen (threshold: 768px)
@@ -27,77 +27,24 @@ export default function Preloader({ onComplete }) {
 }
 
 /* ==========================================================================
-   DESKTOP PRELOADER — PREMIUM CINEMATIC 3D DEVELOPER EXPERIENCE
+   DESKTOP PRELOADER — REFINED CINEMATIC 3D DEVELOPER EXPERIENCE (NO AUDIO)
    ========================================================================== */
 function DesktopPreloader({ onComplete }) {
   const canvasContainerRef = useRef(null);
-  const audioRef = useRef(null);
-  const audioContextRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState('INITIALIZING EXPERIENCE');
-  const [isMuted, setIsMuted] = useState(true);
-  const isMutedRef = useRef(true);
   const [isExiting, setIsExiting] = useState(false);
   const [webGlAvailable, setWebGlAvailable] = useState(true);
 
-  useEffect(() => {
-    isMutedRef.current = isMuted;
-  }, [isMuted]);
-
-  // High-Tech Audio Synthesis for Milestones
-  const playTechPulse = (freq = 440) => {
-    if (isMutedRef.current) return;
-    try {
-      if (!audioContextRef.current) {
-        audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      const ctx = audioContextRef.current;
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 1.4, ctx.currentTime + 0.14);
-      gain.gain.setValueAtTime(0.045, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.19);
-    } catch {
-      // AudioContext unavailable
-    }
-  };
-
-  const handleToggleMute = (e) => {
-    e.stopPropagation();
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-
-    if (audioRef.current) {
-      audioRef.current.muted = nextMuted;
-      if (!nextMuted) {
-        audioRef.current.play().catch(() => {});
-        playTechPulse(540);
-      } else {
-        audioRef.current.pause();
-      }
-    }
-  };
-
-  // Loading Progress & Cinematic Messages Sequence (~3.2s total)
+  // Loading Progress & Milestone Messages Sequence (~3.1s total)
   useEffect(() => {
     let currentPercent = 0;
     const interval = setInterval(() => {
-      // Smooth non-linear progression
       const increment = currentPercent < 30 ? 4 : currentPercent < 75 ? 3 : 2;
       currentPercent = Math.min(currentPercent + increment, 100);
       setProgress(currentPercent);
 
-      // Milestone Messages
       if (currentPercent < 28) {
         setLoadingMessage('INITIALIZING EXPERIENCE');
       } else if (currentPercent < 58) {
@@ -110,26 +57,21 @@ function DesktopPreloader({ onComplete }) {
         setLoadingMessage('SYSTEM READY');
       }
 
-      if (currentPercent === 30 || currentPercent === 60 || currentPercent === 88) {
-        playTechPulse(380 + currentPercent * 2.2);
-      }
-
       if (currentPercent >= 100) {
         clearInterval(interval);
-        playTechPulse(780);
         setTimeout(() => {
           setIsExiting(true);
           setTimeout(() => {
             onComplete();
-          }, 700);
-        }, 350);
+          }, 650);
+        }, 300);
       }
-    }, 55);
+    }, 52);
 
     // Fallback safety timeout in case interval is blocked
     const fallbackSafety = setTimeout(() => {
       onComplete();
-    }, 4500);
+    }, 4200);
 
     return () => {
       clearInterval(interval);
@@ -137,14 +79,13 @@ function DesktopPreloader({ onComplete }) {
     };
   }, [onComplete]);
 
-  // Three.js WebGL 3D Metallic "K" & Atmospheric Scene
+  // Three.js WebGL 3D Metallic "K" & Refined Atmospheric Scene
   useEffect(() => {
     const container = canvasContainerRef.current;
     if (!container) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Renderer with fallback detection
     let renderer;
     let scene;
     let camera;
@@ -172,12 +113,12 @@ function DesktopPreloader({ onComplete }) {
       container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // Scene & Camera
+      // Scene & Camera (Distance set to keep K proportionate and elegant)
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 0.12, 5.6);
+      camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.08, 6.0);
 
-      // 1. Build Precision-Engineered 3D "K" Shape (Refined Proportions)
+      // 1. Build Precision-Engineered 3D "K" Shape
       const kShape = new THREE.Shape();
       kShape.moveTo(-1.25, -1.8);
       kShape.lineTo(-1.25, 1.8);
@@ -193,18 +134,18 @@ function DesktopPreloader({ onComplete }) {
       kShape.closePath();
 
       const extrudeSettings = {
-        depth: 0.42,
+        depth: 0.4,
         bevelEnabled: true,
         bevelSegments: 5,
         steps: 1,
-        bevelSize: 0.05,
-        bevelThickness: 0.07
+        bevelSize: 0.045,
+        bevelThickness: 0.065
       };
 
       kGeometry = new THREE.ExtrudeGeometry(kShape, extrudeSettings);
       kGeometry.center();
 
-      // Premium Metallic Material with Deep Violet Clearcoat & Reflections
+      // Luxury Metallic Material with Deep Violet Undertones & Reflections
       kMaterial = new THREE.MeshPhysicalMaterial({
         color: new THREE.Color('#1B0F33'),
         emissive: new THREE.Color('#110620'),
@@ -217,8 +158,8 @@ function DesktopPreloader({ onComplete }) {
       });
 
       const kMesh = new THREE.Mesh(kGeometry, kMaterial);
-      // Proportionate Scale: Noticeably reduced so K is an elegant focal centerpiece
-      kMesh.scale.set(0.64, 0.64, 0.64);
+      // Proportionate scale: balanced centerpiece with ample negative space
+      kMesh.scale.set(0.48, 0.48, 0.48);
 
       // Sharp Edge Contour Lines (Violet Specular Gleam)
       edgeGeo = new THREE.EdgesGeometry(kGeometry, 26);
@@ -234,35 +175,35 @@ function DesktopPreloader({ onComplete }) {
       // Initial cinematic tilt
       kMesh.rotation.y = prefersReducedMotion ? 0 : -0.52;
       kMesh.rotation.x = prefersReducedMotion ? 0 : 0.16;
-      kMesh.position.y = 0.14;
+      kMesh.position.y = 0.1;
       scene.add(kMesh);
 
       // 2. Cinematic Lighting Scheme
       const ambientLight = new THREE.AmbientLight(0x0c0717, 1.3);
       scene.add(ambientLight);
 
-      // Key Directional Light (Electric Purple #8B5CF6)
-      const keyLight = new THREE.DirectionalLight('#8B5CF6', 4.8);
+      // Key Directional Light (Electric Purple)
+      const keyLight = new THREE.DirectionalLight('#8B5CF6', 4.5);
       keyLight.position.set(-3.5, 4.2, 5.0);
       scene.add(keyLight);
 
-      // Rim Point Light (Light Violet #A78BFA specular highlight)
-      const rimLight = new THREE.PointLight('#C4B5FD', 7.5, 18);
+      // Rim Point Light (Light Violet specular highlight)
+      const rimLight = new THREE.PointLight('#C4B5FD', 7.0, 18);
       rimLight.position.set(3.2, 2.0, -2.8);
       scene.add(rimLight);
 
       // Fill Light (Deep Purple)
-      const fillLight = new THREE.PointLight('#6D28D9', 3.2, 14);
+      const fillLight = new THREE.PointLight('#6D28D9', 3.0, 14);
       fillLight.position.set(-2.2, -3.0, 3.2);
       scene.add(fillLight);
 
       // Moving Spotlight for specular sweep across the metallic face
-      const spotLight = new THREE.SpotLight('#F5F3FF', 7.5, 20, Math.PI / 5, 0.45, 1.2);
+      const spotLight = new THREE.SpotLight('#F5F3FF', 7.0, 20, Math.PI / 5, 0.45, 1.2);
       spotLight.position.set(0, 5, 4);
       spotLight.target = kMesh;
       scene.add(spotLight);
 
-      // 3. Subtle Floating Atmospheric Micro-Particles
+      // 3. Subtle Floating Atmospheric Micro-Particles (40 lightweight embers)
       const pCanvas = document.createElement('canvas');
       pCanvas.width = 64;
       pCanvas.height = 64;
@@ -276,7 +217,7 @@ function DesktopPreloader({ onComplete }) {
       pCtx.fillRect(0, 0, 64, 64);
       pTexture = new THREE.CanvasTexture(pCanvas);
 
-      const pCount = 50;
+      const pCount = 40;
       pGeo = new THREE.BufferGeometry();
       const pPositions = new Float32Array(pCount * 3);
       const pYVels = new Float32Array(pCount);
@@ -285,48 +226,41 @@ function DesktopPreloader({ onComplete }) {
         pPositions[i * 3] = (Math.random() - 0.5) * 11;
         pPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
         pPositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
-        pYVels[i] = 0.0016 + Math.random() * 0.0028;
+        pYVels[i] = 0.0015 + Math.random() * 0.0025;
       }
 
       pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
       pMat = new THREE.PointsMaterial({
-        size: 0.11,
+        size: 0.1,
         map: pTexture,
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.5,
         blending: THREE.AdditiveBlending,
         depthWrite: false
       });
       const particles = new THREE.Points(pGeo, pMat);
       scene.add(particles);
 
-      // 4. Animation Loop with Cinematic Camera & Specular Rotation
+      // 4. Animation Loop with Smooth Rotation
       const animStartTime = performance.now();
-      const totalDuration = 3200;
+      const totalDuration = 3100;
 
       const renderLoop = (time) => {
         animationFrameId = requestAnimationFrame(renderLoop);
 
         const elapsed = time - animStartTime;
         const t = Math.min(elapsed / totalDuration, 1);
-
-        // Smooth cinematic ease curve
         const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
         if (!prefersReducedMotion) {
-          // Metallic K rotation smoothly settles toward majestic front angle
-          const targetRotY = -0.52 * (1 - ease) + Math.sin(time * 0.001) * 0.035;
-          const targetRotX = 0.16 * (1 - ease) + Math.cos(time * 0.0008) * 0.025;
+          const targetRotY = -0.52 * (1 - ease) + Math.sin(time * 0.001) * 0.03;
+          const targetRotX = 0.16 * (1 - ease) + Math.cos(time * 0.0008) * 0.02;
           kMesh.rotation.y = targetRotY;
           kMesh.rotation.x = targetRotX;
 
-          // Subtle camera track-in with elegant breathing room
-          camera.position.z = 5.6 - 0.35 * ease;
+          camera.position.z = 6.0 - 0.25 * ease;
+          spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.4;
 
-          // Sweeping specular spotlight across the metallic bevels
-          spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.5;
-
-          // Upward particle drift
           const posAttr = pGeo.attributes.position;
           for (let i = 0; i < pCount; i++) {
             let y = posAttr.getY(i);
@@ -335,7 +269,7 @@ function DesktopPreloader({ onComplete }) {
             posAttr.setY(i, y);
           }
           posAttr.needsUpdate = true;
-          particles.rotation.y = time * 0.00025;
+          particles.rotation.y = time * 0.0002;
         }
 
         renderer.render(scene, camera);
@@ -384,26 +318,7 @@ function DesktopPreloader({ onComplete }) {
         <div className="cinematic-vignette"></div>
       </div>
 
-      {/* Standalone Ambient Audio Track */}
-      <audio ref={audioRef} src="/soundtrack.m4a" loop preload="auto" />
-
-      {/* Top Sound Control: ONLY Sound Icon with NO text beside it */}
-      <div className="cinematic-sound-hud">
-        <button
-          onClick={handleToggleMute}
-          className={`cinematic-sound-btn ${!isMuted ? 'active' : ''}`}
-          title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-          aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-        >
-          {isMuted ? (
-            <VolumeX size={19} className="cinematic-sound-icon" />
-          ) : (
-            <Volume2 size={19} className="cinematic-sound-icon playing" />
-          )}
-        </button>
-      </div>
-
-      {/* Three.js 3D WebGL Canvas Layer or High-Res CSS 3D Metallic K Fallback */}
+      {/* Three.js 3D WebGL Canvas Layer or CSS 3D Metallic K Fallback */}
       {webGlAvailable ? (
         <div ref={canvasContainerRef} className="cinematic-canvas-stage" />
       ) : (
@@ -417,16 +332,7 @@ function DesktopPreloader({ onComplete }) {
         {/* Gradually Revealed Brand Identity */}
         <div className={`cinematic-brand-lockup ${progress > 18 ? 'revealed' : ''}`}>
           <h1 className="cinematic-brand-title">
-            <span className="brand-char">K</span>
-            <span className="brand-char">A</span>
-            <span className="brand-char">R</span>
-            <span className="brand-char">T</span>
-            <span className="brand-char">H</span>
-            <span className="brand-char">I</span>
-            <span className="brand-char">C</span>
-            <span className="brand-char">K</span>
-            <span className="brand-dot">.</span>
-            <span className="brand-ext">DEV</span>
+            KARTHICK
           </h1>
           <p className="cinematic-brand-sub">FULL STACK DEVELOPER & DATA ANALYST</p>
         </div>
@@ -455,15 +361,12 @@ function DesktopPreloader({ onComplete }) {
 }
 
 /* ==========================================================================
-   MOBILE PRELOADER - KEPT COMPLETELY UNCHANGED
+   MOBILE PRELOADER - VISUAL VIDEO ANIMATION (NO AUDIO)
    ========================================================================== */
 function MobilePreloader({ onComplete }) {
   const videoRef = useRef(null);
-  const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const [showPlayFallback, setShowPlayFallback] = useState(false);
 
   const handleFinish = () => {
@@ -471,45 +374,16 @@ function MobilePreloader({ onComplete }) {
     setIsExiting(true);
     setTimeout(() => {
       onComplete();
-    }, 650);
+    }, 600);
   };
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
     if (!video || !video.duration) return;
-
     const current = video.currentTime;
     const dur = video.duration;
     const percent = Math.min(Math.round((current / dur) * 100), 100);
     setProgress(percent);
-
-    if (audioRef.current && !audioRef.current.paused && Math.abs(audioRef.current.currentTime - current) > 0.3) {
-      audioRef.current.currentTime = current;
-    }
-  };
-
-  const handleToggleMute = (e) => {
-    e.stopPropagation();
-    const video = videoRef.current;
-    const audio = audioRef.current;
-
-    const targetMuted = !isMuted;
-    setIsMuted(targetMuted);
-
-    if (video) {
-      video.muted = targetMuted;
-      video.volume = targetMuted ? 0 : 1.0;
-    }
-
-    if (audio) {
-      audio.muted = targetMuted;
-      if (!targetMuted) {
-        audio.currentTime = video ? video.currentTime : 0;
-        audio.play().catch(() => {});
-      } else {
-        audio.pause();
-      }
-    }
   };
 
   useEffect(() => {
@@ -520,13 +394,9 @@ function MobilePreloader({ onComplete }) {
     video.defaultMuted = true;
     const playPromise = video.play();
     if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setVideoLoaded(true);
-        })
-        .catch(() => {
-          setShowPlayFallback(true);
-        });
+      playPromise.catch(() => {
+        setShowPlayFallback(true);
+      });
     }
 
     const handleKeyDown = (e) => {
@@ -540,7 +410,7 @@ function MobilePreloader({ onComplete }) {
     // Resilient safety timer: advance naturally if video hangs or autoplay is blocked on mobile
     const safetyTimer = setTimeout(() => {
       handleFinish();
-    }, 4200);
+    }, 4000);
 
     return () => {
       clearTimeout(safetyTimer);
@@ -551,37 +421,20 @@ function MobilePreloader({ onComplete }) {
   return (
     <div className={`video-preloader-root ${isExiting ? 'fade-out' : ''}`}>
       <div className="preloader-bg-ambient"></div>
-      <audio ref={audioRef} src="/soundtrack.m4a" preload="auto" />
 
       <div className="preloader-stage">
-        <div className="preloader-sound-only-hud">
-          <button
-            onClick={handleToggleMute}
-            className={`sound-only-btn ${!isMuted ? 'active-sound' : ''}`}
-            title={isMuted ? 'Enable Sound' : 'Mute Sound'}
-            aria-label={isMuted ? 'Enable Audio' : 'Mute Audio'}
-          >
-            {isMuted ? (
-              <VolumeX size={20} className="sound-icon-muted" />
-            ) : (
-              <Volume2 size={20} className="sound-icon-playing" />
-            )}
-          </button>
-        </div>
-
-        <div className="preloader-video-wrapper" onClick={handleToggleMute}>
+        <div className="preloader-video-wrapper">
           <video
             ref={videoRef}
             src="/preloader.mp4"
             autoPlay
-            muted={isMuted}
+            muted
             defaultMuted
             playsInline
             preload="auto"
             onTimeUpdate={handleTimeUpdate}
             onEnded={handleFinish}
             onError={() => handleFinish()}
-            onLoadedData={() => setVideoLoaded(true)}
             className="preloader-core-video"
           />
 
@@ -592,13 +445,13 @@ function MobilePreloader({ onComplete }) {
                   e.stopPropagation();
                   setShowPlayFallback(false);
                   if (videoRef.current) {
-                    videoRef.current.play().then(() => setVideoLoaded(true));
+                    videoRef.current.play();
                   }
                 }}
                 className="btn btn-primary prompt-play-btn"
               >
-                <Sparkles size={18} />
-                <span>Play Animation / Enter Site</span>
+                <Sparkles size={16} />
+                <span>Enter Site</span>
               </button>
             </div>
           )}

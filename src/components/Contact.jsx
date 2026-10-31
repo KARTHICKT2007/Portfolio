@@ -93,7 +93,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="section-header-block">
           <div className="section-tag">
-            <span className="tag-bracket">//</span> 05. INITIATE TRANSMISSION
+            <span className="section-tag-number">05</span> GET IN TOUCH
           </div>
           <h2 className="section-title">
             Get In <span className="text-gradient">Touch</span>
@@ -217,9 +217,9 @@ export default function Contact() {
               <div className="form-success-banner" role="alert">
                 <CheckCircle2 size={24} className="success-icon" />
                 <div>
-                  <h4 className="success-title">Transmission Dispatched!</h4>
+                  <h4 className="success-title">Message Sent Successfully!</h4>
                   <p className="success-message">
-                    Thank you, your message has been sent successfully. Karthick will review your message and reply promptly.
+                    Thank you, your message has been sent. Karthick T. will review your message and reply promptly.
                   </p>
                 </div>
               </div>

@@ -1,19 +1,22 @@
 export const personalInfo = {
-  name: "Karthick",
-  fullName: "Karthick",
+  name: "Karthick T.",
+  fullName: "Karthick T.",
+  brandName: "Karthick",
   tagline: "Aspiring Full Stack Developer & Data Analyst",
-  bio: "Passionate Computer Science student specializing in building scalable web architectures, modern interactive user experiences, and data-driven analytical solutions. Proficient in React, JavaScript, SQL, and Oracle Cloud ecosystems.",
+  bio: "Passionate Computer Science student at Arulmigu Palaniandavar College of Arts and Culture, Palani (affiliated with Madurai Kamaraj University). Focused on building high-performance web architectures, interactive user experiences, and data-driven solutions with React, JavaScript, and SQL.",
   about: [
-    "I am an Aspiring Full Stack Developer & Data Analyst with a strong foundation in modern web technologies, computational problem solving, and database management.",
-    "Pursuing a Bachelor of Science in Computer Science (B.Sc CS) from Madurai Kamaraj University, I focus on combining high-performance frontends using React and JavaScript with structured database designs and cloud backbones.",
-    "Driven by curiosity and engineering rigor, I build production-ready applications spanning hands-free desktop AI automation, comprehensive productivity systems, and scalable relational data pipelines."
+    "I am an Aspiring Full Stack Developer & Data Analyst with a solid foundation in modern web technologies, computational problem solving, and database management.",
+    "Currently pursuing a Bachelor of Science in Computer Science (B.Sc. CS, 2024–2027) at Arulmigu Palaniandavar College of Arts and Culture, Palani, affiliated with Madurai Kamaraj University. My focus bridges responsive React frontends with structured database architectures.",
+    "Driven by curiosity and engineering rigor, I build production-ready applications spanning AI-assisted automation, comprehensive productivity systems, and scalable relational data pipelines."
   ],
   education: {
-    degree: "BSc Computer Science",
+    degree: "B.Sc. Computer Science",
+    college: "Arulmigu Palaniandavar College of Arts and Culture, Palani",
     institution: "Madurai Kamaraj University",
-    location: "Tamil Nadu, India",
+    location: "Palani, Tamil Nadu, India",
     focus: "Full Stack Web Development, Database Management Systems (DBMS), Data Structures, Cloud Computing & Analytics",
-    period: "2023 - 2026"
+    period: "2024 - 2027",
+    status: "Computer Science Student"
   },
   stats: [
     { label: "Core Technologies", value: "6+" },

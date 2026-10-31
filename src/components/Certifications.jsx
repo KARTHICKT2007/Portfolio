@@ -65,7 +65,7 @@ export default function Certifications() {
         {/* Section Header */}
         <div className="section-header-block">
           <div className="section-tag">
-            <span className="tag-bracket">//</span> 04. CREDENTIALS & ACCOMPLISHMENTS
+            <span className="section-tag-number">04</span> CREDENTIALS & ACCOMPLISHMENTS
           </div>
           <h2 className="section-title">
             Certifications & <span className="text-gradient">Achievements</span>

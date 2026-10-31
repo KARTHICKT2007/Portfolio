@@ -12,15 +12,17 @@ export default function ResumeModal({ isOpen, onClose }) {
   const handleDownload = () => {
     // Generate text/markdown or trigger print to save as PDF
     const resumeText = `
-KARTHICK
+KARTHICK T.
 ${personalInfo.tagline}
 Email: ${personalInfo.contact.email} | GitHub: ${personalInfo.contact.github} | Location: ${personalInfo.contact.location}
 
 ============================================================
 EDUCATION
 ============================================================
-${personalInfo.education.degree}
-${personalInfo.education.institution} (${personalInfo.education.period})
+${personalInfo.education.degree} (${personalInfo.education.period})
+${personalInfo.education.college}
+Affiliated with ${personalInfo.education.institution} • ${personalInfo.education.location}
+Status: ${personalInfo.education.status}
 Key Focus: ${personalInfo.education.focus}
 
 ============================================================
@@ -45,7 +47,7 @@ ${certificationsData.map(c => `* ${c.title} - ${c.issuer}`).join('\n')}
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `Karthick_FullStack_Resume.txt`;
+    link.download = `Karthick_T_Resume.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -61,7 +63,7 @@ ${certificationsData.map(c => `* ${c.title} - ${c.issuer}`).join('\n')}
             <span className="dot dot-red"></span>
             <span className="dot dot-yellow"></span>
             <span className="dot dot-green"></span>
-            <span className="modal-title-text">Karthick_Resume.pdf (Preview)</span>
+            <span className="modal-title-text">Karthick_T_Resume.pdf (Preview)</span>
           </div>
           <div className="modal-bar-actions">
             <button onClick={handlePrint} className="modal-action-btn" title="Print / Save as PDF">
@@ -109,7 +111,8 @@ ${certificationsData.map(c => `* ${c.title} - ${c.issuer}`).join('\n')}
                 <span className="resume-item-title">{personalInfo.education.degree}</span>
                 <span className="resume-item-date">{personalInfo.education.period}</span>
               </div>
-              <div className="resume-item-sub">{personalInfo.education.institution} • {personalInfo.education.location}</div>
+              <div className="resume-item-sub">{personalInfo.education.college}</div>
+              <div className="resume-item-sub text-muted">Affiliated with {personalInfo.education.institution} • {personalInfo.education.location}</div>
               <p className="resume-item-desc">{personalInfo.education.focus}</p>
             </div>
           </section>

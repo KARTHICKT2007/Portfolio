@@ -28,17 +28,16 @@ export default function Hero({ onOpenResume }) {
 
           {/* Subtitle / Intro prefix */}
           <div className="hero-greeting">
-            <span className="greeting-prefix">Hello world, I'm</span>
+            <span className="greeting-prefix">Hello, I'm</span>
           </div>
 
           {/* Name with Electric Purple Glow */}
           <h1 className="hero-name">
-            <span className="name-highlight">{personalInfo.name}</span>
+            <span className="name-highlight">{personalInfo.fullName}</span>
           </h1>
 
           {/* Professional Title */}
           <div className="hero-title-wrap">
-            <div className="cyber-bracket">&gt;</div>
             <h2 className="hero-title">{personalInfo.tagline}</h2>
           </div>
 
@@ -174,10 +173,10 @@ export default function Hero({ onOpenResume }) {
                 <pre className="code-content">
                   <code>
                     <span className="c-keyword">const</span> <span className="c-name">developer</span> = &#123;{'\n'}
-                    {'  '}name: <span className="c-string">"{personalInfo.name}"</span>,{'\n'}
-                    {'  '}degree: <span className="c-string">"BSc CS @ MKU"</span>,{'\n'}
-                    {'  '}role: <span className="c-string">"Full Stack & Data"</span>,{'\n'}
-                    {'  '}status: <span className="c-green">"READY_TO_DEPLOY"</span>{'\n'}
+                    {'  '}name: <span className="c-string">"{personalInfo.fullName}"</span>,{'\n'}
+                    {'  '}degree: <span className="c-string">"B.Sc. CS @ APCAC, Palani"</span>,{'\n'}
+                    {'  '}university: <span className="c-string">"MKU (2024-2027)"</span>,{'\n'}
+                    {'  '}status: <span className="c-green">"CS_STUDENT"</span>{'\n'}
                     &#125;;
                   </code>
                 </pre>

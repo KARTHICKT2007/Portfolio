@@ -12,10 +12,7 @@ export default function Footer() {
         {/* Brand & Tagline */}
         <div className="footer-brand-col">
           <div className="footer-logo">
-            <span className="logo-bracket">&lt;</span>
-            <span className="logo-name">{personalInfo.name}</span>
-            <span className="logo-accent">.dev</span>
-            <span className="logo-bracket"> /&gt;</span>
+            <span className="logo-name">Karthick</span>
           </div>
           <p className="footer-tagline">
             Aspiring Full Stack Developer & Data Analyst. Crafting high-performance web systems and data-driven solutions.
@@ -76,11 +73,11 @@ export default function Footer() {
       <div className="footer-bottom-bar">
         <div className="section-container footer-bottom-inner">
           <p className="copyright-text">
-            &copy; {currentYear} Karthick. All rights reserved.
+            &copy; {currentYear} Karthick T. All rights reserved.
           </p>
           <div className="status-live">
             <span className="status-live-dot"></span>
-            <span>Systems Nominal • Madurai Kamaraj University Student</span>
+            <span>Arulmigu Palaniandavar College • Madurai Kamaraj University</span>
           </div>
         </div>
       </div>

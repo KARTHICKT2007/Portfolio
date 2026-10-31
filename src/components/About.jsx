@@ -9,7 +9,7 @@ export default function About() {
         {/* Section Header */}
         <div className="section-header-block">
           <div className="section-tag">
-            <span className="tag-bracket">//</span> 01. PROFILE OVERVIEW
+            <span className="section-tag-number">01</span> PROFILE OVERVIEW
           </div>
           <h2 className="section-title">
             About <span className="text-gradient">Me</span>
@@ -83,19 +83,26 @@ export default function About() {
             {/* Degree Card */}
             <div className="education-detail-box">
               <div className="edu-badge-row">
-                <span className="edu-status-badge">Undergraduate (2023 - 2026)</span>
+                <span className="edu-status-badge">Computer Science Student</span>
                 <span className="edu-period">
                   <Calendar size={13} /> {personalInfo.education.period}
                 </span>
               </div>
 
               <h4 className="edu-degree-title">{personalInfo.education.degree}</h4>
+              
+              <div className="edu-college">
+                <BookOpen size={15} />
+                <span>{personalInfo.education.college}</span>
+              </div>
+
               <div className="edu-university">
-                <BookOpen size={16} />
+                <span className="edu-affil-label">Affiliated with:</span>
                 <span>{personalInfo.education.institution}</span>
               </div>
+
               <div className="edu-location">
-                <MapPin size={14} />
+                <MapPin size={13} />
                 <span>{personalInfo.education.location}</span>
               </div>
 
@@ -116,11 +123,11 @@ export default function About() {
                   </li>
                   <li>
                     <CheckCircle2 size={15} className="focus-check" />
-                    <span>Full Stack Web Development & Frontend Frameworks</span>
+                    <span>Full Stack Web Development & Modern Frontend Engineering</span>
                   </li>
                   <li>
                     <CheckCircle2 size={15} className="focus-check" />
-                    <span>Software Engineering Lifecycle & Cloud Computing</span>
+                    <span>Software Engineering Lifecycle & Cloud Foundations</span>
                   </li>
                 </ul>
               </div>
@@ -129,7 +136,7 @@ export default function About() {
             {/* Verification Note */}
             <div className="academic-seal-box">
               <div className="seal-text">
-                <strong>Madurai Kamaraj University (MKU)</strong> is a premier recognized state university in Tamil Nadu, India.
+                <strong>Arulmigu Palaniandavar College of Arts and Culture, Palani</strong> is affiliated with <strong>Madurai Kamaraj University (MKU)</strong>.
               </div>
             </div>
           </div>

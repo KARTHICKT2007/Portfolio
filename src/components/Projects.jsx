@@ -19,11 +19,11 @@ export default function Projects({ onSelectProject }) {
 
   const getIcon = (iconName) => {
     switch (iconName) {
-      case 'Cpu': return <Cpu size={24} className="proj-card-icon" />;
-      case 'Layers': return <Layers size={24} className="proj-card-icon" />;
-      case 'Smartphone': return <Smartphone size={24} className="proj-card-icon" />;
-      case 'Database': return <Database size={24} className="proj-card-icon" />;
-      default: return <Cpu size={24} className="proj-card-icon" />;
+      case 'Cpu': return <Cpu size={20} className="proj-card-icon" />;
+      case 'Layers': return <Layers size={20} className="proj-card-icon" />;
+      case 'Smartphone': return <Smartphone size={20} className="proj-card-icon" />;
+      case 'Database': return <Database size={20} className="proj-card-icon" />;
+      default: return <Cpu size={20} className="proj-card-icon" />;
     }
   };
 
@@ -33,7 +33,7 @@ export default function Projects({ onSelectProject }) {
         {/* Section Header */}
         <div className="section-header-block">
           <div className="section-tag">
-            <span className="tag-bracket">//</span> 03. FEATURED WORK
+            <span className="section-tag-number">03</span> FEATURED WORK
           </div>
           <h2 className="section-title">
             Engineered <span className="text-gradient">Projects</span>
