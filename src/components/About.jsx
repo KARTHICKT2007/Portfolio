@@ -83,7 +83,7 @@ export default function About() {
             {/* Degree Card */}
             <div className="education-detail-box">
               <div className="edu-badge-row">
-                <span className="edu-status-badge">Completed Degree</span>
+                <span className="edu-status-badge">Undergraduate (2023 - 2026)</span>
                 <span className="edu-period">
                   <Calendar size={13} /> {personalInfo.education.period}
                 </span>

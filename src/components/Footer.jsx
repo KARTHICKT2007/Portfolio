@@ -80,7 +80,7 @@ export default function Footer() {
           </p>
           <div className="status-live">
             <span className="status-live-dot"></span>
-            <span>Systems Nominal • Madurai Kamaraj University Alum</span>
+            <span>Systems Nominal • Madurai Kamaraj University Student</span>
           </div>
         </div>
       </div>

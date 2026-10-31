@@ -174,10 +174,10 @@ function DesktopPreloader({ onComplete }) {
 
       // Scene & Camera
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 0.15, 5.2);
+      camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.12, 5.6);
 
-      // 1. Build Precision-Engineered 3D "K" Shape
+      // 1. Build Precision-Engineered 3D "K" Shape (Refined Proportions)
       const kShape = new THREE.Shape();
       kShape.moveTo(-1.25, -1.8);
       kShape.lineTo(-1.25, 1.8);
@@ -193,12 +193,12 @@ function DesktopPreloader({ onComplete }) {
       kShape.closePath();
 
       const extrudeSettings = {
-        depth: 0.45,
+        depth: 0.42,
         bevelEnabled: true,
         bevelSegments: 5,
         steps: 1,
-        bevelSize: 0.055,
-        bevelThickness: 0.075
+        bevelSize: 0.05,
+        bevelThickness: 0.07
       };
 
       kGeometry = new THREE.ExtrudeGeometry(kShape, extrudeSettings);
@@ -217,6 +217,8 @@ function DesktopPreloader({ onComplete }) {
       });
 
       const kMesh = new THREE.Mesh(kGeometry, kMaterial);
+      // Proportionate Scale: Noticeably reduced so K is an elegant focal centerpiece
+      kMesh.scale.set(0.64, 0.64, 0.64);
 
       // Sharp Edge Contour Lines (Violet Specular Gleam)
       edgeGeo = new THREE.EdgesGeometry(kGeometry, 26);
@@ -232,7 +234,7 @@ function DesktopPreloader({ onComplete }) {
       // Initial cinematic tilt
       kMesh.rotation.y = prefersReducedMotion ? 0 : -0.52;
       kMesh.rotation.x = prefersReducedMotion ? 0 : 0.16;
-      kMesh.position.y = 0.22;
+      kMesh.position.y = 0.14;
       scene.add(kMesh);
 
       // 2. Cinematic Lighting Scheme
@@ -274,7 +276,7 @@ function DesktopPreloader({ onComplete }) {
       pCtx.fillRect(0, 0, 64, 64);
       pTexture = new THREE.CanvasTexture(pCanvas);
 
-      const pCount = 130;
+      const pCount = 50;
       pGeo = new THREE.BufferGeometry();
       const pPositions = new Float32Array(pCount * 3);
       const pYVels = new Float32Array(pCount);
@@ -283,15 +285,15 @@ function DesktopPreloader({ onComplete }) {
         pPositions[i * 3] = (Math.random() - 0.5) * 11;
         pPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
         pPositions[i * 3 + 2] = (Math.random() - 0.5) * 8;
-        pYVels[i] = 0.0018 + Math.random() * 0.0035;
+        pYVels[i] = 0.0016 + Math.random() * 0.0028;
       }
 
       pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
       pMat = new THREE.PointsMaterial({
-        size: 0.15,
+        size: 0.11,
         map: pTexture,
         transparent: true,
-        opacity: 0.6,
+        opacity: 0.55,
         blending: THREE.AdditiveBlending,
         depthWrite: false
       });
@@ -318,8 +320,8 @@ function DesktopPreloader({ onComplete }) {
           kMesh.rotation.y = targetRotY;
           kMesh.rotation.x = targetRotX;
 
-          // Subtle camera track-in
-          camera.position.z = 5.2 - 0.5 * ease;
+          // Subtle camera track-in with elegant breathing room
+          camera.position.z = 5.6 - 0.35 * ease;
 
           // Sweeping specular spotlight across the metallic bevels
           spotLight.position.x = -2.5 + ease * 5.0 + Math.sin(time * 0.0015) * 0.5;

@@ -72,7 +72,7 @@ export default function Navbar({ theme, toggleTheme }) {
           className="mobile-top-brand"
           title="Karthick Portfolio"
         >
-          <span className="brand-text">Karthick K.</span>
+          <span className="brand-text">Karthick</span>
         </a>
 
         <div className="mobile-top-actions">
@@ -135,7 +135,7 @@ export default function Navbar({ theme, toggleTheme }) {
             className="capsule-logo"
             title="Karthick Portfolio"
           >
-            <span className="capsule-logo-text">Karthick K.</span>
+            <span className="capsule-logo-text">Karthick</span>
           </a>
 
           {/* Vertical Divider 1 */}

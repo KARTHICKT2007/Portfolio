@@ -2,10 +2,10 @@ export const personalInfo = {
   name: "Karthick",
   fullName: "Karthick",
   tagline: "Aspiring Full Stack Developer & Data Analyst",
-  bio: "Passionate Computer Science graduate specializing in building scalable web architectures, modern interactive user experiences, and data-driven analytical solutions. Proficient in React, JavaScript, SQL, and Oracle Cloud ecosystems.",
+  bio: "Passionate Computer Science student specializing in building scalable web architectures, modern interactive user experiences, and data-driven analytical solutions. Proficient in React, JavaScript, SQL, and Oracle Cloud ecosystems.",
   about: [
     "I am an Aspiring Full Stack Developer & Data Analyst with a strong foundation in modern web technologies, computational problem solving, and database management.",
-    "Graduated with a Bachelor of Science in Computer Science (B.Sc CS) from Madurai Kamaraj University, I have focused on combining high-performance frontends using React and JavaScript with structured database designs and cloud backbones.",
+    "Pursuing a Bachelor of Science in Computer Science (B.Sc CS) from Madurai Kamaraj University, I focus on combining high-performance frontends using React and JavaScript with structured database designs and cloud backbones.",
     "Driven by curiosity and engineering rigor, I build production-ready applications spanning hands-free desktop AI automation, comprehensive productivity systems, and scalable relational data pipelines."
   ],
   education: {
@@ -145,45 +145,186 @@ export const projectsData = [
   }
 ];
 
+export const certificationCategories = [
+  { id: "all", label: "All Credentials" },
+  { id: "database-cloud", label: "Database, Cloud & Oracle" },
+  { id: "web-programming", label: "Web Development & Programming" },
+  { id: "ai-tech", label: "AI & Technology" },
+  { id: "professional", label: "Other Professional" },
+  { id: "events", label: "Events & Participation" }
+];
+
 export const certificationsData = [
+  // =========================================================================
+  // 1. Database, Cloud & Oracle
+  // =========================================================================
   {
-    id: "oci-foundations",
-    title: "Oracle Cloud Infrastructure (OCI) Foundations",
+    id: "oci-2025",
+    title: "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
     issuer: "Oracle",
-    date: "Certified Professional Track",
-    skills: ["Cloud Architecture", "Compute & Networking", "OCI Storage", "Security & Identity"],
-    description: "Validates foundational knowledge of cloud concepts, Oracle Cloud Infrastructure core services, security compliance, architecture, and deployment models.",
-    icon: "Cloud",
-    verifyUrl: "https://www.oracle.com/cloud/"
+    category: "database-cloud",
+    type: "Formal Certification",
+    skills: ["OCI Foundations", "Cloud Architecture", "Identity & Security", "Compute & Networking"],
+    icon: "Cloud"
   },
   {
-    id: "fullstack-react",
-    title: "Full Stack Web Development & React Architecture",
-    issuer: "Modern Web Engineering Track",
-    date: "Practical Certification",
-    skills: ["React", "JavaScript ES6+", "HTML5 & CSS3", "Vite Ecosystem", "Component State"],
-    description: "Comprehensive practical specialization in component-driven development, asynchronous JavaScript, dynamic routing, state architecture, and responsive UI engineering.",
-    icon: "Code2",
-    verifyUrl: "https://github.com/KARTHICKT2007"
+    id: "oracle-apex",
+    title: "Oracle APEX",
+    issuer: "Oracle",
+    category: "database-cloud",
+    type: "Specialization",
+    skills: ["Low-Code Enterprise Apps", "APEX Architecture", "SQL Integration", "Data Modeling"],
+    icon: "Database"
   },
   {
-    id: "bsc-cs",
-    title: "Bachelor of Science in Computer Science (B.Sc CS)",
-    issuer: "Madurai Kamaraj University",
-    date: "Graduated with Academic Honors",
-    skills: ["Data Structures", "Database Management Systems", "Software Engineering", "Algorithms"],
-    description: "Rigorous academic curriculum covering computer science fundamentals, operating systems, database management, software development life cycles, and computing principles.",
-    icon: "GraduationCap",
-    verifyUrl: "https://mkuniversity.ac.in/"
+    id: "apex-data-analytics",
+    title: "Data Analytics and Visualization using APEX",
+    issuer: "Tamil Nadu Skill Development Corporation (Conducted by Oracle)",
+    category: "database-cloud",
+    type: "Course & Applied Project",
+    skills: ["Data Analytics", "Interactive Dashboards", "Oracle APEX", "Business Reporting"],
+    icon: "BarChart3"
   },
   {
-    id: "sql-data-analytics",
-    title: "Relational Database Design & SQL Analytics",
-    issuer: "Data Management & Analytics Specialization",
-    date: "Professional Credential",
-    skills: ["SQL", "Relational Modeling", "Data Analysis", "Schema Design", "Query Optimization"],
-    description: "Specialized training covering structured query language, relational database engineering, data extraction, transformation, analytical reporting, and indexing optimization.",
-    icon: "Database",
-    verifyUrl: "https://github.com/KARTHICKT2007"
+    id: "sql-competency",
+    title: "SQL",
+    issuer: "Relational Database Management",
+    category: "database-cloud",
+    type: "Technical Competency",
+    skills: ["Relational Modeling", "Complex Joins", "Aggregations", "Query Optimization"],
+    icon: "Database"
+  },
+  {
+    id: "cloud-computing",
+    title: "Cloud Computing",
+    issuer: "Cloud Infrastructure Architecture",
+    category: "database-cloud",
+    type: "Technical Competency",
+    skills: ["Cloud Deployment Models", "Virtualization", "Scalability", "SaaS / PaaS / IaaS"],
+    icon: "Cloud"
+  },
+
+  // =========================================================================
+  // 2. Web Development & Programming
+  // =========================================================================
+  {
+    id: "html-css-js",
+    title: "HTML, CSS and JavaScript",
+    issuer: "Frontend Web Engineering",
+    category: "web-programming",
+    type: "Technical Competency",
+    skills: ["Semantic HTML5", "Responsive CSS3", "Modern ES6+ JS", "DOM Manipulation"],
+    icon: "Code2"
+  },
+  {
+    id: "react-js",
+    title: "React.js",
+    issuer: "Frontend Framework Specialization",
+    category: "web-programming",
+    type: "Technical Competency",
+    skills: ["Component Architecture", "React Hooks", "State Management", "SPA Development"],
+    icon: "Atom"
+  },
+  {
+    id: "oc-programming-js",
+    title: "Learn Programming with JavaScript",
+    issuer: "OpenClassrooms",
+    category: "web-programming",
+    type: "Course Completion",
+    skills: ["JavaScript Fundamentals", "Conditional Logic", "Functions & Objects", "Algorithms"],
+    icon: "FileCode2"
+  },
+  {
+    id: "oc-logic-programming",
+    title: "Think Like a Computer: The Logic of Programming",
+    issuer: "OpenClassrooms",
+    category: "web-programming",
+    type: "Course Completion",
+    skills: ["Algorithmic Thinking", "Problem Decomposition", "Computational Logic", "Flow Control"],
+    icon: "Cpu"
+  },
+  {
+    id: "github-beginners",
+    title: "Git and GitHub for Beginners",
+    issuer: "The GitHub Blog",
+    category: "web-programming",
+    type: "Course Completion",
+    skills: ["Version Control", "Git CLI", "Branching & Merging", "Collaborative Repositories"],
+    icon: "GitBranch"
+  },
+
+  // =========================================================================
+  // 3. Artificial Intelligence & Technology
+  // =========================================================================
+  {
+    id: "ai-realtime-project",
+    title: "Artificial Intelligence with Real Time Project Development",
+    issuer: "Applied AI Specialization",
+    category: "ai-tech",
+    type: "Project Certification",
+    skills: ["AI Systems", "Real-Time Workflows", "Model Integration", "Python Automation"],
+    icon: "Sparkles"
+  },
+  {
+    id: "ai-basics-internship",
+    title: "AI Basics Internship",
+    issuer: "Industry Internship Experience",
+    category: "ai-tech",
+    type: "Internship",
+    skills: ["AI Foundations", "Practical Industry Exposure", "Data Preparation", "Workplace Collaboration"],
+    icon: "Briefcase"
+  },
+
+  // =========================================================================
+  // 4. Other Professional Certifications
+  // =========================================================================
+  {
+    id: "english-language",
+    title: "English Language",
+    issuer: "Professional Communication",
+    category: "professional",
+    type: "Professional Proficiency",
+    skills: ["Technical Documentation", "Professional Communication", "Verbal & Written Fluency"],
+    icon: "Globe"
+  },
+  {
+    id: "digital-app-fundamentals",
+    title: "Digital Application Fundamentals",
+    issuer: "Applied Computing Track",
+    category: "professional",
+    type: "Professional Competency",
+    skills: ["Productivity Software", "Digital Tools", "Operating Systems", "Workflow Efficiency"],
+    icon: "Layers"
+  },
+  {
+    id: "servicenow-goi",
+    title: "SB-ServiceNow",
+    issuer: "Government of India",
+    category: "professional",
+    type: "Government Credential",
+    skills: ["ServiceNow Platform", "IT Service Management", "Workflow Automation", "Enterprise Portals"],
+    icon: "ShieldCheck"
+  },
+
+  // =========================================================================
+  // 5. Events & Participation
+  // =========================================================================
+  {
+    id: "symposium-tech",
+    title: "State Level Technical Symposium",
+    issuer: "Inter-Collegiate Technical Symposium",
+    category: "events",
+    type: "Event Participation",
+    skills: ["Technical Presentations", "Competitive Problem Solving", "Peer Collaboration"],
+    icon: "Trophy"
+  },
+  {
+    id: "myas-event",
+    title: "Ministry of Youth Affairs and Sports",
+    issuer: "Ministry of Youth Affairs and Sports",
+    category: "events",
+    type: "Event Participation",
+    skills: ["Leadership & Organization", "Youth Engagement", "Team Collaboration"],
+    icon: "Award"
   }
 ];
