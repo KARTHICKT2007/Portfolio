@@ -893,19 +893,26 @@
 }
 
 /* ==========================================================================
-   PILL CAPSULE NAVBAR (FLOATING FUTURISTIC DESIGN)
+   PILL CAPSULE NAVBAR (FLOATING BOTTOM FUTURISTIC DESIGN)
    ========================================================================== */
 .pill-navbar-wrapper {
   position: fixed;
-  top: 1.25rem;
+  bottom: 1.5rem;
   left: 0;
   right: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   z-index: 1000;
   padding: 0 1rem;
   pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .pill-navbar-wrapper {
+    bottom: 1rem;
+    padding: 0 0.75rem;
+  }
 }
 
 .capsule-navbar {
@@ -919,7 +926,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(139, 92, 246, 0.28);
   border-radius: 9999px;
-  box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), 0 0 20px rgba(139, 92, 246, 0.18);
+  box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), 0 0 25px rgba(139, 92, 246, 0.22);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   max-width: 95vw;
 }
@@ -927,18 +934,18 @@
 .capsule-navbar.scrolled {
   background: rgba(9, 7, 16, 0.92);
   border-color: rgba(139, 92, 246, 0.45);
-  box-shadow: 0 16px 40px -5px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.28);
+  box-shadow: 0 16px 40px -5px rgba(0, 0, 0, 0.8), 0 0 30px rgba(139, 92, 246, 0.32);
 }
 
 [data-theme="light"] .capsule-navbar {
   background: rgba(255, 255, 255, 0.88);
   border-color: rgba(139, 92, 246, 0.22);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1), 0 0 15px rgba(139, 92, 246, 0.05);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.12), 0 0 15px rgba(139, 92, 246, 0.08);
 }
 
 [data-theme="light"] .capsule-navbar.scrolled {
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.18);
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.2);
 }
 
 /* Brand Logo (e.g. Dinesh K. style) */
@@ -1130,11 +1137,11 @@
   }
 }
 
-/* Mobile Floating Dropdown Menu */
+/* Mobile Floating Dropdown Menu (Pops UP from bottom) */
 .capsule-mobile-dropdown {
   pointer-events: auto;
   position: absolute;
-  top: calc(100% + 0.6rem);
+  bottom: calc(100% + 0.75rem);
   width: calc(100% - 2rem);
   max-width: 360px;
   background: rgba(14, 10, 24, 0.95);
@@ -1142,9 +1149,9 @@
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(139, 92, 246, 0.35);
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.25);
   padding: 1rem;
-  transform: translateY(-10px) scale(0.96);
+  transform: translateY(12px) scale(0.96);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1153,7 +1160,7 @@
 [data-theme="light"] .capsule-mobile-dropdown {
   background: rgba(255, 255, 255, 0.96);
   border-color: rgba(139, 92, 246, 0.25);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  box-shadow: 0 -10px 40px rgba(139, 92, 246, 0.15);
 }
 
 .capsule-mobile-dropdown.open {
@@ -1266,8 +1273,8 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding-top: calc(var(--header-height) + 2rem);
-  padding-bottom: 4rem;
+  padding-top: 3.5rem;
+  padding-bottom: 6rem;
 }
 
 .hero-container {
@@ -2889,7 +2896,7 @@
 
 .footer-bottom-bar {
   border-top: 1px solid var(--color-border);
-  padding: 1.2rem 0;
+  padding: 1.2rem 0 5.5rem 0;
   background: rgba(9, 7, 16, 0.4);
 }
 
@@ -2936,7 +2943,7 @@
    ========================================================================== */
 .back-to-top-btn {
   position: fixed;
-  bottom: 2rem;
+  bottom: 1.8rem;
   right: 2rem;
   width: 48px;
   height: 48px;
@@ -2953,6 +2960,13 @@
   transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 900px) {
+  .back-to-top-btn {
+    bottom: 5.5rem;
+    right: 1.25rem;
+  }
 }
 
 .back-to-top-btn.visible {
