@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X, Terminal, Sparkles, Send } from 'lucide-react';
+import {
+  User,
+  Briefcase,
+  Folder,
+  Award,
+  Mail,
+  Sun,
+  Moon,
+  Menu,
+  X
+} from 'lucide-react';
 
 export default function Navbar({ theme, toggleTheme }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('about');
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Contact', href: '#contact' },
+    { id: 'about', label: 'About', href: '#about', icon: User },
+    { id: 'skills', label: 'Experience', href: '#skills', icon: Briefcase },
+    { id: 'projects', label: 'Projects', href: '#projects', icon: Folder },
+    { id: 'certifications', label: 'Certificates', href: '#certifications', icon: Award },
+    { id: 'contact', label: 'Contact', href: '#contact', icon: Mail },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'skills', 'projects', 'certifications', 'contact'];
-      const scrollPos = window.scrollY + 200;
+      const sections = ['about', 'skills', 'projects', 'certifications', 'contact'];
+      const scrollPos = window.scrollY + 220;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sec = document.getElementById(sections[i]);
         if (sec && sec.offsetTop <= scrollPos) {
           setActiveSection(sections[i]);
-          break;
+          return;
         }
       }
+      // If near top, default to about
+      setActiveSection('about');
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -45,104 +56,105 @@ export default function Navbar({ theme, toggleTheme }) {
   };
 
   return (
-    <header className={`navbar-header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="nav-container">
+    <header className="pill-navbar-wrapper">
+      {/* Floating Capsule Bar */}
+      <nav className={`capsule-navbar ${isScrolled ? 'scrolled' : ''}`} aria-label="Main Navigation">
         {/* Brand Logo */}
-        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="nav-logo">
-          <span className="logo-bracket">&lt;</span>
-          <span className="logo-name">Karthick</span>
-          <span className="logo-accent">.dev</span>
-          <span className="logo-bracket"> /&gt;</span>
+        <a
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          className="capsule-logo"
+          title="Karthick Portfolio"
+        >
+          <span className="capsule-logo-text">Karthick K.</span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="desktop-nav" aria-label="Main Navigation">
-          <ul className="nav-list">
-            {navItems.map((item) => {
-              const secId = item.href.replace('#', '');
-              const isActive = activeSection === secId;
-              return (
-                <li key={item.href} className="nav-item">
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`nav-link ${isActive ? 'active' : ''}`}
-                  >
-                    {item.label}
-                    {isActive && <span className="active-glow-pill"></span>}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        {/* Vertical Divider 1 */}
+        <div className="capsule-divider" aria-hidden="true" />
 
-        {/* Action Controls: Theme Toggle & Hire Me CTA */}
-        <div className="nav-actions">
-          <button
-            onClick={toggleTheme}
-            className="theme-toggle-btn"
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? (
-              <Sun size={19} className="theme-icon sun-icon" />
-            ) : (
-              <Moon size={19} className="theme-icon moon-icon" />
-            )}
-          </button>
+        {/* Desktop Nav Items with Icons */}
+        <div className="capsule-nav-links">
+          {navItems.map((item) => {
+            const IconComponent = item.icon;
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`capsule-nav-item ${isActive ? 'active' : ''}`}
+              >
+                <IconComponent size={16} strokeWidth={2} className="capsule-item-icon" />
+                <span className="capsule-item-label">{item.label}</span>
+              </a>
+            );
+          })}
+        </div>
 
+        {/* Vertical Divider 2 */}
+        <div className="capsule-divider" aria-hidden="true" />
+
+        {/* Theme Toggle Button (Golden Sun / Moon) */}
+        <button
+          onClick={toggleTheme}
+          className="capsule-theme-btn"
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? (
+            <Sun size={18} strokeWidth={2.2} className="capsule-sun-icon" />
+          ) : (
+            <Moon size={18} strokeWidth={2.2} className="capsule-moon-icon" />
+          )}
+        </button>
+
+        {/* Hire Me Pill CTA */}
+        <a
+          href="#contact"
+          onClick={(e) => handleNavClick(e, '#contact')}
+          className="capsule-hire-btn"
+        >
+          Hire me
+        </a>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="capsule-mobile-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </nav>
+
+      {/* Mobile Floating Dropdown Menu */}
+      <div className={`capsule-mobile-dropdown ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="capsule-mobile-list">
+          {navItems.map((item) => {
+            const IconComponent = item.icon;
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`capsule-mobile-item ${isActive ? 'active' : ''}`}
+              >
+                <IconComponent size={18} strokeWidth={2} />
+                <span>{item.label}</span>
+              </a>
+            );
+          })}
+          <div className="capsule-mobile-divider" />
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="hire-me-btn d-none-mobile"
+            className="capsule-mobile-hire"
           >
-            <Send size={15} />
-            <span>Hire Me</span>
+            Hire me
           </a>
-
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-menu-toggle"
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-      </div>
-
-      {/* Mobile Drawer Navigation */}
-      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <ul className="mobile-nav-list">
-          {navItems.map((item) => {
-            const secId = item.href.replace('#', '');
-            const isActive = activeSection === secId;
-            return (
-              <li key={item.href} className="mobile-nav-item">
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-                >
-                  <span className="dot-indicator"></span>
-                  {item.label}
-                </a>
-              </li>
-            );
-          })}
-          <li className="mobile-nav-cta">
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="mobile-hire-btn"
-            >
-              <Send size={16} />
-              <span>Let's Talk — Hire Me</span>
-            </a>
-          </li>
-        </ul>
       </div>
     </header>
   );
