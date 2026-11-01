@@ -1,85 +1,10 @@
 import React, { useState } from 'react';
-import { Send, Mail, MapPin, CheckCircle2, AlertCircle, Copy, Check, Terminal } from 'lucide-react';
+import { Mail, MapPin, Copy, Check } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const validate = () => {
-    const errs = {};
-    if (!formData.name.trim()) {
-      errs.name = 'Please provide your name.';
-    } else if (formData.name.trim().length < 2) {
-      errs.name = 'Name must be at least 2 characters.';
-    }
-
-    if (!formData.email.trim()) {
-      errs.email = 'Please provide your email address.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      errs.email = 'Please provide a valid email format.';
-    }
-
-    if (!formData.subject.trim()) {
-      errs.subject = 'Please enter a subject.';
-    }
-
-    if (!formData.message.trim()) {
-      errs.message = 'Please enter a message.';
-    } else if (formData.message.trim().length < 10) {
-      errs.message = 'Message must be at least 10 characters long.';
-    }
-
-    return errs;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: null }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setIsSubmitting(true);
-    setErrors({});
-
-    // Simulate reliable dispatch & feedback
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-
-      // Auto-hide success alert after 8s
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 8000);
-    }, 1200);
-  };
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(personalInfo.contact.email);
@@ -103,8 +28,8 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="contact-grid">
-          {/* Left Column: Direct Info & Social Cards */}
+        <div className="contact-single-card-wrap">
+          {/* Direct Info & Social Cards */}
           <div className="contact-info-panel">
             <div className="contact-card-header">
               <h3 className="panel-title">Let's Build Something Extraordinary</h3>
@@ -204,132 +129,6 @@ export default function Contact() {
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Right Column: Interactive Contact Form */}
-          <div className="contact-form-panel">
-            <div className="form-card-top">
-              <Terminal size={18} className="terminal-form-icon" />
-              <span className="terminal-form-title">transmission_terminal.sh</span>
-            </div>
-
-            {isSuccess && (
-              <div className="form-success-banner" role="alert">
-                <CheckCircle2 size={24} className="success-icon" />
-                <div>
-                  <h4 className="success-title">Message Sent Successfully!</h4>
-                  <p className="success-message">
-                    Thank you, your message has been sent. Karthick T. will review your message and reply promptly.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="contact-form" noValidate>
-              {/* Name & Email Row */}
-              <div className="form-row">
-                <div className="form-field">
-                  <label htmlFor="contact-name" className="field-label">
-                    Your Name <span className="required-star">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="contact-name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="e.g. Recruiter or Client"
-                    className={`field-input ${errors.name ? 'input-error' : ''}`}
-                  />
-                  {errors.name && (
-                    <span className="field-error-text">
-                      <AlertCircle size={13} /> {errors.name}
-                    </span>
-                  )}
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="contact-email" className="field-label">
-                    Email Address <span className="required-star">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="contact-email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="name@company.com"
-                    className={`field-input ${errors.email ? 'input-error' : ''}`}
-                  />
-                  {errors.email && (
-                    <span className="field-error-text">
-                      <AlertCircle size={13} /> {errors.email}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Subject */}
-              <div className="form-field">
-                <label htmlFor="contact-subject" className="field-label">
-                  Subject <span className="required-star">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="contact-subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Inquiry / Job Opportunity / Collaboration"
-                  className={`field-input ${errors.subject ? 'input-error' : ''}`}
-                />
-                {errors.subject && (
-                  <span className="field-error-text">
-                    <AlertCircle size={13} /> {errors.subject}
-                  </span>
-                )}
-              </div>
-
-              {/* Message */}
-              <div className="form-field">
-                <label htmlFor="contact-message" className="field-label">
-                  Your Message <span className="required-star">*</span>
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Write your message here..."
-                  className={`field-input textarea ${errors.message ? 'input-error' : ''}`}
-                ></textarea>
-                {errors.message && (
-                  <span className="field-error-text">
-                    <AlertCircle size={13} /> {errors.message}
-                  </span>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn btn-primary submit-btn"
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className="btn-spinner"></span>
-                    <span>Transmitting Signal...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
           </div>
         </div>
       </div>

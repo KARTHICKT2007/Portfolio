@@ -2857,6 +2857,12 @@
 /* ==========================================================================
    CONTACT SECTION
    ========================================================================== */
+.contact-single-card-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
