@@ -10,8 +10,6 @@ export default function Preloader({ onComplete }) {
   const ring1Ref = useRef(null);
   const ring2Ref = useRef(null);
 
-  const [hasStarted, setHasStarted] = useState(false);
-  const [isGateHidden, setIsGateHidden] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
   // Audio Context Ref
@@ -32,6 +30,18 @@ export default function Preloader({ onComplete }) {
       master.connect(ac.destination);
       audioCtxRef.current = ac;
       masterGainRef.current = master;
+
+      // Resume on first user touch/click if suspended by browser autoplay policy
+      if (ac.state === 'suspended') {
+        const resumeAudio = () => {
+          if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
+            audioCtxRef.current.resume();
+          }
+        };
+        window.addEventListener('click', resumeAudio, { once: true });
+        window.addEventListener('touchstart', resumeAudio, { once: true });
+        window.addEventListener('keydown', resumeAudio, { once: true });
+      }
     } catch {
       audioCtxRef.current = null;
     }
@@ -254,7 +264,7 @@ export default function Preloader({ onComplete }) {
     }
     setTimeout(() => {
       onComplete();
-    }, 300);
+    }, 280);
   };
 
   const pulseRings = () => {
@@ -620,16 +630,9 @@ void main() {
       scene.add(pts);
     };
 
-    const readyPromise = Promise.race([
-      document.fonts.load('400 270px "Bebas Neue"'),
-      new Promise((r) => setTimeout(r, 2200))
-    ])
-      .catch(() => {})
-      .then(buildParticles);
-
     // Animation Timeline Variables
-    let phase = 'idle';
-    let t0 = 0;
+    let phase = 'seq'; // Auto-start immediately!
+    let t0 = performance.now();
     let lastTick = 0;
     let fmt = [0, 0, 0, 0];
     const G = 1700;
@@ -648,31 +651,18 @@ void main() {
 
     const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
 
-    const beginSequence = () => {
-      const loader = rootRef.current;
-      const sub = subRef.current;
-      const fill = fillRef.current;
-      const flash = flashRef.current;
-
-      if (loader) loader.classList.remove('done', 'exit', 'morph', 'formed');
-      if (sub) sub.classList.remove('show');
-
-      U.uStage.value = 0;
-      U.uExplode.value = 0;
-      U.uSwirl.value = 1;
-      if (flash) flash.style.opacity = '0';
-      if (fill) fill.style.width = '0%';
-      lastTick = 0;
-      fmt = [0, 0, 0, 0];
-      t0 = performance.now();
-      phase = 'seq';
-      startDrone();
-    };
-
-    // Expose sequence start to React state
-    window.__pflStart = () => {
-      readyPromise.then(beginSequence);
-    };
+    // Build particles and kick off timeline immediately without pause
+    Promise.race([
+      document.fonts.load('400 270px "Bebas Neue"'),
+      new Promise((r) => setTimeout(r, 1200))
+    ])
+      .catch(() => {})
+      .then(() => {
+        buildParticles();
+        t0 = performance.now();
+        initAudio();
+        startDrone();
+      });
 
     camera.position.set(0, 5, 16);
 
@@ -694,12 +684,12 @@ void main() {
 
       if (phase === 'seq') {
         const t = now - t0;
-        const p = Math.min(t / SEQ, 1);
+        const p = Math.min(Math.max(t / SEQ, 0), 1);
         const e = ease(p);
 
         if (fill) fill.style.width = `${p * 100}%`;
         droneSet(e);
-        U.uSwirl.value = 1 + Math.min(t / G, 1) * 2;
+        U.uSwirl.value = 1 + Math.min(Math.max(t / G, 0), 1) * 2;
 
         for (let k = 0; k < 4; k++) {
           const xx = Math.min(Math.max((t - G - k * SS) / TR, 0), 1);
@@ -717,7 +707,7 @@ void main() {
           tick(280 + lastTick * 30);
         }
 
-        const e2 = ease(Math.min(t / (G + 500), 1));
+        const e2 = ease(Math.min(Math.max(t / (G + 500), 0), 1));
         bz = 16 - (16 - camDist) * e2;
         by = 5 * (1 - e2);
 
@@ -812,21 +802,8 @@ void main() {
         try { audioCtxRef.current.close(); } catch { /* ignore */ }
       }
       if (renderer) renderer.dispose();
-      delete window.__pflStart;
     };
   }, [onComplete]);
-
-  const handleStart = () => {
-    initAudio();
-    if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
-    setHasStarted(true);
-    setIsGateHidden(true);
-    if (window.__pflStart) {
-      window.__pflStart();
-    }
-  };
 
   return (
     <div className="pfl-root" id="loader" ref={rootRef}>
@@ -852,24 +829,6 @@ void main() {
       </div>
 
       <div className="pfl-flash" id="flash" ref={flashRef} />
-
-      {/* Futuristic Initial Gate with Pulsing Glowing Action Button */}
-      {!hasStarted && (
-        <div className={`pfl-gate ${isGateHidden ? 'hide' : ''}`} id="gate">
-          <button
-            className="pfl-enter"
-            id="enter"
-            onClick={handleStart}
-            aria-label="Initialize Experience"
-            title="Start Experience"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6 4l14 8-14 8z" />
-            </svg>
-          </button>
-          <div className="pfl-gate-hint">CLICK TO INITIALIZE EXPERIENCE</div>
-        </div>
-      )}
 
       {/* Floating Modern Controls: Skip & Audio Controls */}
       <div className="pfl-ctl-group pfl-ctl-top">
