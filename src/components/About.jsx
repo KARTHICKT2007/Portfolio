@@ -5,10 +5,10 @@ import { personalInfo } from '../data/portfolioData';
 
 export default function About({ onOpenResume }) {
   return (
-    <section id="about" className="section-padding about-section">
+    <section id="about" className="section-padding about-section section-reveal">
       <div className="section-container about-custom-container">
         {/* Top Centered Pill Header */}
-        <div className="about-pill-header-wrap">
+        <div className="about-pill-header-wrap reveal-header">
           <div className="about-pill-header">
             <span className="about-pill-dot" aria-hidden="true"></span>
             <span className="about-pill-label">About Me</span>
@@ -18,7 +18,7 @@ export default function About({ onOpenResume }) {
         {/* Main 3-Column Grid */}
         <div className="about-main-grid">
           {/* Column 1: Profile Portrait with Glowing Neon Polygon */}
-          <div className="about-portrait-col">
+          <div className="about-portrait-col reveal-child-1">
             <div className="about-neon-wrapper">
               {/* Neon Angled Geometric Polygon */}
               <div className="about-neon-polygon" aria-hidden="true"></div>
@@ -41,7 +41,7 @@ export default function About({ onOpenResume }) {
           </div>
 
           {/* Column 2: Personal Narrative & Greeting */}
-          <div className="about-intro-col">
+          <div className="about-intro-col reveal-child-2">
             <div className="about-script-greeting">Hello!</div>
             <h2 className="about-hero-name">I'm Karthick</h2>
             <div className="about-hero-role">Aspiring Full Stack Developer & Data Analyst</div>
@@ -53,7 +53,7 @@ export default function About({ onOpenResume }) {
           </div>
 
           {/* Column 3: 4 Glassmorphism Highlight Cards */}
-          <div className="about-cards-col">
+          <div className="about-cards-col reveal-child-3">
             {/* 1. Education */}
             <div className="about-glass-card">
               <div className="glass-card-icon-box">
@@ -106,7 +106,7 @@ export default function About({ onOpenResume }) {
         </div>
 
         {/* Bottom Row: 4 Metric Cards */}
-        <div className="about-metrics-row">
+        <div className="about-metrics-row reveal-child-4">
           <div className="about-metric-card">
             <div className="metric-card-value">6+</div>
             <div className="metric-card-label">CORE TECHNOLOGIES</div>

@@ -23,7 +23,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding contact-section">
+    <section id="contact" className="section-padding contact-section section-reveal">
       {/* Background Watermark Typography */}
       <div className="contact-watermark-wrap" aria-hidden="true">
         <span className="contact-watermark-text">KARTHICK</span>
@@ -31,7 +31,7 @@ export default function Contact() {
 
       <div className="section-container contact-custom-container">
         {/* Top Header Pill */}
-        <div className="contact-pill-header-wrap">
+        <div className="contact-pill-header-wrap reveal-header">
           <div className="contact-pill-header">
             <span className="contact-pill-dot" aria-hidden="true"></span>
             <span className="contact-pill-label">05 / GET IN TOUCH</span>
@@ -39,7 +39,7 @@ export default function Contact() {
         </div>
 
         {/* Hero Title */}
-        <div className="contact-hero-header">
+        <div className="contact-hero-header reveal-header">
           <h2 className="contact-hero-title">
             LET'S <span className="contact-text-gradient">TALK</span>
           </h2>
@@ -49,7 +49,7 @@ export default function Contact() {
         </div>
 
         {/* 2-Column Cards Grid */}
-        <div className="contact-two-col-grid">
+        <div className="contact-two-col-grid reveal-stagger">
           {/* ================================================================
               LEFT CARD: A GOOD PROJECT STARTS WITH A CONVERSATION
               ================================================================ */}

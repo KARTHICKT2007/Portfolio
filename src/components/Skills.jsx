@@ -79,10 +79,10 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="section-padding skills-section">
+    <section id="skills" className="section-padding skills-section section-reveal">
       <div className="section-container skills-custom-container">
         {/* Section Header Badge */}
-        <div className="skills-pill-header-wrap">
+        <div className="skills-pill-header-wrap reveal-header">
           <div className="skills-pill-header">
             <span className="skills-pill-dot" aria-hidden="true"></span>
             <span className="skills-pill-label">04 / TECHNICAL EXPERTISE</span>
@@ -90,7 +90,7 @@ export default function Skills() {
         </div>
 
         {/* Section Heading & Subtitle */}
-        <div className="skills-hero-header">
+        <div className="skills-hero-header reveal-header">
           <h2 className="skills-hero-title">
             Core Skills &amp; <span className="skills-text-gradient">Technologies</span>
           </h2>
@@ -100,7 +100,7 @@ export default function Skills() {
         </div>
 
         {/* 4 Category Cards Grid */}
-        <div className="skills-cards-grid">
+        <div className="skills-cards-grid reveal-stagger">
           {skillCategories.map((cat) => {
             const IconComponent = cat.icon;
             // Repeat skills twice per group to ensure dense, continuous coverage on any display

@@ -73,10 +73,10 @@ export default function Projects({ onSelectProject }) {
       : projectsData.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="section-padding projects-section">
+    <section id="projects" className="section-padding projects-section section-reveal">
       <div className="section-container projects-custom-container">
         {/* Top Pill Header */}
-        <div className="projects-pill-header-wrap">
+        <div className="projects-pill-header-wrap reveal-header">
           <div className="projects-pill-header">
             <span className="projects-pill-dot" aria-hidden="true"></span>
             <span className="projects-pill-label">03 / FEATURED WORK</span>
@@ -84,7 +84,7 @@ export default function Projects({ onSelectProject }) {
         </div>
 
         {/* Section Heading & Subtitle */}
-        <div className="projects-hero-header">
+        <div className="projects-hero-header reveal-header">
           <h2 className="projects-hero-title">
             Engineered <span className="projects-text-gradient">Projects</span>
           </h2>
@@ -94,7 +94,7 @@ export default function Projects({ onSelectProject }) {
         </div>
 
         {/* Filter Navigation Bar */}
-        <div className="projects-filter-bar">
+        <div className="projects-filter-bar reveal-header">
           {filterTabs.map((tab) => {
             const TabIcon = tab.icon;
             const isActive = filter === tab.id;
@@ -113,7 +113,7 @@ export default function Projects({ onSelectProject }) {
         </div>
 
         {/* 2x2 Glowing Neon Cards Grid */}
-        <div className="projects-neon-grid">
+        <div className="projects-neon-grid reveal-stagger">
           {filteredProjects.map((project) => {
             const meta = projectMetaMap[project.id] || {
               thumb: thumbVoice,
@@ -237,7 +237,7 @@ export default function Projects({ onSelectProject }) {
         </div>
 
         {/* Bottom Accent: CODE • ANALYZE • INNOVATE */}
-        <div className="projects-bottom-accent">
+        <div className="projects-bottom-accent reveal-subtle">
           <span className="accent-line"></span>
           <span className="accent-text">CODE &nbsp;•&nbsp; ANALYZE &nbsp;•&nbsp; INNOVATE</span>
           <span className="accent-line"></span>

@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ProjectModal from './components/ProjectModal';
 import ResumeModal from './components/ResumeModal';
+import { useSectionTransitions } from './hooks/useScrollReveal';
 import './styles/App.css';
 
 export default function App() {
@@ -21,6 +22,9 @@ export default function App() {
   });
   const [selectedProject, setSelectedProject] = useState(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+  // Initialize master scroll reveal & smooth section transitions
+  useSectionTransitions();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

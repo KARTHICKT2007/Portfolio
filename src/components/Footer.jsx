@@ -7,8 +7,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer-container">
-      <div className="section-container footer-content">
+    <footer className="footer-container section-reveal">
+      <div className="section-container footer-content reveal-header">
         {/* Brand & Tagline */}
         <div className="footer-brand-col">
           <div className="footer-logo">
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="footer-bottom-bar">
+      <div className="footer-bottom-bar reveal-subtle">
         <div className="section-container footer-bottom-inner">
           <p className="copyright-text">
             &copy; {currentYear} Karthick. All rights reserved.

@@ -13,7 +13,7 @@ export default function Hero({ onOpenResume }) {
   };
 
   return (
-    <section id="home" className="editorial-hero-section">
+    <section id="home" className="editorial-hero-section section-reveal is-revealed">
       {/* Giant Background Editorial Typography */}
       <div className="editorial-backdrop-wrap" aria-hidden="true">
         <span className="editorial-backdrop-text">PORTFOLIO</span>

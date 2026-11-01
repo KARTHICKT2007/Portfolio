@@ -60,10 +60,10 @@ export default function Certifications() {
   };
 
   return (
-    <section id="certifications" className="section-padding certifications-section">
+    <section id="certifications" className="section-padding certifications-section section-reveal">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header-block">
+        <div className="section-header-block reveal-header">
           <div className="section-tag">
             <span className="section-tag-number">04</span> CREDENTIALS & ACCOMPLISHMENTS
           </div>
@@ -76,7 +76,7 @@ export default function Certifications() {
         </div>
 
         {/* Category Filter Pills */}
-        <div className="cert-filters-wrap" role="tablist" aria-label="Certification categories">
+        <div className="cert-filters-wrap reveal-header" role="tablist" aria-label="Certification categories">
           {certificationCategories.map((cat) => {
             const count = cat.id === 'all'
               ? certificationsData.length
@@ -97,7 +97,7 @@ export default function Certifications() {
         </div>
 
         {/* Certifications Grid */}
-        <div className="certifications-grid">
+        <div className="certifications-grid reveal-stagger">
           {filteredCerts.map((cert) => (
             <div key={cert.id} className="cert-card">
               <div className="cert-card-border-glow"></div>

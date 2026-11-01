@@ -5308,3 +5308,188 @@
   border-color: #7C3AED;
 }
 
+
+
+/* ==========================================================================
+   SMOOTH SECTION TRANSITIONS & SCROLL SYSTEM
+   ========================================================================== */
+
+/* Universal Scroll Anchoring - accounts for floating navbar height */
+section[id],
+#home,
+#about,
+#skills,
+#projects,
+#certifications,
+#contact {
+  scroll-margin-top: 92px;
+}
+
+@media (max-width: 768px) {
+  section[id],
+  #home,
+  #about,
+  #skills,
+  #projects,
+  #certifications,
+  #contact {
+    scroll-margin-top: 72px;
+  }
+}
+
+/* Fallback: Content is 100% visible by default (progressive enhancement) */
+.section-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* When JS scroll transitions are initialized (.js-reveal on <html>) */
+.js-reveal .section-reveal {
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Unrevealed state: Only active while section has NOT entered viewport */
+.js-reveal .section-reveal:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(22px);
+  pointer-events: none;
+}
+
+/* Revealed state: Permanently active once triggered */
+.js-reveal .section-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Staggered Children in Unrevealed State */
+.js-reveal .section-reveal:not(.is-revealed) .reveal-header {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-child-1 {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-child-2 {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-child-3 {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-child-4 {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.js-reveal .section-reveal:not(.is-revealed) .reveal-subtle {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* Smooth Transitions for Revealed Children */
+.js-reveal .reveal-header {
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.04s, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
+  will-change: opacity, transform;
+}
+
+.js-reveal .reveal-child-1 {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+  will-change: opacity, transform;
+}
+
+.js-reveal .reveal-child-2 {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.16s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.16s;
+  will-change: opacity, transform;
+}
+
+.js-reveal .reveal-child-3 {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s;
+  will-change: opacity, transform;
+}
+
+.js-reveal .reveal-child-4 {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s;
+  will-change: opacity, transform;
+}
+
+.js-reveal .reveal-subtle {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+  will-change: opacity, transform;
+}
+
+/* Staggered Children in Grids */
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:nth-child(1) {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:nth-child(2) {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.16s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.16s, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:nth-child(3) {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:nth-child(4) {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:nth-child(n+5) {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.40s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.40s, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Instantly clear transition delay on hover for ultra-responsive feedback */
+.js-reveal .section-reveal.is-revealed .reveal-stagger > *:hover {
+  transition-delay: 0s !important;
+}
+
+/* Mobile Responsive Adjustments (<= 768px) */
+@media (max-width: 768px) {
+  .js-reveal .section-reveal:not(.is-revealed) {
+    transform: translateY(12px);
+  }
+
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-header {
+    transform: translateY(10px);
+  }
+
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-child-1,
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-child-2,
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-child-3,
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-child-4,
+  .js-reveal .section-reveal:not(.is-revealed) .reveal-stagger > * {
+    transform: translateY(12px) scale(0.99);
+  }
+}
+
+/* Accessibility: Full Support for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal,
+  .section-reveal:not(.is-revealed),
+  .section-reveal.is-revealed,
+  .reveal-header,
+  .reveal-child-1,
+  .reveal-child-2,
+  .reveal-child-3,
+  .reveal-child-4,
+  .reveal-stagger > *,
+  .reveal-subtle {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto !important;
+  }
+}
