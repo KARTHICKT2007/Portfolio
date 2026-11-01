@@ -1975,163 +1975,111 @@
 }
 
 /* ==========================================================================
-   ABOUT SECTION — EDITORIAL 3-COLUMN REDESIGN
+   ABOUT SECTION (EDITORIAL FUTURISTIC LAYOUT)
    ========================================================================== */
-.about-section {
+.about-custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
-  overflow: hidden;
-  padding-top: clamp(4rem, 7vw, 6rem);
-  padding-bottom: clamp(4rem, 7vw, 6rem);
-  background: transparent;
 }
 
-/* Giant Background Typography */
-.about-backdrop-wrap {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 100vw;
+/* 1. Top Centered Pill Header */
+.about-pill-header-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  overflow: hidden;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.about-backdrop-text {
-  font-family: 'Bebas Neue', 'Orbitron', var(--font-heading), sans-serif;
-  font-size: clamp(6.5rem, 18vw, 19rem);
-  font-weight: 900;
-  line-height: 0.82;
-  letter-spacing: 0.05em;
-  color: transparent;
-  background: linear-gradient(180deg, rgba(139, 92, 246, 0.35) 0%, rgba(109, 40, 217, 0.15) 55%, rgba(23, 13, 43, 0.02) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px rgba(167, 139, 250, 0.18);
-  text-shadow: 0 0 50px rgba(139, 92, 246, 0.18);
-  white-space: nowrap;
-}
-
-[data-theme="light"] .about-backdrop-text {
-  background: linear-gradient(180deg, rgba(124, 58, 237, 0.14) 0%, rgba(124, 58, 237, 0.03) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(124, 58, 237, 0.12);
-  text-shadow: none;
-}
-
-/* Top Pill Header */
 .about-pill-header {
-  display: flex;
-  justify-content: center;
-  margin-bottom: clamp(1.8rem, 3.5vw, 2.8rem);
-  position: relative;
-  z-index: 2;
-}
-
-.about-pill-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.42rem 1.3rem;
-  background: rgba(18, 13, 31, 0.88);
-  border: 1px solid rgba(139, 92, 246, 0.45);
+  gap: 0.6rem;
+  padding: 0.45rem 1.4rem;
   border-radius: 9999px;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35), 0 4px 15px rgba(0, 0, 0, 0.5);
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #FFFFFF;
+  background: rgba(18, 12, 34, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.25), inset 0 0 10px rgba(139, 92, 246, 0.15);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
 
 .about-pill-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background-color: #8B5CF6;
-  box-shadow: 0 0 10px #8B5CF6, 0 0 18px #A855F7;
-  flex-shrink: 0;
+  background: #8B5CF6;
+  box-shadow: 0 0 10px #8B5CF6, 0 0 18px rgba(139, 92, 246, 0.8);
 }
 
-[data-theme="light"] .about-pill-badge {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(139, 92, 246, 0.35);
-  color: #111827;
-  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.15);
+.about-pill-label {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.03em;
 }
 
-/* 3-Column Editorial Grid */
-.about-editorial-layout {
-  position: relative;
-  z-index: 1;
+/* 2. Main 3-Column Grid */
+.about-main-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr 0.95fr;
-  align-items: center;
+  grid-template-columns: 0.95fr 1.15fr 1fr;
   gap: clamp(1.5rem, 3vw, 2.8rem);
+  align-items: center;
+  position: relative;
 }
 
-/* ==========================================================================
-   LEFT COLUMN — PORTRAIT WITH NEON ACCENT
-   ========================================================================== */
-.about-left-col {
+/* Column 1: Portrait with Neon Polygon */
+.about-portrait-col {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
-  z-index: 2;
 }
 
-.about-portrait-stage {
+.about-neon-wrapper {
   position: relative;
   width: 100%;
   max-width: 320px;
+  aspect-ratio: 420 / 380;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-/* Glowing Neon Angular Polygon Frame behind Karthick */
 .about-neon-polygon {
   position: absolute;
-  top: 24%;
-  left: -12px;
-  width: 82%;
-  height: 68%;
-  border: 2px solid #8B5CF6;
-  border-right: none;
-  border-radius: 28px 0 0 28px;
+  top: 10%;
+  left: 2%;
+  width: 96%;
+  height: 82%;
+  border: 2.5px solid #8B5CF6;
+  border-radius: 26px;
+  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.25) 0%, rgba(23, 13, 43, 0.5) 60%, rgba(9, 7, 16, 0.8) 100%);
   box-shadow: 
-    0 0 20px rgba(139, 92, 246, 0.65),
-    inset 0 0 15px rgba(139, 92, 246, 0.2);
-  clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 88%);
+    0 0 25px rgba(139, 92, 246, 0.65),
+    0 0 50px rgba(168, 85, 247, 0.35),
+    inset 0 0 20px rgba(139, 92, 246, 0.3);
+  transform: skew(-7deg, -2deg) rotate(-2deg);
   pointer-events: none;
   z-index: 0;
-  animation: neonPulse 4s ease-in-out infinite alternate;
+  transition: all 0.5s ease;
 }
 
-@keyframes neonPulse {
-  0% { opacity: 0.75; box-shadow: 0 0 16px rgba(139, 92, 246, 0.5); }
-  100% { opacity: 1; box-shadow: 0 0 26px rgba(168, 85, 247, 0.85), inset 0 0 15px rgba(139, 92, 246, 0.3); }
+.about-neon-wrapper:hover .about-neon-polygon {
+  box-shadow: 
+    0 0 35px rgba(139, 92, 246, 0.85),
+    0 0 65px rgba(168, 85, 247, 0.5),
+    inset 0 0 25px rgba(139, 92, 246, 0.45);
+  transform: skew(-7deg, -2deg) rotate(-1deg) scale(1.02);
 }
 
-.about-portrait-halo {
+.about-neon-glow {
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 80%;
+  inset: -15%;
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.35) 0%, rgba(109, 40, 217, 0.15) 55%, transparent 75%);
-  filter: blur(35px);
+  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 0%, rgba(109, 40, 217, 0.12) 50%, transparent 75%);
+  filter: blur(40px);
   z-index: 0;
   pointer-events: none;
 }
@@ -2140,147 +2088,85 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  aspect-ratio: 420 / 490;
-  overflow: visible;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .about-portrait-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: contain;
   object-position: center bottom;
-  display: block;
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(139, 92, 246, 0.28));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.85));
+  transition: transform 0.4s ease;
 }
 
-.about-portrait-stage:hover .about-portrait-img {
-  transform: scale(1.02);
+.about-neon-wrapper:hover .about-portrait-img {
+  transform: scale(1.03);
 }
 
-/* ==========================================================================
-   CENTER COLUMN — NARRATIVE & ACTION BUTTONS
-   ========================================================================== */
-.about-center-col {
+/* Column 2: Personal Narrative */
+.about-intro-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 2;
 }
 
-.about-cursive-greeting {
+.about-script-greeting {
   font-family: 'Caveat', cursive, sans-serif;
-  font-size: clamp(2rem, 3.5vw, 2.7rem);
-  font-weight: 700;
-  color: #A855F7;
-  line-height: 1.1;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: #C084FC;
+  line-height: 1;
   margin-bottom: 0.15rem;
+  letter-spacing: 0.02em;
 }
 
-.about-display-name {
+.about-hero-name {
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 4vw, 3.4rem);
-  font-weight: 800;
+  font-size: clamp(2.3rem, 4vw, 3.2rem);
+  font-weight: 900;
   color: #FFFFFF;
   line-height: 1.05;
-  margin: 0 0 0.55rem 0;
+  margin: 0.15rem 0 0.5rem 0;
+  letter-spacing: -0.01em;
 }
 
-[data-theme="light"] .about-display-name {
-  color: #0F0A1C;
-}
-
-.about-role-subtitle {
-  font-family: 'Outfit', var(--font-heading), sans-serif;
-  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+.about-hero-role {
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   font-weight: 700;
-  color: var(--color-electric-purple);
-  margin-bottom: 1.25rem;
-  line-height: 1.35;
+  color: #A855F7;
+  letter-spacing: 0.02em;
 }
 
-.about-editorial-bio {
+.about-accent-line {
+  width: 75px;
+  height: 2px;
+  background: linear-gradient(90deg, #8B5CF6 0%, rgba(139, 92, 246, 0.2) 100%);
+  margin: 0.85rem 0 1.25rem 0;
+  border-radius: 2px;
+}
+
+.about-lead-bio {
   font-family: var(--font-body);
   font-size: clamp(0.88rem, 1.35vw, 0.98rem);
-  color: #D1D5DB;
+  color: #CBD5E1;
   line-height: 1.7;
-  margin-bottom: 1.8rem;
-  max-width: 480px;
+  max-width: 440px;
 }
 
-.about-editorial-bio strong {
-  color: #FFFFFF;
+.about-highlight {
   font-weight: 700;
-}
-
-[data-theme="light"] .about-editorial-bio {
-  color: #4B5563;
-}
-
-[data-theme="light"] .about-editorial-bio strong {
-  color: #111827;
-}
-
-/* Action Buttons */
-.about-cta-group {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-}
-
-.about-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 0.65rem 1.45rem;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A855F7 100%);
   color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.5);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
 }
 
-.about-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.75);
-}
-
-.about-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 0.65rem 1.45rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  color: var(--color-text);
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
-}
-
-.about-btn-secondary:hover {
-  background: rgba(139, 92, 246, 0.15);
-  border-color: var(--color-electric-purple);
-  color: #FFFFFF;
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   RIGHT COLUMN — 4 STACKED GLASSMORPHIC CARDS
-   ========================================================================== */
-.about-right-col {
+/* Column 3: 4 Glassmorphism Cards */
+.about-cards-col {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -2290,44 +2176,39 @@
 .about-glass-card {
   display: flex;
   align-items: flex-start;
-  gap: 0.95rem;
+  gap: 1rem;
   padding: 0.85rem 1.15rem;
-  background: rgba(18, 13, 31, 0.65);
-  border: 1px solid rgba(139, 92, 246, 0.22);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  background: rgba(20, 13, 38, 0.65);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-glass-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(167, 139, 250, 0.5);
-  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.28);
-  background: rgba(23, 15, 42, 0.8);
+  transform: translateX(4px);
+  border-color: rgba(167, 139, 250, 0.55);
+  background: rgba(28, 17, 54, 0.75);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(139, 92, 246, 0.25);
 }
 
-[data-theme="light"] .about-glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(139, 92, 246, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.glass-card-icon-wrap {
+.glass-card-icon-box {
   width: 42px;
   height: 42px;
   border-radius: 12px;
   background: rgba(139, 92, 246, 0.12);
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #A855F7;
+  color: #C084FC;
   flex-shrink: 0;
+  margin-top: 0.1rem;
 }
 
-.glass-card-body {
+.glass-card-content {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -2339,135 +2220,145 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 1.25;
-  margin: 0;
+  margin: 0 0 0.15rem 0;
+  letter-spacing: 0.01em;
 }
 
-[data-theme="light"] .glass-card-title {
-  color: #111827;
-}
-
-.glass-card-bold {
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #E2E8F0;
+.glass-card-primary {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #A78BFA;
   line-height: 1.35;
 }
 
-[data-theme="light"] .glass-card-bold {
-  color: #1F2937;
-}
-
-.glass-card-desc {
-  font-family: var(--font-body);
-  font-size: 0.74rem;
-  color: #94A3B8;
-  line-height: 1.4;
-}
-
 .glass-card-sub {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  color: #8B5CF6;
+  font-size: 0.76rem;
+  color: var(--color-text-dim);
   line-height: 1.35;
 }
 
 .glass-card-period {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: #64748B;
-  letter-spacing: 0.03em;
+  font-size: 0.74rem;
+  color: #8B5CF6;
+  margin-top: 0.1rem;
 }
 
-/* ==========================================================================
-   ABOUT RESPONSIVE BREAKPOINTS
-   ========================================================================== */
+/* 3. Bottom Row: 4 Metric Cards */
+.about-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: clamp(2rem, 4vw, 3.2rem);
+  position: relative;
+  z-index: 2;
+}
 
-/* Tablet (768px - 1024px) */
+.about-metric-card {
+  padding: 1.15rem 0.9rem;
+  border-radius: 18px;
+  background: rgba(18, 12, 34, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.about-metric-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(167, 139, 250, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(139, 92, 246, 0.25);
+}
+
+.metric-card-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #8B5CF6;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.metric-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+/* Tablet & Mobile Breakpoints for About Section */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .about-editorial-layout {
-    grid-template-columns: 1fr 1fr;
+  .about-main-grid {
+    grid-template-columns: 1fr 1.2fr;
     gap: 2rem;
   }
 
-  .about-left-col {
-    order: 1;
-  }
-
-  .about-center-col {
-    order: 2;
-  }
-
-  .about-right-col {
-    order: 3;
+  .about-cards-col {
     grid-column: span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
+
+  .about-metrics-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+  }
 }
 
-/* Mobile (< 768px) */
 @media (max-width: 767px) {
-  .about-section {
-    padding-top: calc(48px + 1.8rem);
-    padding-bottom: 4rem;
+  .about-pill-header-wrap {
+    margin-bottom: 1.8rem;
   }
 
-  .about-pill-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .about-editorial-layout {
+  .about-main-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .about-center-col {
-    order: 1;
+    gap: 1.8rem;
     text-align: center;
-    align-items: center;
   }
 
-  .about-left-col {
-    order: 2;
-    margin-bottom: 0.5rem;
+  .about-portrait-col {
+    order: 1;
   }
 
-  .about-portrait-stage {
-    max-width: 240px;
+  .about-neon-wrapper {
+    max-width: 250px;
     margin: 0 auto;
   }
 
-  .about-neon-polygon {
-    left: -8px;
-    width: 85%;
+  .about-intro-col {
+    order: 2;
+    align-items: center;
   }
 
-  .about-editorial-bio {
+  .about-accent-line {
+    margin: 0.75rem auto 1.1rem auto;
+  }
+
+  .about-lead-bio {
     max-width: 100%;
-    font-size: 0.88rem;
   }
 
-  .about-cta-group {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .about-btn-primary,
-  .about-btn-secondary {
-    padding: 0.55rem 1.15rem;
-    font-size: 0.82rem;
-  }
-
-  .about-right-col {
+  .about-cards-col {
     order: 3;
-    gap: 0.75rem;
+    gap: 0.85rem;
+    text-align: left;
   }
 
-  .about-backdrop-text {
-    font-size: clamp(4.5rem, 18vw, 7rem);
+  .about-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    margin-top: 1.8rem;
   }
 }
 
