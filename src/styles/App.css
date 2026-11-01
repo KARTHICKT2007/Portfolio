@@ -4799,3 +4799,512 @@
     border-color: #CCCCCC !important;
   }
 }
+
+/* ==========================================================================
+   COMPREHENSIVE LIGHT THEME ENHANCEMENTS ([data-theme="light"])
+   Strictly scoped to light mode. Completely preserves dark theme.
+   ========================================================================== */
+
+/* 1. Global & Ambient Atmosphere */
+[data-theme="light"] body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+[data-theme="light"] .ambient-orb {
+  opacity: 0.12;
+}
+
+[data-theme="light"] .orb-primary {
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.32) 0%, rgba(220, 200, 255, 0.15) 60%, transparent 100%);
+}
+
+[data-theme="light"] .orb-secondary {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(237, 232, 248, 0.18) 60%, transparent 100%);
+}
+
+[data-theme="light"] .cyber-grid-overlay {
+  background-image: 
+    linear-gradient(to right, rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 58, 237, 0.035) 1px, transparent 1px);
+}
+
+/* 2. Common Section Titles & Headers */
+[data-theme="light"] .section-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .section-subtitle {
+  color: #475569;
+}
+
+[data-theme="light"] .section-tag {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.22);
+  color: #6D28D9;
+}
+
+/* 3. Hero Section */
+[data-theme="light"] .editorial-spark-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .spark-quote-text {
+  color: #334155;
+}
+
+[data-theme="light"] .editorial-secondary-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.25);
+  color: #1E1B4B;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.06);
+}
+
+[data-theme="light"] .editorial-secondary-btn:hover {
+  background: #EDE9FE;
+  border-color: #7C3AED;
+  color: #6D28D9;
+}
+
+[data-theme="light"] .editorial-availability-badge {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #047857;
+}
+
+[data-theme="light"] .editorial-hero-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .editorial-portrait-halo {
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.22) 0%, rgba(167, 139, 250, 0.08) 55%, transparent 75%);
+  filter: blur(45px);
+}
+
+[data-theme="light"] .highlight-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .highlight-sub {
+  color: #475569;
+}
+
+/* 4. About Section */
+[data-theme="light"] .about-pill-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .about-pill-label {
+  color: #1E1B4B;
+}
+
+[data-theme="light"] .about-hero-name {
+  color: #0F172A;
+}
+
+[data-theme="light"] .about-lead-bio {
+  color: #475569;
+}
+
+[data-theme="light"] .about-highlight {
+  color: #0F172A;
+}
+
+[data-theme="light"] .about-neon-polygon {
+  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.12) 0%, rgba(220, 200, 255, 0.2) 60%, rgba(247, 245, 252, 0.8) 100%);
+  border-color: #8B5CF6;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.18);
+}
+
+[data-theme="light"] .about-glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+}
+
+[data-theme="light"] .about-glass-card:hover {
+  background: #FFFFFF;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="light"] .glass-card-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .glass-card-primary {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .glass-card-sub {
+  color: #475569;
+}
+
+[data-theme="light"] .about-metric-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+}
+
+[data-theme="light"] .about-metric-card:hover {
+  background: #FFFFFF;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="light"] .metric-card-label {
+  color: #64748B;
+}
+
+/* 5. Core Skills & Technologies Section */
+[data-theme="light"] .skills-pill-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .skills-pill-label {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .skills-hero-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .skills-hero-subtitle {
+  color: #475569;
+}
+
+[data-theme="light"] .skills-category-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(124, 58, 237, 0.25);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .skills-category-card:hover,
+[data-theme="light"] .skills-category-card:focus-within {
+  border-color: #8B5CF6;
+  box-shadow: 0 14px 35px rgba(124, 58, 237, 0.16);
+}
+
+[data-theme="light"] .skills-cat-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .skills-cat-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .skills-cat-domain {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .skills-cat-badge {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: #6D28D9;
+}
+
+[data-theme="light"] .skill-chip {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.25);
+  color: #1E293B;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .skill-chip:hover {
+  background: #EDE9FE;
+  border-color: #7C3AED;
+  color: #4C1D95;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18);
+}
+
+[data-theme="light"] .skills-card-footer {
+  border-top-color: rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="light"] .skills-count-text {
+  color: #64748B;
+}
+
+[data-theme="light"] .skills-focus-badge {
+  color: #6D28D9;
+}
+
+/* 6. Featured Projects Section */
+[data-theme="light"] .projects-pill-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .projects-pill-label {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .projects-hero-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .projects-hero-subtitle {
+  color: #475569;
+}
+
+[data-theme="light"] .projects-filter-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.22);
+  color: #475569;
+}
+
+[data-theme="light"] .projects-filter-pill:hover {
+  background: #EDE9FE;
+  border-color: #8B5CF6;
+  color: #6D28D9;
+}
+
+[data-theme="light"] .projects-filter-pill.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+}
+
+[data-theme="light"] .project-neon-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(124, 58, 237, 0.25);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .project-neon-card:hover {
+  border-color: #8B5CF6;
+  box-shadow: 0 14px 35px rgba(124, 58, 237, 0.16);
+}
+
+[data-theme="light"] .project-neon-thumb-box {
+  background: #EDE9FE;
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="light"] .project-neon-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .project-neon-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .project-neon-cat-tag {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: #6D28D9;
+}
+
+[data-theme="light"] .project-tech-chip {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.22);
+  color: #1E293B;
+}
+
+[data-theme="light"] .project-tech-chip:hover {
+  background: #EDE9FE;
+  border-color: #7C3AED;
+  color: #4C1D95;
+}
+
+[data-theme="light"] .project-neon-arrow-btn {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.45);
+  color: #6D28D9;
+}
+
+[data-theme="light"] .project-neon-arrow-btn:hover {
+  background: #7C3AED;
+  border-color: #6D28D9;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .projects-bottom-accent .accent-text {
+  color: #64748B;
+}
+
+[data-theme="light"] .projects-bottom-accent .accent-line {
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.25), transparent);
+}
+
+/* 7. Certifications Section */
+[data-theme="light"] .cert-filter-pill {
+  background: #FFFFFF;
+  border-color: rgba(124, 58, 237, 0.2);
+  color: #475569;
+}
+
+[data-theme="light"] .cert-filter-pill:hover {
+  background: #EDE9FE;
+  border-color: #8B5CF6;
+  color: #6D28D9;
+}
+
+[data-theme="light"] .cert-filter-pill.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+[data-theme="light"] .cert-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+}
+
+[data-theme="light"] .cert-card:hover {
+  border-color: #8B5CF6;
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="light"] .cert-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .cert-issuer {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .cert-skill-chip {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.22);
+  color: #1E293B;
+}
+
+[data-theme="light"] .cert-skill-chip:hover {
+  background: #EDE9FE;
+  border-color: #7C3AED;
+  color: #4C1D95;
+}
+
+/* 8. Contact Section */
+[data-theme="light"] .contact-pill-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .contact-pill-label {
+  color: #6D28D9;
+}
+
+[data-theme="light"] .contact-hero-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .contact-hero-subtitle {
+  color: #475569;
+}
+
+[data-theme="light"] .contact-watermark-title {
+  -webkit-text-stroke: 1.5px rgba(124, 58, 237, 0.12);
+  opacity: 0.45;
+}
+
+[data-theme="light"] .contact-neon-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(124, 58, 237, 0.28);
+  box-shadow: 0 12px 35px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .contact-neon-card:hover {
+  border-color: #8B5CF6;
+  box-shadow: 0 16px 45px rgba(124, 58, 237, 0.16);
+}
+
+[data-theme="light"] .contact-card-main-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .contact-card-lead-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .contact-val-text {
+  color: #1E293B;
+}
+
+[data-theme="light"] .contact-copy-inline-btn {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.25);
+  color: #64748B;
+}
+
+[data-theme="light"] .contact-copy-inline-btn:hover {
+  background: #EDE9FE;
+  color: #6D28D9;
+  border-color: #7C3AED;
+}
+
+[data-theme="light"] .contact-social-pill {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.25);
+  color: #1E293B;
+}
+
+[data-theme="light"] .contact-social-pill:hover {
+  background: #EDE9FE;
+  border-color: #7C3AED;
+  color: #4C1D95;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] .open-status-text {
+  color: #0F172A;
+}
+
+[data-theme="light"] .contact-open-pill {
+  background: #F8FAFC;
+  border-color: rgba(124, 58, 237, 0.22);
+}
+
+[data-theme="light"] .contact-open-pill:hover {
+  background: #EDE9FE;
+  border-color: #8B5CF6;
+}
+
+[data-theme="light"] .open-pill-text {
+  color: #1E293B;
+}
+
+[data-theme="light"] .callout-line-1,
+[data-theme="light"] .callout-line-2 {
+  color: #1E1B4B;
+}
+
+[data-theme="light"] .contact-social-pills-row,
+[data-theme="light"] .contact-right-bottom-row {
+  border-top-color: rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] .anchor-text {
+  color: #64748B;
+}
+
+/* 9. Footer */
+[data-theme="light"] .footer-bottom-bar {
+  background: rgba(240, 235, 251, 0.6);
+  border-top-color: rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] .footer-icon-link {
+  background: #FFFFFF;
+  border-color: rgba(124, 58, 237, 0.2);
+  color: #334155;
+}
+
+[data-theme="light"] .footer-icon-link:hover {
+  background: #EDE9FE;
+  color: #6D28D9;
+  border-color: #7C3AED;
+}
+
