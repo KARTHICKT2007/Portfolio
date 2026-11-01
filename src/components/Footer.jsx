@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Heart, Sparkles, Terminal } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
 
@@ -61,11 +61,6 @@ export default function Footer() {
             >
               <Mail size={18} />
             </a>
-          </div>
-
-          <div className="tech-badge-built">
-            <Terminal size={13} className="text-electric" />
-            <span>Built with React + Vite</span>
           </div>
         </div>
       </div>
