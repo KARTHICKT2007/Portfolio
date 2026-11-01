@@ -1,112 +1,169 @@
 import React from 'react';
-import { Send, Download, ArrowDown, Sparkles, Terminal, Code2, Database, Cloud, ExternalLink, ShieldCheck, MapPin } from 'lucide-react';
+import { ArrowDown, Sparkles, Download, Layers, Code2, Award, BookOpen } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import profileImg from '../assets/profile.png';
 
 export default function Hero({ onOpenResume }) {
-  const handleScrollToContact = (e) => {
+  const handleScrollToProjects = (e) => {
     e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        const input = document.getElementById('contact-name');
-        if (input) input.focus();
-      }, 500);
+    const target = document.getElementById('projects');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="home" className="hero-section">
-      <div className="section-container hero-container">
-        {/* Left Column: Introductions & CTAs */}
-        <div className="hero-content">
-          {/* Status Badge */}
-          <div className="hero-status-pill">
-            <span className="pulsing-radar-dot"></span>
-            <span className="status-text">Available for Opportunities & Projects</span>
-          </div>
+    <section id="home" className="editorial-hero-section">
+      {/* Giant Background Editorial Typography */}
+      <div className="editorial-backdrop-wrap" aria-hidden="true">
+        <span className="editorial-backdrop-text">PORTFOLIO</span>
+      </div>
 
-          {/* Subtitle / Intro prefix */}
-          <div className="hero-greeting">
-            <span className="greeting-prefix">Hello, I'm</span>
-          </div>
+      <div className="section-container editorial-hero-container">
+        {/* ================================================================
+            LEFT SECTION – PERSONAL INTRODUCTION
+            ================================================================ */}
+        <div className="editorial-left-col">
+          {/* Cursive / Handwritten style greeting */}
+          <div className="editorial-script-greeting">Hello, I'm</div>
 
-          {/* Name with Electric Purple Glow */}
-          <h1 className="hero-name">
-            <span className="name-highlight">{personalInfo.fullName}</span>
-          </h1>
+          {/* Large Bold Editorial Personal Name */}
+          <h1 className="editorial-hero-name">KARTHICK</h1>
 
           {/* Professional Title */}
-          <div className="hero-title-wrap">
-            <h2 className="hero-title">{personalInfo.tagline}</h2>
+          <div className="editorial-role-tag">
+            <span className="editorial-role-text">ASPIRING FULL STACK DEVELOPER & DATA ANALYST</span>
           </div>
 
-          {/* Bio Description */}
-          <p className="hero-description">
-            {personalInfo.bio}
+          {/* Professional Introduction Narrative */}
+          <p className="editorial-hero-bio">
+            Computer Science student passionate about engineering scalable web applications,
+            clean user-centric interfaces, and structured relational data architectures.
           </p>
 
-          {/* Core Tech Stack Badges */}
-          <div className="hero-tech-row">
-            <span className="hero-tech-label">Primary Stack:</span>
-            <div className="hero-tech-badges">
-              <span className="hero-badge"><Code2 size={13} /> React</span>
-              <span className="hero-badge"><Code2 size={13} /> JavaScript</span>
-              <span className="hero-badge"><Database size={13} /> SQL</span>
-              <span className="hero-badge"><Cloud size={13} /> Oracle Cloud</span>
-              <span className="hero-badge">HTML5 / CSS3</span>
-            </div>
+          {/* Availability Label */}
+          <div className="editorial-availability-badge">
+            <span className="radar-status-dot" aria-hidden="true"></span>
+            <span className="availability-text">Available for Opportunities & Projects</span>
           </div>
 
-          {/* CTA Action Buttons */}
-          <div className="hero-cta-group">
+          {/* CTA Buttons */}
+          <div className="editorial-cta-group">
             <a
-              href="#contact"
-              onClick={handleScrollToContact}
-              className="btn btn-primary hero-btn"
+              href="#projects"
+              onClick={handleScrollToProjects}
+              className="editorial-primary-btn"
             >
-              <Send size={18} />
-              <span>Hire Me</span>
+              <Layers size={17} />
+              <span>Explore Projects</span>
             </a>
 
             <button
               onClick={onOpenResume}
-              className="btn btn-secondary hero-btn"
-              title="View & Download Official Resume"
+              className="editorial-secondary-btn"
+              title="Download Official Resume"
             >
-              <Download size={18} />
+              <Download size={17} />
               <span>Download Resume</span>
             </button>
           </div>
         </div>
 
-        {/* Right Column: Custom Professional Profile Picture Card */}
-        <div className="hero-visual">
-          <div className="profile-cyber-wrapper">
-            {/* Ambient Purple Halo Glow */}
-            <div className="profile-halo-glow" aria-hidden="true"></div>
+        {/* ================================================================
+            CENTER SECTION – PROFILE IMAGE
+            ================================================================ */}
+        <div className="editorial-center-col">
+          <div className="editorial-portrait-wrapper">
+            {/* Ambient Purple Halo Lighting */}
+            <div className="editorial-portrait-halo" aria-hidden="true"></div>
 
-            {/* Cyber Corner HUD Accent (Red bracket top-left from user reference) */}
-            <div className="profile-corner-bracket" aria-hidden="true"></div>
+            {/* Cutout Portrait with Smooth Faded Bottom */}
+            <div className="editorial-portrait-frame">
+              <img
+                src={profileImg}
+                alt="Karthick - Aspiring Full Stack Developer & Data Analyst"
+                className="editorial-portrait-img"
+                loading="eager"
+                width="808"
+                height="1024"
+              />
+            </div>
 
-            {/* Main Portrait Card with Curved Corners & Location Badge */}
-            <div className="profile-portrait-card">
-              <div className="profile-image-container">
-                <img
-                  src={profileImg}
-                  alt={`${personalInfo.fullName} - ${personalInfo.tagline}`}
-                  className="profile-portrait-img"
-                  loading="eager"
-                  width="300"
-                  height="374"
-                />
+            {/* Floating Location Badge */}
+            <div className="editorial-location-tag">
+              <span className="tag-pin-icon" aria-hidden="true">📍</span>
+              <span className="tag-location-text">Dindigul, Tamil Nadu</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ================================================================
+            RIGHT SECTION – HIGHLIGHTS
+            ================================================================ */}
+        <div className="editorial-right-col">
+          {/* Circular Sparkle Tagline Quote */}
+          <div className="editorial-spark-card">
+            <div className="spark-icon-circle">
+              <Sparkles size={15} className="spark-icon" />
+            </div>
+            <p className="spark-quote-text">
+              Turning ideas into powerful, high-performance digital experiences.
+            </p>
+          </div>
+
+          {/* Vertical Highlights Information Area */}
+          <div className="editorial-highlights-stack">
+            {/* 1. Core Technical Stack */}
+            <div className="highlight-item">
+              <div className="highlight-lead">
+                <Code2 size={15} className="highlight-lead-icon" />
+                <span className="highlight-lead-badge">CORE STACK</span>
               </div>
+              <div className="highlight-body">
+                <span className="highlight-title">React • JavaScript • SQL</span>
+                <span className="highlight-sub">Oracle Cloud • Vite • Modern CSS</span>
+              </div>
+            </div>
 
-              {/* Status Indicator Pill */}
-              <div className="profile-status-chip">
-                <span className="profile-status-dot"></span>
-                <span>Active • Palani</span>
+            <div className="highlight-divider" aria-hidden="true"></div>
+
+            {/* 2. Featured Projects */}
+            <div className="highlight-item">
+              <div className="highlight-lead">
+                <Layers size={15} className="highlight-lead-icon" />
+                <span className="highlight-lead-badge">4+</span>
+              </div>
+              <div className="highlight-body">
+                <span className="highlight-title">FEATURED PROJECTS</span>
+                <span className="highlight-sub">Production-Ready Web & Data Apps</span>
+              </div>
+            </div>
+
+            <div className="highlight-divider" aria-hidden="true"></div>
+
+            {/* 3. Certifications */}
+            <div className="highlight-item">
+              <div className="highlight-lead">
+                <Award size={15} className="highlight-lead-icon" />
+                <span className="highlight-lead-badge">CREDENTIALS</span>
+              </div>
+              <div className="highlight-body">
+                <span className="highlight-title">OCI & SQL CERTIFIED</span>
+                <span className="highlight-sub">Cloud Architecture & DB Modeling</span>
+              </div>
+            </div>
+
+            <div className="highlight-divider" aria-hidden="true"></div>
+
+            {/* 4. Academic Foundation */}
+            <div className="highlight-item">
+              <div className="highlight-lead">
+                <BookOpen size={15} className="highlight-lead-icon" />
+                <span className="highlight-lead-badge">2024–27</span>
+              </div>
+              <div className="highlight-body">
+                <span className="highlight-title">B.SC. COMPUTER SCIENCE</span>
+                <span className="highlight-sub">APCAC, Palani • Madurai Kamaraj University</span>
               </div>
             </div>
           </div>
@@ -114,8 +171,8 @@ export default function Hero({ onOpenResume }) {
       </div>
 
       {/* Down Arrow Indicator */}
-      <a href="#about" className="scroll-indicator" aria-label="Scroll down to About section">
-        <ArrowDown size={18} className="scroll-arrow-icon" />
+      <a href="#about" className="editorial-scroll-indicator" aria-label="Scroll down to About section">
+        <ArrowDown size={17} className="scroll-arrow-icon" />
       </a>
     </section>
   );

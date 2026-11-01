@@ -13,7 +13,7 @@ export const personalInfo = {
     degree: "B.Sc. Computer Science",
     college: "Arulmigu Palaniandavar College of Arts and Culture, Palani",
     institution: "Madurai Kamaraj University",
-    location: "Palani, Tamil Nadu, India",
+    location: "Palani, Dindigul, Tamil Nadu",
     focus: "Full Stack Web Development, Database Management Systems (DBMS), Data Structures, Cloud Computing & Analytics",
     period: "2024 - 2027",
     status: "Computer Science Student"
@@ -28,7 +28,7 @@ export const personalInfo = {
     email: "karthickt6190@gmail.com",
     github: "https://github.com/KARTHICKT2007",
     linkedin: "https://www.linkedin.com/in/karthick-thilagar-257a90375",
-    location: "Tamil Nadu, India"
+    location: "Dindigul, Tamil Nadu, India"
   }
 };
 
