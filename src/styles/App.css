@@ -5735,34 +5735,6 @@ section[id],
   width: clamp(50px, 14vw, 240px);
 }
 
-.pfl-bar {
-  position: absolute;
-  left: 50%;
-  bottom: 9vh;
-  width: min(300px, 50vw);
-  height: 3px;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-  overflow: hidden;
-  transition: opacity 0.6s;
-  z-index: 4;
-}
-
-.pfl-bar i {
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--pfl-p), #f0abfc, #67e8f9);
-  box-shadow: 0 0 18px var(--pfl-p);
-  transition: width 0.08s linear;
-}
-
-.pfl-root.formed .pfl-bar,
-.pfl-root.morph .pfl-bar {
-  opacity: 0;
-}
-
 .pfl-ring {
   position: absolute;
   left: 50%;

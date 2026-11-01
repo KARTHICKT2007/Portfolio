@@ -5,7 +5,6 @@ export default function Preloader({ onComplete }) {
   const canvasRef = useRef(null);
   const rootRef = useRef(null);
   const subRef = useRef(null);
-  const fillRef = useRef(null);
   const flashRef = useRef(null);
   const ring1Ref = useRef(null);
   const ring2Ref = useRef(null);
@@ -677,7 +676,6 @@ void main() {
       let by = 5;
       let bz = 16;
 
-      const fill = fillRef.current;
       const loader = rootRef.current;
       const sub = subRef.current;
       const flash = flashRef.current;
@@ -687,7 +685,6 @@ void main() {
         const p = Math.min(Math.max(t / SEQ, 0), 1);
         const e = ease(p);
 
-        if (fill) fill.style.width = `${p * 100}%`;
         droneSet(e);
         U.uSwirl.value = 1 + Math.min(Math.max(t / G, 0), 1) * 2;
 
@@ -822,10 +819,6 @@ void main() {
           ))}
         </div>
         <div className="pfl-ln" />
-      </div>
-
-      <div className="pfl-bar" id="bar">
-        <i id="fill" ref={fillRef} />
       </div>
 
       <div className="pfl-flash" id="flash" ref={flashRef} />
