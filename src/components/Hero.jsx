@@ -54,7 +54,7 @@ export default function Hero({ onOpenResume }) {
               onClick={handleScrollToProjects}
               className="editorial-primary-btn"
             >
-              <Layers size={17} />
+              <Layers size={15} />
               <span>Explore Projects</span>
             </a>
 
@@ -63,7 +63,7 @@ export default function Hero({ onOpenResume }) {
               className="editorial-secondary-btn"
               title="Download Official Resume"
             >
-              <Download size={17} />
+              <Download size={15} />
               <span>Download Resume</span>
             </button>
           </div>
@@ -74,6 +74,9 @@ export default function Hero({ onOpenResume }) {
             ================================================================ */}
         <div className="editorial-center-col">
           <div className="editorial-portrait-wrapper">
+            {/* Decorative Background Typography behind Portrait */}
+            <div className="editorial-portrait-bg-text" aria-hidden="true">PORTFOLIO</div>
+
             {/* Ambient Purple Halo Lighting */}
             <div className="editorial-portrait-halo" aria-hidden="true"></div>
 

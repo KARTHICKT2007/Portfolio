@@ -105,42 +105,43 @@
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
+  filter: blur(120px);
+  opacity: 0.22;
   transition: all 0.5s ease;
+  pointer-events: none;
 }
 
 .orb-primary {
-  width: 550px;
-  height: 550px;
+  width: 500px;
+  height: 500px;
   top: -120px;
-  right: -100px;
-  background: radial-gradient(circle, #8B5CF6 0%, #170D2B 70%, transparent 100%);
-  animation: floatOrb 18s ease-in-out infinite alternate;
+  right: -80px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(23, 13, 43, 0.4) 65%, transparent 100%);
+  animation: floatOrb 20s ease-in-out infinite alternate;
 }
 
 .orb-secondary {
-  width: 450px;
-  height: 450px;
+  width: 420px;
+  height: 420px;
   bottom: 10%;
-  left: -80px;
-  background: radial-gradient(circle, #6D28D9 0%, #120D1F 70%, transparent 100%);
-  animation: floatOrb 22s ease-in-out infinite alternate-reverse;
+  left: -60px;
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.45) 0%, rgba(18, 13, 31, 0.4) 65%, transparent 100%);
+  animation: floatOrb 24s ease-in-out infinite alternate-reverse;
 }
 
 .orb-tertiary {
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
   top: 45%;
-  right: 15%;
-  background: radial-gradient(circle, #A78BFA 0%, transparent 70%);
-  opacity: 0.15;
+  right: 12%;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 70%);
+  opacity: 0.12;
 }
 
 @keyframes floatOrb {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.08); }
-  100% { transform: translate(-30px, 40px) scale(0.95); }
+  50% { transform: translate(30px, -20px) scale(1.05); }
+  100% { transform: translate(-20px, 30px) scale(0.97); }
 }
 
 .cyber-grid-overlay {
@@ -150,11 +151,12 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(to right, rgba(139, 92, 246, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(139, 92, 246, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.018) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 50% 50%, black 50%, transparent 95%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 50%, transparent 95%);
+  mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 92%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 92%);
+  pointer-events: none;
 }
 
 .cyber-scanline {
@@ -162,10 +164,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.25), transparent);
-  animation: scanline 10s linear infinite;
-  opacity: 0.7;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.18), transparent);
+  animation: scanline 12s linear infinite;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 @keyframes scanline {
@@ -1427,6 +1430,10 @@
   align-items: center;
 }
 
+.editorial-portrait-bg-text {
+  display: none;
+}
+
 .editorial-portrait-halo {
   position: absolute;
   top: 15%;
@@ -1734,54 +1741,213 @@
     min-height: auto;
     padding-top: calc(48px + 1.25rem);
     padding-bottom: 5.5rem;
+    overflow: hidden;
   }
 
+  /* Hide the full-screen backdrop on mobile to prevent overlapping buttons */
   .editorial-backdrop-wrap {
-    top: 34%;
-  }
-
-  .editorial-backdrop-text {
-    font-size: clamp(4.2rem, 18vw, 6.8rem);
+    display: none;
   }
 
   .editorial-hero-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding-top: 0.5rem;
+    gap: 1.5rem;
+    padding-top: 0.25rem;
   }
 
+  /* 1. Introduction Text */
   .editorial-left-col {
     text-align: center;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editorial-script-greeting {
+    font-size: 1.35rem;
+    margin-bottom: 0.12rem;
   }
 
   .editorial-hero-name {
-    font-size: clamp(2.8rem, 13vw, 3.8rem);
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
+    margin: 0 0 0.45rem 0;
+    line-height: 0.95;
+  }
+
+  .editorial-role-tag {
+    margin-bottom: 0.65rem;
+  }
+
+  .editorial-role-text {
+    font-size: clamp(0.7rem, 3.2vw, 0.78rem);
+    letter-spacing: 0.05em;
   }
 
   .editorial-hero-bio {
-    max-width: 100%;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    max-width: 360px;
+    margin: 0 auto 1.1rem auto;
   }
 
+  /* 2. Compact Availability Badge */
+  .editorial-availability-badge {
+    margin: 0 auto 1.15rem auto;
+    padding: 0.28rem 0.8rem;
+    gap: 0.45rem;
+    width: auto;
+    max-width: 92%;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.15);
+  }
+
+  .radar-status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .availability-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* 3. Action Buttons */
   .editorial-cta-group {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .editorial-primary-btn,
+  .editorial-secondary-btn {
+    padding: 0.52rem 1.15rem;
+    font-size: 0.8rem;
+    gap: 0.45rem;
+    border-radius: 9999px;
+    min-height: 38px;
+    box-sizing: border-box;
+  }
+
+  /* 4 & 5. Decorative Typography + Profile Image */
+  .editorial-center-col {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.6rem 0 1.4rem 0;
+    position: relative;
   }
 
   .editorial-portrait-wrapper {
-    max-width: 290px;
-    margin: 0.5rem auto 2.2rem auto;
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Background Typography directly behind portrait on mobile */
+  .editorial-portrait-bg-text {
+    display: block;
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', 'Orbitron', var(--font-heading), sans-serif;
+    font-size: clamp(3.6rem, 16vw, 4.6rem);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: 0.06em;
+    color: transparent;
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.35) 0%, rgba(139, 92, 246, 0.16) 50%, rgba(23, 13, 43, 0.02) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(167, 139, 250, 0.2);
+    text-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+    opacity: 0.75;
+  }
+
+  .editorial-portrait-halo {
+    width: 90%;
+    height: 75%;
+    top: 15%;
+    opacity: 0.42;
+    filter: blur(28px);
+  }
+
+  .editorial-portrait-frame {
+    width: 100%;
+    aspect-ratio: 808 / 1024;
+    mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.5) 86%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.5) 86%, transparent 100%);
+  }
+
+  .editorial-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 25px rgba(139, 92, 246, 0.28));
   }
 
   .editorial-location-tag {
-    bottom: -10px;
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.28rem 0.85rem;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    z-index: 3;
+  }
+
+  .tag-pin-icon {
+    font-size: 0.72rem;
+  }
+
+  .tag-location-text {
+    font-size: 0.72rem;
   }
 
   .editorial-right-col {
-    gap: 1.2rem;
+    gap: 1.1rem;
+    width: 100%;
   }
 
   .editorial-scroll-indicator {
     display: none;
+  }
+}
+
+/* Small mobile (<= 360px) */
+@media (max-width: 360px) {
+  .editorial-cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+    gap: 0.5rem;
+  }
+
+  .editorial-primary-btn,
+  .editorial-secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .editorial-portrait-wrapper {
+    max-width: 195px;
   }
 }
 
