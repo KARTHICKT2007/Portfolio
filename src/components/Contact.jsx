@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Copy, Check } from 'lucide-react';
+import { 
+  Mail, 
+  MapPin, 
+  Copy, 
+  Check, 
+  Code2, 
+  Monitor, 
+  TrendingUp, 
+  Handshake, 
+  ArrowUpRight 
+} from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
 
@@ -14,78 +24,95 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-padding contact-section">
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="section-header-block">
-          <div className="section-tag">
-            <span className="section-tag-number">05</span> GET IN TOUCH
+      {/* Background Watermark Typography */}
+      <div className="contact-watermark-wrap" aria-hidden="true">
+        <span className="contact-watermark-text">KARTHICK</span>
+      </div>
+
+      <div className="section-container contact-custom-container">
+        {/* Top Header Pill */}
+        <div className="contact-pill-header-wrap">
+          <div className="contact-pill-header">
+            <span className="contact-pill-dot" aria-hidden="true"></span>
+            <span className="contact-pill-label">05 / GET IN TOUCH</span>
           </div>
-          <h2 className="section-title">
-            Get In <span className="text-gradient">Touch</span>
+        </div>
+
+        {/* Hero Title */}
+        <div className="contact-hero-header">
+          <h2 className="contact-hero-title">
+            LET'S <span className="contact-text-gradient">TALK</span>
           </h2>
-          <p className="section-subtitle">
-            Interested in collaborating, hiring for full-stack/analytics roles, or discussing innovative tech ideas? Let's connect.
+          <p className="contact-hero-subtitle">
+            Have an idea, opportunity, or project in mind? I’d love to hear about it.
           </p>
         </div>
 
-        <div className="contact-single-card-wrap">
-          {/* Direct Info & Social Cards */}
-          <div className="contact-info-panel">
-            <div className="contact-card-header">
-              <h3 className="panel-title">Let's Build Something Extraordinary</h3>
-              <p className="panel-subtitle">
-                I am actively seeking junior/associate Full Stack Developer and Data Analyst roles. Whether you have a project inquiry or an open position, my inbox is open!
+        {/* 2-Column Cards Grid */}
+        <div className="contact-two-col-grid">
+          {/* ================================================================
+              LEFT CARD: A GOOD PROJECT STARTS WITH A CONVERSATION
+              ================================================================ */}
+          <div className="contact-neon-card contact-left-card">
+            <div className="contact-card-heading-wrap">
+              <h3 className="contact-card-main-title">
+                A GOOD PROJECT STARTS<br />
+                WITH A <span className="text-electric-glow">CONVERSATION.</span>
+              </h3>
+              <p className="contact-card-lead-desc">
+                I'm open to junior developer roles, collaborative projects, and ideas that solve real problems.
               </p>
             </div>
 
-            {/* Direct Details */}
-            <div className="contact-details-list">
-              {/* Email */}
-              <div className="contact-detail-item">
-                <div className="detail-icon-box">
-                  <Mail size={20} className="detail-icon" />
+            {/* Contact Details List */}
+            <div className="contact-items-stack">
+              {/* 1. Email */}
+              <div className="contact-detail-row">
+                <div className="contact-icon-square">
+                  <Mail size={18} />
                 </div>
-                <div className="detail-text-wrap">
-                  <span className="detail-label">Official Email</span>
-                  <div className="email-copy-row">
-                    <a href={`mailto:${personalInfo.contact.email}`} className="detail-value link">
+                <div className="contact-info-col">
+                  <span className="contact-label-micro">EMAIL</span>
+                  <div className="contact-value-copy-group">
+                    <a href={`mailto:${personalInfo.contact.email}`} className="contact-val-text link">
                       {personalInfo.contact.email}
                     </a>
                     <button
                       onClick={copyEmailToClipboard}
-                      className="copy-btn"
+                      className="contact-copy-inline-btn"
                       title="Copy email to clipboard"
+                      aria-label="Copy email"
                     >
-                      {copiedEmail ? <Check size={14} className="copied-check" /> : <Copy size={14} />}
+                      {copiedEmail ? <Check size={13} className="copied-check" /> : <Copy size={13} />}
                     </button>
+                    {copiedEmail && <span className="contact-inline-toast">Copied!</span>}
                   </div>
-                  {copiedEmail && <span className="copied-toast">Email copied!</span>}
                 </div>
               </div>
 
-              {/* Location */}
-              <div className="contact-detail-item">
-                <div className="detail-icon-box">
-                  <MapPin size={20} className="detail-icon" />
+              {/* 2. Location */}
+              <div className="contact-detail-row">
+                <div className="contact-icon-square">
+                  <MapPin size={18} />
                 </div>
-                <div className="detail-text-wrap">
-                  <span className="detail-label">Location</span>
-                  <span className="detail-value">{personalInfo.contact.location}</span>
+                <div className="contact-info-col">
+                  <span className="contact-label-micro">LOCATION</span>
+                  <span className="contact-val-text">{personalInfo.contact.location}</span>
                 </div>
               </div>
 
-              {/* GitHub */}
-              <div className="contact-detail-item">
-                <div className="detail-icon-box">
-                  <GithubIcon size={20} className="detail-icon" />
+              {/* 3. GitHub */}
+              <div className="contact-detail-row">
+                <div className="contact-icon-square">
+                  <GithubIcon size={18} />
                 </div>
-                <div className="detail-text-wrap">
-                  <span className="detail-label">GitHub Repository</span>
+                <div className="contact-info-col">
+                  <span className="contact-label-micro">GITHUB</span>
                   <a
                     href={personalInfo.contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="detail-value link"
+                    className="contact-val-text link"
                   >
                     github.com/KARTHICKT2007
                   </a>
@@ -93,40 +120,98 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Hub Links */}
-            <div className="social-links-block">
-              <span className="social-block-title">Connect Across Networks</span>
-              <div className="social-buttons-grid">
-                <a
-                  href={personalInfo.contact.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-btn"
-                  title="GitHub Profile"
-                >
-                  <GithubIcon size={18} />
-                  <span>GitHub</span>
-                </a>
+            {/* Bottom Social Pills */}
+            <div className="contact-social-pills-row">
+              <a
+                href={personalInfo.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+                title="GitHub Profile"
+              >
+                <GithubIcon size={15} />
+                <span>GitHub</span>
+              </a>
 
-                <a
-                  href={personalInfo.contact.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-btn"
-                  title="LinkedIn Profile"
-                >
-                  <LinkedinIcon size={18} />
-                  <span>LinkedIn</span>
-                </a>
+              <a
+                href={personalInfo.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+                title="LinkedIn Profile"
+              >
+                <LinkedinIcon size={15} />
+                <span>LinkedIn</span>
+              </a>
 
-                <a
-                  href={`mailto:${personalInfo.contact.email}`}
-                  className="social-btn"
-                  title="Send Direct Email"
-                >
-                  <Mail size={18} />
-                  <span>Direct Mail</span>
-                </a>
+              <a
+                href={`mailto:${personalInfo.contact.email}`}
+                className="contact-social-pill"
+                title="Direct Email"
+              >
+                <Mail size={15} />
+                <span>Direct Mail</span>
+              </a>
+            </div>
+          </div>
+
+          {/* ================================================================
+              RIGHT CARD: CURRENTLY OPEN TO & SIGNATURE CALLOUT
+              ================================================================ */}
+          <div className="contact-neon-card contact-right-card">
+            {/* Ambient Corner Light Arc */}
+            <div className="contact-card-light-arc" aria-hidden="true"></div>
+
+            {/* Top Status Header */}
+            <div className="contact-open-header">
+              <span className="open-status-dot" aria-hidden="true"></span>
+              <span className="open-status-text">CURRENTLY OPEN TO</span>
+              <div className="open-status-line" aria-hidden="true"></div>
+            </div>
+
+            {/* 4 Opportunity Pills */}
+            <div className="contact-open-pills-stack">
+              <div className="contact-open-pill">
+                <div className="open-pill-icon-wrap">
+                  <Code2 size={16} />
+                </div>
+                <span className="open-pill-text">Junior / Associate Developer</span>
+              </div>
+
+              <div className="contact-open-pill">
+                <div className="open-pill-icon-wrap">
+                  <Monitor size={16} />
+                </div>
+                <span className="open-pill-text">Full-Stack Web Projects</span>
+              </div>
+
+              <div className="contact-open-pill">
+                <div className="open-pill-icon-wrap">
+                  <TrendingUp size={16} />
+                </div>
+                <span className="open-pill-text">Data & Analytics Opportunities</span>
+              </div>
+
+              <div className="contact-open-pill">
+                <div className="open-pill-icon-wrap">
+                  <Handshake size={16} />
+                </div>
+                <span className="open-pill-text">Learning & Collaboration</span>
+              </div>
+            </div>
+
+            {/* Bottom Row: Ideas Anchor + Tilted Callout */}
+            <div className="contact-right-bottom-row">
+              <div className="contact-ideas-anchor">
+                <div className="anchor-dash" aria-hidden="true"></div>
+                <span className="anchor-text">GOOD IDEAS START HERE</span>
+                <ArrowUpRight size={14} className="anchor-icon" />
+              </div>
+
+              <div className="contact-real-callout" aria-hidden="true">
+                <span className="callout-line-1">LET'S BUILD</span>
+                <span className="callout-line-2">SOMETHING</span>
+                <span className="callout-line-3">REAL.</span>
               </div>
             </div>
           </div>
