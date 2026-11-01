@@ -68,7 +68,7 @@ export default function Footer() {
       <div className="footer-bottom-bar">
         <div className="section-container footer-bottom-inner">
           <p className="copyright-text">
-            &copy; {currentYear} Karthick T. All rights reserved.
+            &copy; {currentYear} Karthick. All rights reserved.
           </p>
           <div className="status-live">
             <span className="status-live-dot"></span>

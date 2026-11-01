@@ -1,6 +1,6 @@
 export const personalInfo = {
-  name: "Karthick T.",
-  fullName: "Karthick T.",
+  name: "Karthick",
+  fullName: "Karthick",
   brandName: "Karthick",
   tagline: "Aspiring Full Stack Developer & Data Analyst",
   bio: "Passionate Computer Science student at Arulmigu Palaniandavar College of Arts and Culture, Palani (affiliated with Madurai Kamaraj University). Focused on building high-performance web architectures, interactive user experiences, and data-driven solutions with React, JavaScript, and SQL.",

@@ -70,9 +70,9 @@ export default function Navbar({ theme, toggleTheme }) {
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
           className="mobile-top-brand"
-          title="Karthick T. Portfolio"
+          title="Karthick Portfolio"
         >
-          <span className="brand-text">Karthick T.</span>
+          <span className="brand-text">Karthick</span>
         </a>
 
         <div className="mobile-top-actions">
@@ -133,9 +133,9 @@ export default function Navbar({ theme, toggleTheme }) {
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className="capsule-logo"
-            title="Karthick T. Portfolio"
+            title="Karthick Portfolio"
           >
-            <span className="capsule-logo-text">Karthick T.</span>
+            <span className="capsule-logo-text">Karthick</span>
           </a>
 
           {/* Vertical Divider 1 */}
