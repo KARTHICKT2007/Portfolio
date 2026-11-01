@@ -45,7 +45,7 @@ export default function App() {
 
         <main id="main-content">
           <Hero onOpenResume={() => setIsResumeOpen(true)} />
-          <About />
+          <About onOpenResume={() => setIsResumeOpen(true)} />
           <Skills />
           <Projects onSelectProject={(project) => setSelectedProject(project)} />
           <Certifications />

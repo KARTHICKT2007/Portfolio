@@ -1,142 +1,148 @@
 import React from 'react';
-import { GraduationCap, Award, BookOpen, MapPin, Calendar, CheckCircle2, Terminal, Code2, Database } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { GraduationCap, Code2, Trophy, MapPin, Rocket, Download } from 'lucide-react';
+import aboutPortrait from '../assets/about_portrait.png';
 
-export default function About() {
+export default function About({ onOpenResume }) {
+  const handleScrollToProjects = (e) => {
+    e.preventDefault();
+    const target = document.getElementById('projects');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="about" className="section-padding about-section">
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="section-header-block">
-          <div className="section-tag">
-            <span className="section-tag-number">01</span> PROFILE OVERVIEW
+      {/* Giant Background Editorial Typography */}
+      <div className="about-backdrop-wrap" aria-hidden="true">
+        <span className="about-backdrop-text">ABOUT ME</span>
+      </div>
+
+      <div className="section-container about-outer-container">
+        {/* Top Pill Badge */}
+        <div className="about-pill-header">
+          <div className="about-pill-badge">
+            <span className="about-pill-dot" aria-hidden="true"></span>
+            <span>About Me</span>
           </div>
-          <h2 className="section-title">
-            About <span className="text-gradient">Me</span>
-          </h2>
-          <p className="section-subtitle">
-            Merging strong computer science foundations with modern full-stack development and analytical precision.
-          </p>
         </div>
 
-        <div className="about-grid">
-          {/* Left Column: Personal Narrative & Philosophy */}
-          <div className="about-bio-card">
-            <h3 className="about-card-title">
-              <span className="text-electric">Engineering</span> Modern Digital Solutions
-            </h3>
+        {/* Main 3-Column Editorial Layout */}
+        <div className="about-editorial-layout">
+          {/* ================================================================
+              LEFT COLUMN — PORTRAIT WITH NEON ACCENT
+              ================================================================ */}
+          <div className="about-left-col">
+            <div className="about-portrait-stage">
+              {/* Neon Angular Accent Shape */}
+              <div className="about-neon-polygon" aria-hidden="true"></div>
 
-            <div className="about-paragraphs">
-              {personalInfo.about.map((paragraph, idx) => (
-                <p key={idx} className="about-text">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+              {/* Ambient Halo Lighting */}
+              <div className="about-portrait-halo" aria-hidden="true"></div>
 
-            {/* Quick Principles / Focus Areas */}
-            <div className="about-principles">
-              <div className="principle-item">
-                <div className="principle-icon-wrap">
-                  <Code2 size={20} className="principle-icon" />
-                </div>
-                <div>
-                  <h4 className="principle-title">Modern Full Stack Engineering</h4>
-                  <p className="principle-desc">Clean, maintainable code architectures with React, JavaScript, and modular CSS.</p>
-                </div>
+              {/* Cutout Portrait with Smooth Faded Bottom */}
+              <div className="about-portrait-frame">
+                <img
+                  src={aboutPortrait}
+                  alt="Karthick - Aspiring Full Stack Developer & Data Analyst"
+                  className="about-portrait-img"
+                  loading="lazy"
+                  width="420"
+                  height="490"
+                />
               </div>
-
-              <div className="principle-item">
-                <div className="principle-icon-wrap">
-                  <Database size={20} className="principle-icon" />
-                </div>
-                <div>
-                  <h4 className="principle-title">Data-Driven Analytical Thinking</h4>
-                  <p className="principle-desc">Relational database modeling with SQL and cloud infrastructure via Oracle Cloud.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats Row */}
-            <div className="about-stats-grid">
-              {personalInfo.stats.map((stat, idx) => (
-                <div key={idx} className="stat-card">
-                  <div className="stat-value">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              ))}
             </div>
           </div>
 
-          {/* Right Column: Education & Academic Credentials */}
-          <div className="about-education-card">
-            <div className="card-top-header">
-              <div className="header-icon-box">
-                <GraduationCap size={24} className="grad-icon" />
+          {/* ================================================================
+              CENTER COLUMN — NARRATIVE & ACTION BUTTONS
+              ================================================================ */}
+          <div className="about-center-col">
+            <div className="about-cursive-greeting">Hello!</div>
+            <h3 className="about-display-name">I’m Karthick</h3>
+            <div className="about-role-subtitle">
+              Aspiring Full Stack Developer & Data Analyst
+            </div>
+
+            <p className="about-editorial-bio">
+              I am a <strong>Computer Science student</strong>, passionate about building modern <strong>web applications</strong>, exploring <strong>data analytics</strong>, and turning ideas into innovative solutions. I love learning new technologies and solving real-world problems.
+            </p>
+
+            <div className="about-cta-group">
+              <a
+                href="#projects"
+                onClick={handleScrollToProjects}
+                className="about-btn-primary"
+              >
+                <Rocket size={17} />
+                <span>Explore My Projects</span>
+              </a>
+
+              <button
+                onClick={onOpenResume}
+                className="about-btn-secondary"
+                title="Download Official Resume"
+              >
+                <Download size={17} />
+                <span>Download Resume</span>
+              </button>
+            </div>
+          </div>
+
+          {/* ================================================================
+              RIGHT COLUMN — 4 STACKED GLASSMORPHIC HIGHLIGHT CARDS
+              ================================================================ */}
+          <div className="about-right-col">
+            {/* 1. Education */}
+            <div className="about-glass-card">
+              <div className="glass-card-icon-wrap">
+                <GraduationCap size={22} className="glass-card-icon" />
               </div>
-              <div>
-                <span className="card-top-tag">ACADEMIC FOUNDATION</span>
-                <h3 className="card-top-title">Education & Credentials</h3>
+              <div className="glass-card-body">
+                <h4 className="glass-card-title">Education</h4>
+                <div className="glass-card-bold">B.Sc. Computer Science</div>
+                <div className="glass-card-desc">
+                  Arulmigu Palaniandavar College of Arts and Culture, Palani
+                </div>
+                <div className="glass-card-sub">
+                  Madurai Kamaraj University
+                </div>
+                <div className="glass-card-period">(2024 – 2027)</div>
               </div>
             </div>
 
-            {/* Degree Card */}
-            <div className="education-detail-box">
-              <div className="edu-badge-row">
-                <span className="edu-status-badge">Computer Science Student</span>
-                <span className="edu-period">
-                  <Calendar size={13} /> {personalInfo.education.period}
-                </span>
+            {/* 2. Skills */}
+            <div className="about-glass-card">
+              <div className="glass-card-icon-wrap">
+                <Code2 size={22} className="glass-card-icon" />
               </div>
-
-              <h4 className="edu-degree-title">{personalInfo.education.degree}</h4>
-              
-              <div className="edu-college">
-                <BookOpen size={15} />
-                <span>{personalInfo.education.college}</span>
-              </div>
-
-              <div className="edu-university">
-                <span className="edu-affil-label">Affiliated with:</span>
-                <span>{personalInfo.education.institution}</span>
-              </div>
-
-              <div className="edu-location">
-                <MapPin size={13} />
-                <span>{personalInfo.education.location}</span>
-              </div>
-
-              <div className="edu-divider"></div>
-
-              <div className="edu-focus-area">
-                <h5 className="focus-heading">Core Curriculum & Technical Focus:</h5>
-                <p className="focus-description">{personalInfo.education.focus}</p>
-                
-                <ul className="focus-list">
-                  <li>
-                    <CheckCircle2 size={15} className="focus-check" />
-                    <span>Relational Database Management Systems (RDBMS & SQL)</span>
-                  </li>
-                  <li>
-                    <CheckCircle2 size={15} className="focus-check" />
-                    <span>Data Structures & Algorithmic Problem Solving</span>
-                  </li>
-                  <li>
-                    <CheckCircle2 size={15} className="focus-check" />
-                    <span>Full Stack Web Development & Modern Frontend Engineering</span>
-                  </li>
-                  <li>
-                    <CheckCircle2 size={15} className="focus-check" />
-                    <span>Software Engineering Lifecycle & Cloud Foundations</span>
-                  </li>
-                </ul>
+              <div className="glass-card-body">
+                <h4 className="glass-card-title">Skills</h4>
+                <div className="glass-card-bold">React • JavaScript • SQL</div>
+                <div className="glass-card-desc">HTML • CSS • Oracle Cloud</div>
               </div>
             </div>
 
-            {/* Verification Note */}
-            <div className="academic-seal-box">
-              <div className="seal-text">
-                <strong>Arulmigu Palaniandavar College of Arts and Culture, Palani</strong> is affiliated with <strong>Madurai Kamaraj University (MKU)</strong>.
+            {/* 3. Certifications */}
+            <div className="about-glass-card">
+              <div className="glass-card-icon-wrap">
+                <Trophy size={22} className="glass-card-icon" />
+              </div>
+              <div className="glass-card-body">
+                <h4 className="glass-card-title">Certifications</h4>
+                <div className="glass-card-bold">Oracle Cloud | Oracle APEX</div>
+                <div className="glass-card-desc">AI & Data Analytics</div>
+              </div>
+            </div>
+
+            {/* 4. Location */}
+            <div className="about-glass-card">
+              <div className="glass-card-icon-wrap">
+                <MapPin size={22} className="glass-card-icon" />
+              </div>
+              <div className="glass-card-body">
+                <h4 className="glass-card-title">Location</h4>
+                <div className="glass-card-bold">Tamil Nadu, India</div>
               </div>
             </div>
           </div>
