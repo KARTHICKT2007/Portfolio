@@ -1,6 +1,7 @@
 import React from 'react';
-import { Send, Download, ArrowDown, Sparkles, Terminal, Code2, Database, Cloud, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Send, Download, ArrowDown, Sparkles, Terminal, Code2, Database, Cloud, ExternalLink, ShieldCheck, MapPin } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import profileImg from '../assets/profile.png';
 
 export default function Hero({ onOpenResume }) {
   const handleScrollToContact = (e) => {
@@ -80,106 +81,32 @@ export default function Hero({ onOpenResume }) {
           </div>
         </div>
 
-        {/* Right Column: Futuristic AI Avatar & Developer Terminal Card */}
+        {/* Right Column: Custom Professional Profile Picture Card */}
         <div className="hero-visual">
-          <div className="avatar-cyber-wrapper">
+          <div className="profile-cyber-wrapper">
             {/* Ambient Purple Halo Glow */}
-            <div className="avatar-halo-glow"></div>
+            <div className="profile-halo-glow" aria-hidden="true"></div>
 
-            {/* Futuristic Hologram Card */}
-            <div className="avatar-card">
-              {/* Profile Image & Avatar Frame */}
-              <div className="avatar-display-frame">
-                {/* SVG/Vector futuristic Developer Avatar with purple cyber aesthetics */}
-                <div className="avatar-svg-container">
-                  <svg
-                    viewBox="0 0 240 240"
-                    className="developer-hologram-avatar"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <defs>
-                      <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8B5CF6" />
-                        <stop offset="50%" stop-color="#A78BFA" />
-                        <stop offset="100%" stop-color="#6D28D9" />
-                      </linearGradient>
-                      <linearGradient id="avatarFace" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#2E1065" />
-                        <stop offset="100%" stop-color="#170D2B" />
-                      </linearGradient>
-                      <filter id="purpleNeon" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="4" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                      </filter>
-                    </defs>
+            {/* Cyber Corner HUD Accent (Red bracket top-left from user reference) */}
+            <div className="profile-corner-bracket" aria-hidden="true"></div>
 
-                    {/* Background Ring */}
-                    <circle cx="120" cy="120" r="105" fill="#120D1F" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="6 4" opacity="0.6" />
-                    <circle cx="120" cy="120" r="95" fill="url(#avatarFace)" stroke="#A78BFA" stroke-width="1.5" />
-
-                    {/* Developer Cyber Head & Silhouette */}
-                    {/* Head */}
-                    <circle cx="120" cy="85" r="38" fill="#1E1533" stroke="url(#purpleGrad)" stroke-width="2.5" />
-                    
-                    {/* Futuristic Cyber Visor / Glasses */}
-                    <path
-                      d="M95 82 Q120 78 145 82 L143 92 Q120 96 97 92 Z"
-                      fill="#8B5CF6"
-                      filter="url(#purpleNeon)"
-                      opacity="0.9"
-                    />
-                    <line x1="100" y1="87" x2="140" y2="87" stroke="#F5F3FF" stroke-width="1.5" />
-
-                    {/* Hair / Stylized top */}
-                    <path
-                      d="M86 75 Q120 42 154 75 Q145 60 120 58 Q95 60 86 75 Z"
-                      fill="#8B5CF6"
-                      opacity="0.8"
-                    />
-
-                    {/* Neck and Shoulders */}
-                    <path
-                      d="M106 120 L106 135 L134 135 L134 120 Z"
-                      fill="#1E1533"
-                    />
-                    <path
-                      d="M62 195 Q70 142 104 136 L136 136 Q170 142 178 195 Z"
-                      fill="#170D2B"
-                      stroke="url(#purpleGrad)"
-                      stroke-width="2"
-                    />
-
-                    {/* Circuit lines on body */}
-                    <path d="M120 145 L120 185 M98 165 L142 165" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" />
-                    <circle cx="120" cy="165" r="4" fill="#8B5CF6" filter="url(#purpleNeon)" />
-                  </svg>
-                </div>
-
-                {/* Cyber badge overlay */}
-                <div className="avatar-cyber-pill">
-                  <ShieldCheck size={14} className="badge-icon-verified" />
-                  <span>Verified Developer</span>
-                </div>
+            {/* Main Portrait Card with Curved Corners & Location Badge */}
+            <div className="profile-portrait-card">
+              <div className="profile-image-container">
+                <img
+                  src={profileImg}
+                  alt={`${personalInfo.fullName} - ${personalInfo.tagline}`}
+                  className="profile-portrait-img"
+                  loading="eager"
+                  width="300"
+                  height="374"
+                />
               </div>
 
-              {/* Terminal Code Snapshot */}
-              <div className="avatar-code-box">
-                <div className="code-header">
-                  <span className="dot dot-red"></span>
-                  <span className="dot dot-yellow"></span>
-                  <span className="dot dot-green"></span>
-                  <span className="code-filename">karthick.config.ts</span>
-                </div>
-                <pre className="code-content">
-                  <code>
-                    <span className="c-keyword">const</span> <span className="c-name">developer</span> = &#123;{'\n'}
-                    {'  '}name: <span className="c-string">"{personalInfo.fullName}"</span>,{'\n'}
-                    {'  '}degree: <span className="c-string">"B.Sc. CS @ APCAC, Palani"</span>,{'\n'}
-                    {'  '}university: <span className="c-string">"MKU (2024-2027)"</span>,{'\n'}
-                    {'  '}status: <span className="c-green">"CS_STUDENT"</span>{'\n'}
-                    &#125;;
-                  </code>
-                </pre>
+              {/* Status Indicator Pill */}
+              <div className="profile-status-chip">
+                <span className="profile-status-dot"></span>
+                <span>Active • Palani</span>
               </div>
             </div>
           </div>
