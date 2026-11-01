@@ -29,6 +29,11 @@ export const personalInfo = {
     github: "https://github.com/KARTHICKT2007",
     linkedin: "https://www.linkedin.com/in/karthick-thilagar-257a90375",
     location: "Dindigul, Tamil Nadu, India"
+  },
+  resume: {
+    pdfUrl: "/Karthick_Resume.pdf",
+    driveUrl: "https://drive.google.com/file/d/1j3GhujK29sCR8GDYLY8IoVEN48jn3l0y/view?usp=sharing",
+    fileName: "Karthick_Resume.pdf"
   }
 };
 

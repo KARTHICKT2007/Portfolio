@@ -4526,7 +4526,7 @@
 
 /* Resume Modal Specific Styling */
 .resume-modal-container {
-  max-width: 780px;
+  max-width: 860px;
 }
 
 .resume-modal-bar {
@@ -4567,6 +4567,127 @@
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
+}
+
+/* Resume View Toggle */
+.resume-view-toggle {
+  display: flex;
+  align-items: center;
+  background: rgba(18, 12, 36, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.resume-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resume-toggle-btn.active {
+  background: rgba(139, 92, 246, 0.25);
+  color: #EDE9FE;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.resume-toggle-btn:hover:not(.active) {
+  color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .resume-view-toggle {
+    display: none;
+  }
+}
+
+/* Resume PDF Container */
+.resume-pdf-container {
+  width: 100%;
+  height: 78vh;
+  min-height: 520px;
+  max-height: 820px;
+  background: #0B0715;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.resume-pdf-frame {
+  width: 100%;
+  flex: 1;
+  min-height: 480px;
+  border: none;
+  background: #110B22;
+}
+
+.resume-pdf-mobile-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.2rem;
+  background: rgba(16, 10, 32, 0.95);
+  border-top: 1px solid rgba(139, 92, 246, 0.25);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.resume-inline-drive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #A78BFA;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.resume-inline-drive-btn:hover {
+  color: #C4B5FD;
+  text-decoration: underline;
+}
+
+[data-theme="light"] .resume-view-toggle {
+  background: rgba(243, 238, 255, 0.85);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+[data-theme="light"] .resume-toggle-btn {
+  color: #64748B;
+}
+
+[data-theme="light"] .resume-toggle-btn.active {
+  background: #7C3AED;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="light"] .resume-pdf-container {
+  background: #F8FAFC;
+}
+
+[data-theme="light"] .resume-pdf-frame {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .resume-pdf-mobile-bar {
+  background: #FFFFFF;
+  border-top-color: rgba(124, 58, 237, 0.15);
+  color: #475569;
+}
+
+[data-theme="light"] .resume-inline-drive-btn {
+  color: #6D28D9;
 }
 
 .modal-action-btn {
