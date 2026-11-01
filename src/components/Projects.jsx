@@ -175,14 +175,47 @@ export default function Projects({ onSelectProject }) {
                   {/* Concise Description */}
                   <p className="project-neon-desc">{meta.cardDesc}</p>
 
-                  {/* Bottom Row: Tech Chips + Arrow Action */}
+                  {/* Bottom Row: Running Technology Chips + Arrow Action */}
                   <div className="project-neon-bottom-row">
-                    <div className="project-neon-tech-chips">
-                      {meta.cardTech.map((tech, idx) => (
-                        <span key={idx} className="project-tech-chip">
-                          {tech}
-                        </span>
-                      ))}
+                    <div
+                      className="project-tech-marquee-container"
+                      aria-label="Technologies used"
+                    >
+                      <div
+                        className="project-tech-marquee-track"
+                        style={{
+                          '--proj-marquee-duration': `${Math.max(16, meta.cardTech.length * 4.5)}s`
+                        }}
+                      >
+                        {/* Primary Set */}
+                        <div className="project-tech-marquee-group">
+                          {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
+                            <span key={`pt1-${idx}`} className="project-tech-chip">
+                              <span
+                                className="project-chip-dot"
+                                aria-hidden="true"
+                              ></span>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Duplicate Set for Seamless Infinite Loop */}
+                        <div
+                          className="project-tech-marquee-group"
+                          aria-hidden="true"
+                        >
+                          {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
+                            <span key={`pt2-${idx}`} className="project-tech-chip">
+                              <span
+                                className="project-chip-dot"
+                                aria-hidden="true"
+                              ></span>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
                     <button

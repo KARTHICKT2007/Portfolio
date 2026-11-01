@@ -124,15 +124,48 @@ export default function Certifications() {
                   )}
                 </div>
 
-                {/* Skills Verified Tags */}
+                {/* Skills Verified Tags — Continuous Running Animation Inside Card */}
                 {cert.skills && cert.skills.length > 0 && (
                   <div className="cert-skills-wrap">
-                    <div className="cert-tags">
-                      {cert.skills.map((skill, index) => (
-                        <span key={index} className="cert-skill-chip">
-                          {skill}
-                        </span>
-                      ))}
+                    <div
+                      className="cert-marquee-container"
+                      aria-label="Verified competencies"
+                    >
+                      <div
+                        className="cert-marquee-track"
+                        style={{
+                          '--cert-marquee-duration': `${Math.max(16, cert.skills.length * 4.5)}s`
+                        }}
+                      >
+                        {/* Primary Set */}
+                        <div className="cert-marquee-group">
+                          {[...cert.skills, ...cert.skills].map((skill, index) => (
+                            <span key={`c1-${index}`} className="cert-skill-chip">
+                              <span
+                                className="cert-chip-dot"
+                                aria-hidden="true"
+                              ></span>
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Duplicate Set for Seamless Infinite Loop */}
+                        <div
+                          className="cert-marquee-group"
+                          aria-hidden="true"
+                        >
+                          {[...cert.skills, ...cert.skills].map((skill, index) => (
+                            <span key={`c2-${index}`} className="cert-skill-chip">
+                              <span
+                                className="cert-chip-dot"
+                                aria-hidden="true"
+                              ></span>
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
