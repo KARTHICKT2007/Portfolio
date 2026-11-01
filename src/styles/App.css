@@ -5614,3 +5614,312 @@ section[id],
     pointer-events: auto !important;
   }
 }
+
+
+/* ==========================================================================
+   PARTICLE FRONT LOADER (MOBILE & PC)
+   ========================================================================== */
+.pfl-root {
+  --pfl-bg: #06030d;
+  --pfl-p: #8b5cf6;
+  --pfl-p2: #c4b5fd;
+  --pfl-tx: #f4f0ff;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--pfl-bg);
+  color: var(--pfl-tx);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  clip-path: circle(150% at 50% 50%);
+  transition: clip-path 1.1s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.pfl-root.done {
+  clip-path: circle(0% at 50% 50%);
+  pointer-events: none;
+}
+
+.pfl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pfl-vig {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 45%, #06030dd9 100%);
+  z-index: 2;
+}
+
+.pfl-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #fff, #c4b5fd 50%, #8b5cf6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.2s ease-out;
+}
+
+.pfl-sub {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 63%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5vw;
+  transition: opacity 0.5s;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.pfl-root.exit .pfl-sub {
+  opacity: 0;
+}
+
+.pfl-role {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  font: 700 clamp(12px, 1.7vw, 24px) 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  white-space: pre;
+  position: relative;
+}
+
+.pfl-role span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px) scale(1.6);
+  filter: blur(10px);
+  color: var(--pfl-p2);
+  transition: opacity 0.7s, transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1), filter 0.7s;
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+.pfl-sub.show .pfl-role span {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  animation: pflGlint 2.4s ease-in-out calc(0.9s + var(--i) * 40ms) infinite;
+}
+
+@keyframes pflGlint {
+  0%, 60%, 100% {
+    color: var(--pfl-p2);
+    text-shadow: none;
+  }
+  30% {
+    color: #fff;
+    text-shadow: 0 0 18px #c4b5fd;
+  }
+}
+
+.pfl-ln {
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, var(--pfl-p), transparent);
+  box-shadow: 0 0 12px var(--pfl-p);
+  transition: width 1.2s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pfl-sub.show .pfl-ln {
+  width: clamp(50px, 14vw, 240px);
+}
+
+.pfl-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 9vh;
+  width: min(300px, 50vw);
+  height: 3px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: opacity 0.6s;
+  z-index: 4;
+}
+
+.pfl-bar i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pfl-p), #f0abfc, #67e8f9);
+  box-shadow: 0 0 18px var(--pfl-p);
+  transition: width 0.08s linear;
+}
+
+.pfl-root.formed .pfl-bar,
+.pfl-root.morph .pfl-bar {
+  opacity: 0;
+}
+
+.pfl-ring {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 40vmin;
+  height: 40vmin;
+  margin: -20vmin;
+  border-radius: 50%;
+  border: 2px solid #c4b5fd;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pfl-ring.go {
+  animation: pflRing 1.6s cubic-bezier(0.1, 0.7, 0.3, 1) forwards;
+}
+
+.pfl-ring.r2.go {
+  animation-delay: 0.18s;
+  border-color: #8b5cf6;
+}
+
+@keyframes pflRing {
+  0% { transform: scale(0.1); opacity: 0.9; }
+  100% { transform: scale(3.4); opacity: 0; }
+}
+
+/* Gate Overlay & Enter Button */
+.pfl-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: radial-gradient(circle, #1a0b3d, var(--pfl-bg) 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: opacity 0.6s ease;
+}
+
+.pfl-gate.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pfl-enter {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1.5px solid var(--pfl-p);
+  background: rgba(139, 92, 246, 0.14);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.5), inset 0 0 24px rgba(139, 92, 246, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pfl-enter:hover {
+  background: var(--pfl-p);
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.8), inset 0 0 28px rgba(139, 92, 246, 0.5);
+}
+
+.pfl-enter::before,
+.pfl-enter::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid var(--pfl-p);
+  animation: pflPulse 2.2s infinite;
+}
+
+.pfl-enter::after {
+  animation-delay: 1.1s;
+}
+
+@keyframes pflPulse {
+  to {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.pfl-enter svg {
+  width: 34px;
+  height: 34px;
+  margin-left: 5px;
+}
+
+.pfl-gate-hint {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #C4B5FD;
+  text-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}
+
+/* Control Buttons */
+.pfl-ctl-group {
+  position: fixed;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pfl-ctl-top {
+  top: 20px;
+  right: 20px;
+}
+
+.pfl-ctl-bottom {
+  bottom: 20px;
+  right: 20px;
+}
+
+.pfl-ctl {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.6);
+  background: rgba(18, 10, 38, 0.8);
+  color: var(--pfl-p2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.pfl-ctl.circle {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  justify-content: center;
+}
+
+.pfl-ctl svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pfl-ctl:hover {
+  background: var(--pfl-p);
+  color: #fff;
+  border-color: var(--pfl-p);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+}
