@@ -1,118 +1,185 @@
-import React, { useState } from 'react';
-import { Atom, FileCode2, Code2, Palette, Database, Cloud, Check, Sparkles, Filter } from 'lucide-react';
-import { skillsData } from '../data/portfolioData';
+import React from 'react';
+import { Code2, Database, Cloud, Terminal } from 'lucide-react';
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedSkill, setSelectedSkill] = useState(null);
-
-  const categories = [
-    { id: 'all', label: 'All Technologies' },
-    { id: 'frontend', label: 'Frontend' },
-    { id: 'database', label: 'Database & SQL' },
-    { id: 'cloud', label: 'Cloud & Infrastructure' }
-  ];
-
-  const filteredSkills = activeCategory === 'all'
-    ? skillsData
-    : skillsData.filter((skill) => skill.category === activeCategory);
-
-  const getSkillIcon = (iconName) => {
-    switch (iconName) {
-      case 'Atom': return <Atom size={22} className="skill-svg-icon react-icon" />;
-      case 'FileCode2': return <FileCode2 size={22} className="skill-svg-icon js-icon" />;
-      case 'Code2': return <Code2 size={22} className="skill-svg-icon html-icon" />;
-      case 'Palette': return <Palette size={22} className="skill-svg-icon css-icon" />;
-      case 'Database': return <Database size={22} className="skill-svg-icon sql-icon" />;
-      case 'Cloud': return <Cloud size={22} className="skill-svg-icon oci-icon" />;
-      default: return <Code2 size={22} className="skill-svg-icon" />;
+  const skillCategories = [
+    {
+      id: 'frontend',
+      title: 'Frontend Development',
+      domain: 'CLIENT-SIDE ARCHITECTURE',
+      badge: 'UI & Web',
+      icon: Code2,
+      description:
+        'Crafting responsive, high-performance web applications with clean component architecture and fluid interactions.',
+      skills: [
+        'HTML5',
+        'CSS3',
+        'JavaScript',
+        'React',
+        'Vite',
+        'Responsive Design'
+      ],
+      theme: 'cyan',
+      focusTag: 'Interactive UI',
+      duration: 28
+    },
+    {
+      id: 'database',
+      title: 'Database & Backend',
+      domain: 'RELATIONAL SYSTEMS',
+      badge: 'Data & Queries',
+      icon: Database,
+      description:
+        'Architecting normalized relational schemas, analytical reporting, and optimized SQL query pipelines.',
+      skills: [
+        'SQL',
+        'Relational Database Design',
+        'Query Optimization',
+        'Data Modeling'
+      ],
+      theme: 'purple',
+      focusTag: 'Data Integrity',
+      duration: 30
+    },
+    {
+      id: 'cloud',
+      title: 'Cloud & Platforms',
+      domain: 'INFRASTRUCTURE & ORACLE',
+      badge: 'Cloud Services',
+      icon: Cloud,
+      description:
+        'Provisioning cloud compute resources, networking, and rapid enterprise web apps with Oracle APEX.',
+      skills: [
+        'Oracle Cloud',
+        'Oracle APEX',
+        'Cloud Fundamentals'
+      ],
+      theme: 'violet',
+      focusTag: 'OCI Infrastructure',
+      duration: 24
+    },
+    {
+      id: 'tools',
+      title: 'Tools & Productivity',
+      domain: 'WORKFLOW & VERSIONING',
+      badge: 'Dev Tools',
+      icon: Terminal,
+      description:
+        'Accelerating software delivery with modern version control, efficient IDE workflows, and structured documentation.',
+      skills: [
+        'Git & GitHub',
+        'VS Code',
+        'MS Excel',
+        'MS Word'
+      ],
+      theme: 'emerald',
+      focusTag: 'Workflow Speed',
+      duration: 24
     }
-  };
+  ];
 
   return (
     <section id="skills" className="section-padding skills-section">
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="section-header-block">
-          <div className="section-tag">
-            <span className="section-tag-number">02</span> TECHNICAL PROFICIENCY
+      <div className="section-container skills-custom-container">
+        {/* Section Header Badge */}
+        <div className="skills-pill-header-wrap">
+          <div className="skills-pill-header">
+            <span className="skills-pill-dot" aria-hidden="true"></span>
+            <span className="skills-pill-label">04 / TECHNICAL EXPERTISE</span>
           </div>
-          <h2 className="section-title">
-            Core <span className="text-gradient">Skills</span> & Technologies
+        </div>
+
+        {/* Section Heading & Subtitle */}
+        <div className="skills-hero-header">
+          <h2 className="skills-hero-title">
+            Core Skills &amp; <span className="skills-text-gradient">Technologies</span>
           </h2>
-          <p className="section-subtitle">
-            Demonstrated competencies across modern frontend systems, relational databases, and enterprise cloud solutions.
+          <p className="skills-hero-subtitle">
+            Technologies I use to build modern applications and solve real-world problems.
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="skills-filter-container">
-          <div className="skills-filter-list">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* 4 Category Cards Grid */}
+        <div className="skills-cards-grid">
+          {skillCategories.map((cat) => {
+            const IconComponent = cat.icon;
+            // Repeat skills twice per group to ensure dense, continuous coverage on any display
+            const groupSkills = [...cat.skills, ...cat.skills];
 
-        {/* Skills Cards Grid */}
-        <div className="skills-grid">
-          {filteredSkills.map((skill) => {
-            const isSelected = selectedSkill === skill.name;
             return (
               <div
-                key={skill.name}
-                className={`skill-card ${isSelected ? 'selected' : ''}`}
-                onClick={() => setSelectedSkill(isSelected ? null : skill.name)}
-                onMouseEnter={() => setSelectedSkill(skill.name)}
+                key={cat.id}
+                className="skills-category-card"
+                tabIndex={0}
+                aria-label={`${cat.title} category`}
               >
-                {/* Glow Border Effect */}
-                <div className="skill-card-glow"></div>
+                {/* Subtle Neon Card Top Glow */}
+                <div className="skills-card-glow" aria-hidden="true"></div>
 
-                <div className="skill-card-inner">
-                  {/* Top Bar */}
-                  <div className="skill-top-bar">
-                    <div className="skill-icon-box">
-                      {getSkillIcon(skill.icon)}
-                    </div>
-                    <span className="skill-badge-pill">{skill.badge}</span>
+                {/* Card Header */}
+                <div className="skills-card-header">
+                  <div className={`skills-cat-icon-box icon-${cat.theme}`}>
+                    <IconComponent size={22} className="skills-cat-icon" />
                   </div>
 
-                  {/* Skill Name & Description */}
-                  <h3 className="skill-name">{skill.name}</h3>
-                  <p className="skill-desc">{skill.description}</p>
-
-                  {/* Proficiency Meter */}
-                  <div className="skill-meter-wrap">
-                    <div className="skill-meter-header">
-                      <span className="meter-label">Proficiency Level</span>
-                      <span className="meter-value">{skill.level}%</span>
-                    </div>
-                    <div className="skill-progress-bar">
-                      <div
-                        className="skill-progress-fill"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                  <div className="skills-cat-title-block">
+                    <span className="skills-cat-domain">{cat.domain}</span>
+                    <h3 className="skills-cat-title">{cat.title}</h3>
                   </div>
 
-                  {/* Key Highlights */}
-                  <div className="skill-highlights">
-                    <span className="highlights-title">Key Competencies:</span>
-                    <div className="highlights-tags">
-                      {skill.highlights.map((item, idx) => (
-                        <span key={idx} className="highlight-tag">
-                          <Check size={11} className="tag-check" />
-                          {item}
+                  <span className="skills-cat-badge">{cat.badge}</span>
+                </div>
+
+                {/* Brief Description */}
+                <p className="skills-cat-desc">{cat.description}</p>
+
+                {/* Independent Running Animation Track Inside Every Card */}
+                <div
+                  className="skills-marquee-container"
+                  aria-label={`${cat.title} running skill chips`}
+                >
+                  <div
+                    className="skills-marquee-track"
+                    style={{ '--marquee-duration': `${cat.duration}s` }}
+                  >
+                    {/* Primary Set */}
+                    <div className="skills-marquee-group">
+                      {groupSkills.map((skill, idx) => (
+                        <span key={`grp1-${idx}`} className="skill-chip">
+                          <span
+                            className={`skill-chip-dot dot-${cat.theme}`}
+                            aria-hidden="true"
+                          ></span>
+                          <span className="skill-chip-text">{skill}</span>
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Duplicate Set for Seamless Infinite Loop */}
+                    <div className="skills-marquee-group" aria-hidden="true">
+                      {groupSkills.map((skill, idx) => (
+                        <span key={`grp2-${idx}`} className="skill-chip">
+                          <span
+                            className={`skill-chip-dot dot-${cat.theme}`}
+                            aria-hidden="true"
+                          ></span>
+                          <span className="skill-chip-text">{skill}</span>
                         </span>
                       ))}
                     </div>
                   </div>
+                </div>
+
+                {/* Card Footer Info */}
+                <div className="skills-card-footer">
+                  <div className="skills-footer-left">
+                    <span className={`status-pulse-dot dot-${cat.theme}`}></span>
+                    <span className="skills-count-text">
+                      {cat.skills.length} Core Technologies
+                    </span>
+                  </div>
+
+                  <span className="skills-focus-badge">{cat.focusTag}</span>
                 </div>
               </div>
             );
