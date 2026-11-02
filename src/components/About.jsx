@@ -117,8 +117,8 @@ export default function About({ onOpenResume }) {
           </div>
 
           <div className="about-metric-card">
-            <div className="metric-card-value">OCI & SQL</div>
-            <div className="metric-card-label">CLOUD & DB FOCUS</div>
+            <div className="metric-card-value">REACT & SQL</div>
+            <div className="metric-card-label">WEB & DB FOCUS</div>
           </div>
 
           <div className="about-metric-card">

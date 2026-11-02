@@ -21,7 +21,7 @@ export const personalInfo = {
   stats: [
     { label: "Core Technologies", value: "6+" },
     { label: "Completed Projects", value: "4+" },
-    { label: "Cloud & DB Focus", value: "OCI & SQL" },
+    { label: "Web & DB Focus", value: "REACT & SQL" },
     { label: "Commitment", value: "100%" }
   ],
   contact: {
