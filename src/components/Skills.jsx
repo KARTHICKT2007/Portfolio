@@ -85,7 +85,7 @@ export default function Skills() {
         <div className="skills-pill-header-wrap reveal-header">
           <div className="skills-pill-header">
             <span className="skills-pill-dot" aria-hidden="true"></span>
-            <span className="skills-pill-label">04 / TECHNICAL EXPERTISE</span>
+            <span className="skills-pill-label"> TECHNICAL EXPERTISE</span>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export default function Skills() {
                 {/* Card Header */}
                 <div className="skills-card-header">
                   <div className={`skills-cat-icon-box icon-${cat.theme}`}>
-                    <IconComponent size={22} className="skills-cat-icon" />
+                    <IconComponent size={17} className="skills-cat-icon" />
                   </div>
 
                   <div className="skills-cat-title-block">

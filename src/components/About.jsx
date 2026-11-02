@@ -57,7 +57,7 @@ export default function About({ onOpenResume }) {
             {/* 1. Education */}
             <div className="about-glass-card">
               <div className="glass-card-icon-box">
-                <GraduationCap size={22} className="glass-card-icon" />
+                <GraduationCap size={17} className="glass-card-icon" />
               </div>
               <div className="glass-card-content">
                 <h4 className="glass-card-title">Education</h4>
@@ -71,7 +71,7 @@ export default function About({ onOpenResume }) {
             {/* 2. Skills */}
             <div className="about-glass-card">
               <div className="glass-card-icon-box">
-                <Code2 size={22} className="glass-card-icon" />
+                <Code2 size={17} className="glass-card-icon" />
               </div>
               <div className="glass-card-content">
                 <h4 className="glass-card-title">Skills</h4>
@@ -83,7 +83,7 @@ export default function About({ onOpenResume }) {
             {/* 3. Certifications */}
             <div className="about-glass-card">
               <div className="glass-card-icon-box">
-                <Award size={22} className="glass-card-icon" />
+                <Award size={17} className="glass-card-icon" />
               </div>
               <div className="glass-card-content">
                 <h4 className="glass-card-title">Certifications</h4>
@@ -95,7 +95,7 @@ export default function About({ onOpenResume }) {
             {/* 4. Location */}
             <div className="about-glass-card">
               <div className="glass-card-icon-box">
-                <MapPin size={22} className="glass-card-icon" />
+                <MapPin size={17} className="glass-card-icon" />
               </div>
               <div className="glass-card-content">
                 <h4 className="glass-card-title">Location</h4>

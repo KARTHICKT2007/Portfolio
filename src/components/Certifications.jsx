@@ -29,21 +29,21 @@ export default function Certifications() {
 
   const getCertIcon = (iconName) => {
     switch (iconName) {
-      case 'Cloud': return <Cloud size={20} className="cert-card-icon oci" />;
-      case 'Database': return <Database size={20} className="cert-card-icon sql" />;
-      case 'BarChart3': return <BarChart3 size={20} className="cert-card-icon apex" />;
-      case 'Code2': return <Code2 size={20} className="cert-card-icon code" />;
-      case 'Atom': return <Atom size={20} className="cert-card-icon react" />;
-      case 'FileCode2': return <FileCode2 size={20} className="cert-card-icon js" />;
-      case 'Cpu': return <Cpu size={20} className="cert-card-icon logic" />;
-      case 'GitBranch': return <GitBranch size={20} className="cert-card-icon git" />;
-      case 'Sparkles': return <Sparkles size={20} className="cert-card-icon ai" />;
-      case 'Briefcase': return <Briefcase size={20} className="cert-card-icon intern" />;
-      case 'Globe': return <Globe size={20} className="cert-card-icon lang" />;
-      case 'Layers': return <Layers size={20} className="cert-card-icon app" />;
-      case 'ShieldCheck': return <ShieldCheck size={20} className="cert-card-icon sec" />;
-      case 'Trophy': return <Trophy size={20} className="cert-card-icon trophy" />;
-      default: return <Award size={20} className="cert-card-icon" />;
+      case 'Cloud': return <Cloud size={16} className="cert-card-icon oci" />;
+      case 'Database': return <Database size={16} className="cert-card-icon sql" />;
+      case 'BarChart3': return <BarChart3 size={16} className="cert-card-icon apex" />;
+      case 'Code2': return <Code2 size={16} className="cert-card-icon code" />;
+      case 'Atom': return <Atom size={16} className="cert-card-icon react" />;
+      case 'FileCode2': return <FileCode2 size={16} className="cert-card-icon js" />;
+      case 'Cpu': return <Cpu size={16} className="cert-card-icon logic" />;
+      case 'GitBranch': return <GitBranch size={16} className="cert-card-icon git" />;
+      case 'Sparkles': return <Sparkles size={16} className="cert-card-icon ai" />;
+      case 'Briefcase': return <Briefcase size={16} className="cert-card-icon intern" />;
+      case 'Globe': return <Globe size={16} className="cert-card-icon lang" />;
+      case 'Layers': return <Layers size={16} className="cert-card-icon app" />;
+      case 'ShieldCheck': return <ShieldCheck size={16} className="cert-card-icon sec" />;
+      case 'Trophy': return <Trophy size={16} className="cert-card-icon trophy" />;
+      default: return <Award size={16} className="cert-card-icon" />;
     }
   };
 
@@ -65,7 +65,8 @@ export default function Certifications() {
         {/* Section Header */}
         <div className="section-header-block reveal-header">
           <div className="section-tag">
-            <span className="section-tag-number">04</span> CREDENTIALS & ACCOMPLISHMENTS
+            <span className="about-pill-dot" aria-hidden="true"></span>
+            <span className="section-tag-number"> </span> CREDENTIALS & ACCOMPLISHMENTS
           </div>
           <h2 className="section-title">
             Certifications & <span className="text-gradient">Achievements</span>

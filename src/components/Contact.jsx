@@ -42,7 +42,7 @@ export default function Contact() {
         <div className="contact-pill-header-wrap reveal-header">
           <div className="contact-pill-header">
             <span className="contact-pill-dot" aria-hidden="true"></span>
-            <span className="contact-pill-label">05 / GET IN TOUCH</span>
+            <span className="contact-pill-label"> GET IN TOUCH</span>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ export default function Contact() {
               {/* 1. Email */}
               <div className="contact-detail-row">
                 <div className="contact-icon-square">
-                  <Mail size={18} />
+                  <Mail size={15} />
                 </div>
                 <div className="contact-info-col">
                   <span className="contact-label-micro">EMAIL</span>
@@ -91,7 +91,7 @@ export default function Contact() {
                       title="Copy email to clipboard"
                       aria-label="Copy email"
                     >
-                      {copiedEmail ? <Check size={13} className="copied-check" /> : <Copy size={13} />}
+                      {copiedEmail ? <Check size={12} className="copied-check" /> : <Copy size={12} />}
                     </button>
                     {copiedEmail && <span className="contact-inline-toast">Copied!</span>}
                   </div>
@@ -101,7 +101,7 @@ export default function Contact() {
               {/* 2. Phone */}
               <div className="contact-detail-row">
                 <div className="contact-icon-square">
-                  <Phone size={18} />
+                  <Phone size={15} />
                 </div>
                 <div className="contact-info-col">
                   <span className="contact-label-micro">PHONE</span>
@@ -115,7 +115,7 @@ export default function Contact() {
                       title="Copy phone number to clipboard"
                       aria-label="Copy phone number"
                     >
-                      {copiedPhone ? <Check size={13} className="copied-check" /> : <Copy size={13} />}
+                      {copiedPhone ? <Check size={12} className="copied-check" /> : <Copy size={12} />}
                     </button>
                     {copiedPhone && <span className="contact-inline-toast">Copied!</span>}
                   </div>
@@ -125,7 +125,7 @@ export default function Contact() {
               {/* 2. Location */}
               <div className="contact-detail-row">
                 <div className="contact-icon-square">
-                  <MapPin size={18} />
+                  <MapPin size={15} />
                 </div>
                 <div className="contact-info-col">
                   <span className="contact-label-micro">LOCATION</span>
@@ -136,7 +136,7 @@ export default function Contact() {
               {/* 3. GitHub */}
               <div className="contact-detail-row">
                 <div className="contact-icon-square">
-                  <GithubIcon size={18} />
+                  <GithubIcon size={15} />
                 </div>
                 <div className="contact-info-col">
                   <span className="contact-label-micro">GITHUB</span>
@@ -161,7 +161,7 @@ export default function Contact() {
                 className="contact-social-pill"
                 title="GitHub Profile"
               >
-                <GithubIcon size={15} />
+                <GithubIcon size={13} />
                 <span>GitHub</span>
               </a>
 
@@ -172,7 +172,7 @@ export default function Contact() {
                 className="contact-social-pill"
                 title="LinkedIn Profile"
               >
-                <LinkedinIcon size={15} />
+                <LinkedinIcon size={13} />
                 <span>LinkedIn</span>
               </a>
 
@@ -181,7 +181,7 @@ export default function Contact() {
                 className="contact-social-pill"
                 title="Direct Email"
               >
-                <Mail size={15} />
+                <Mail size={13} />
                 <span>Direct Mail</span>
               </a>
 
@@ -190,7 +190,7 @@ export default function Contact() {
                 className="contact-social-pill"
                 title="Direct Phone Call"
               >
-                <Phone size={15} />
+                <Phone size={13} />
                 <span>Call</span>
               </a>
             </div>
@@ -214,28 +214,28 @@ export default function Contact() {
             <div className="contact-open-pills-stack">
               <div className="contact-open-pill">
                 <div className="open-pill-icon-wrap">
-                  <Code2 size={16} />
+                  <Code2 size={14} />
                 </div>
                 <span className="open-pill-text">Junior / Associate Developer</span>
               </div>
 
               <div className="contact-open-pill">
                 <div className="open-pill-icon-wrap">
-                  <Monitor size={16} />
+                  <Monitor size={14} />
                 </div>
                 <span className="open-pill-text">Full-Stack Web Projects</span>
               </div>
 
               <div className="contact-open-pill">
                 <div className="open-pill-icon-wrap">
-                  <TrendingUp size={16} />
+                  <TrendingUp size={14} />
                 </div>
                 <span className="open-pill-text">Data & Analytics Opportunities</span>
               </div>
 
               <div className="contact-open-pill">
                 <div className="open-pill-icon-wrap">
-                  <Handshake size={16} />
+                  <Handshake size={14} />
                 </div>
                 <span className="open-pill-text">Learning & Collaboration</span>
               </div>
