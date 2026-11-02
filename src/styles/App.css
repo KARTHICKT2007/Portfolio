@@ -4258,8 +4258,8 @@
    ========================================================================== */
 .back-to-top-btn {
   position: fixed;
-  bottom: 1.8rem;
-  right: 2rem;
+  bottom: 2rem;
+  right: 6.2rem;
   width: 48px;
   height: 48px;
   border-radius: 50%;

@@ -12,8 +12,10 @@ import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ProjectModal from './components/ProjectModal';
 import ResumeModal from './components/ResumeModal';
+import KarthickAIAssistant from './components/KarthickAIAssistant';
 import { useSectionTransitions } from './hooks/useScrollReveal';
 import './styles/App.css';
+import './styles/AIAssistant.css';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +60,9 @@ export default function App() {
 
         <Footer />
         <BackToTop />
+
+        {/* 3D Floating Karthick AI Voice Assistant */}
+        <KarthickAIAssistant />
 
         {/* Interactive Modals */}
         <ProjectModal
