@@ -1,3 +1,4 @@
+
 # Karthick — Futuristic Dark-Purple Developer Portfolio
 
 A personal developer portfolio created with **React 19 + Vite**, designed with an AI-inspired, Dark + Deep Purple theme.
@@ -103,3 +104,7 @@ npm run preview
 - **GitHub:** [github.com/KARTHICKT2007](https://github.com/KARTHICKT2007)
 - **Email:** [karthickt6190@gmail.com](mailto:karthickt6190@gmail.com)
 - **Phone:** [+91 78452 38807](tel:7845238807)
+=======
+# Portfolio
+
+
