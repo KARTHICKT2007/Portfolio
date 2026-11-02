@@ -23,7 +23,7 @@
 }
 
 .section-padding {
-  padding: clamp(2rem, 3.8vw, 3.4rem) 0;
+  padding: clamp(1.8rem, 3.2vw, 2.8rem) 0;
   position: relative;
 }
 
@@ -73,17 +73,17 @@
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
   color: var(--color-text);
   line-height: 1.25;
 }
 
 .section-subtitle {
   color: var(--color-text-muted);
-  font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.86rem);
   line-height: 1.55;
   margin: 0 auto;
 }
@@ -881,7 +881,7 @@
 
 .capsule-logo-text {
   font-family: 'Orbitron', var(--font-heading), sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #A855F7;
   letter-spacing: -0.01em;
@@ -923,10 +923,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.38rem;
-  padding: 0.38rem 0.72rem;
+  gap: 0.35rem;
+  padding: 0.34rem 0.68rem;
   border-radius: 9999px;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #94A3B8;
   text-decoration: none;
@@ -1025,11 +1025,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.42rem 1.25rem;
+  padding: 0.38rem 1.1rem;
   border-radius: 9999px;
   background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A855F7 100%);
   color: #FFFFFF;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 18px rgba(139, 92, 246, 0.55);
@@ -1212,7 +1212,7 @@
 
 .editorial-backdrop-text {
   font-family: 'Bebas Neue', 'Orbitron', var(--font-heading), sans-serif;
-  font-size: clamp(7.5rem, 20vw, 21rem);
+  font-size: clamp(4.5rem, 13vw, 11rem);
   font-weight: 900;
   line-height: 0.82;
   letter-spacing: 0.04em;
@@ -1258,11 +1258,11 @@
 /* Handwritten script greeting */
 .editorial-script-greeting {
   font-family: 'Caveat', cursive, sans-serif;
-  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   font-weight: 600;
   color: #F5F3FF;
   letter-spacing: 0.04em;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.12rem;
   line-height: 1.2;
 }
 
@@ -1273,12 +1273,12 @@
 /* Large Bold Editorial Name (Karthick) */
 .editorial-hero-name {
   font-family: 'Bebas Neue', var(--font-heading), sans-serif;
-  font-size: clamp(3.2rem, 6.2vw, 5.2rem);
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
   font-weight: 900;
   letter-spacing: 0.02em;
   line-height: 0.95;
   color: #FFFFFF;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.65rem 0;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -1290,12 +1290,12 @@
 /* Professional Title in Electric Purple */
 .editorial-role-tag {
   display: inline-block;
-  margin-bottom: 0.95rem;
+  margin-bottom: 0.75rem;
 }
 
 .editorial-role-text {
   font-family: 'Outfit', var(--font-heading), sans-serif;
-  font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
   font-weight: 800;
   color: var(--color-electric-purple);
   letter-spacing: 0.06em;
@@ -1306,23 +1306,23 @@
 /* Bio Narrative */
 .editorial-hero-bio {
   font-family: var(--font-body);
-  font-size: clamp(0.82rem, 1.3vw, 0.92rem);
+  font-size: clamp(0.78rem, 1.05vw, 0.86rem);
   color: var(--color-text-muted);
-  line-height: 1.62;
-  margin-bottom: 1.4rem;
-  max-width: 420px;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 390px;
 }
 
 /* Availability Badge */
 .editorial-availability-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.35rem 0.85rem;
+  gap: 0.5rem;
+  padding: 0.26rem 0.75rem;
   background: rgba(139, 92, 246, 0.08);
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: 9999px;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.35rem;
   width: fit-content;
 }
 
@@ -1347,7 +1347,7 @@
 
 .availability-text {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--color-light-violet);
   letter-spacing: 0.05em;
@@ -1358,7 +1358,7 @@
 .editorial-cta-group {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
@@ -1366,13 +1366,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.65rem 1.45rem;
+  gap: 0.5rem;
+  padding: 0.52rem 1.15rem;
   border-radius: 9999px;
   background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A855F7 100%);
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 18px rgba(139, 92, 246, 0.45);
@@ -1389,14 +1389,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.65rem 1.45rem;
+  gap: 0.5rem;
+  padding: 0.52rem 1.15rem;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(139, 92, 246, 0.3);
   color: var(--color-text);
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1513,7 +1513,7 @@
 
 .tag-location-text {
   font-family: var(--font-heading);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: #F5F3FF;
   letter-spacing: 0.02em;
@@ -1580,7 +1580,7 @@
 
 .spark-quote-text {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   color: #E2E8F0;
   line-height: 1.45;
   margin: 0;
@@ -1594,13 +1594,13 @@
 .editorial-highlights-stack {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 0.85rem;
   background: rgba(18, 13, 31, 0.65);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: 20px;
-  padding: clamp(1rem, 2.2vw, 1.4rem);
+  padding: clamp(0.9rem, 2vw, 1.25rem);
   box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -1621,7 +1621,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  min-width: 68px;
+  min-width: 64px;
   flex-shrink: 0;
   padding-top: 0.15rem;
 }
@@ -1632,7 +1632,7 @@
 
 .highlight-lead-badge {
   font-family: 'Bebas Neue', var(--font-heading), sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.96rem;
   letter-spacing: 0.04em;
   color: #A855F7;
   line-height: 1;
@@ -1641,12 +1641,12 @@
 .highlight-body {
   display: flex;
   flex-direction: column;
-  gap: 0.18rem;
+  gap: 0.15rem;
 }
 
 .highlight-title {
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--color-text);
   letter-spacing: 0.02em;
@@ -1655,7 +1655,7 @@
 
 .highlight-sub {
   font-family: var(--font-body);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   color: var(--color-text-dim);
   line-height: 1.35;
 }
@@ -1764,30 +1764,30 @@
   }
 
   .editorial-script-greeting {
-    font-size: 1.35rem;
-    margin-bottom: 0.12rem;
+    font-size: 1.18rem;
+    margin-bottom: 0.1rem;
   }
 
   .editorial-hero-name {
-    font-size: clamp(2.4rem, 11vw, 3.2rem);
-    margin: 0 0 0.45rem 0;
+    font-size: clamp(2rem, 9.5vw, 2.7rem);
+    margin: 0 0 0.35rem 0;
     line-height: 0.95;
   }
 
   .editorial-role-tag {
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.55rem;
   }
 
   .editorial-role-text {
-    font-size: clamp(0.7rem, 3.2vw, 0.78rem);
+    font-size: clamp(0.68rem, 2.8vw, 0.74rem);
     letter-spacing: 0.05em;
   }
 
   .editorial-hero-bio {
-    font-size: 0.84rem;
-    line-height: 1.55;
-    max-width: 360px;
-    margin: 0 auto 1.1rem auto;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    max-width: 330px;
+    margin: 0 auto 1rem auto;
   }
 
   /* 2. Compact Availability Badge */
@@ -2118,45 +2118,45 @@
 
 .about-script-greeting {
   font-family: 'Caveat', cursive, sans-serif;
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
   font-weight: 600;
   color: #C084FC;
   line-height: 1;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.12rem;
   letter-spacing: 0.02em;
 }
 
 .about-hero-name {
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 4vw, 3.2rem);
+  font-size: clamp(1.65rem, 2.8vw, 2.3rem);
   font-weight: 900;
   color: #FFFFFF;
   line-height: 1.05;
-  margin: 0.15rem 0 0.5rem 0;
+  margin: 0.15rem 0 0.45rem 0;
   letter-spacing: -0.01em;
 }
 
 .about-hero-role {
   font-family: var(--font-heading);
-  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.82rem, 1.2vw, 0.94rem);
   font-weight: 700;
   color: #A855F7;
   letter-spacing: 0.02em;
 }
 
 .about-accent-line {
-  width: 75px;
+  width: 65px;
   height: 2px;
   background: linear-gradient(90deg, #8B5CF6 0%, rgba(139, 92, 246, 0.2) 100%);
-  margin: 0.85rem 0 1.25rem 0;
+  margin: 0.75rem 0 1.1rem 0;
   border-radius: 2px;
 }
 
 .about-lead-bio {
   font-family: var(--font-body);
-  font-size: clamp(0.88rem, 1.35vw, 0.98rem);
+  font-size: clamp(0.8rem, 1.1vw, 0.88rem);
   color: #CBD5E1;
-  line-height: 1.7;
+  line-height: 1.62;
   max-width: 440px;
 }
 
@@ -2169,16 +2169,16 @@
 .about-cards-col {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
   z-index: 2;
 }
 
 .about-glass-card {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 0.85rem 1.15rem;
-  border-radius: 18px;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
   background: rgba(20, 13, 38, 0.65);
   border: 1px solid rgba(139, 92, 246, 0.25);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -2195,9 +2195,9 @@
 }
 
 .glass-card-icon-box {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   background: rgba(139, 92, 246, 0.12);
   border: 1px solid rgba(139, 92, 246, 0.3);
   display: flex;
@@ -2211,35 +2211,35 @@
 .glass-card-content {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.12rem;
   min-width: 0;
 }
 
 .glass-card-title {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0 0 0.15rem 0;
+  margin: 0 0 0.12rem 0;
   letter-spacing: 0.01em;
 }
 
 .glass-card-primary {
-  font-size: 0.84rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #A78BFA;
   line-height: 1.35;
 }
 
 .glass-card-sub {
-  font-size: 0.76rem;
+  font-size: 0.7rem;
   color: var(--color-text-dim);
   line-height: 1.35;
 }
 
 .glass-card-period {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   color: #8B5CF6;
   margin-top: 0.1rem;
 }
@@ -2248,15 +2248,15 @@
 .about-metrics-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.2rem;
-  margin-top: clamp(2rem, 4vw, 3.2rem);
+  gap: 1rem;
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
   position: relative;
   z-index: 2;
 }
 
 .about-metric-card {
-  padding: 1.15rem 0.9rem;
-  border-radius: 18px;
+  padding: 0.95rem 0.8rem;
+  border-radius: 16px;
   background: rgba(18, 12, 34, 0.6);
   border: 1px solid rgba(139, 92, 246, 0.25);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -2267,7 +2267,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.25rem;
   transition: all 0.3s ease;
 }
 
@@ -2279,7 +2279,7 @@
 
 .metric-card-value {
   font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
   font-weight: 800;
   color: #8B5CF6;
   line-height: 1.1;
@@ -2288,7 +2288,7 @@
 
 .metric-card-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 700;
   color: #94A3B8;
   letter-spacing: 0.06em;
@@ -2422,12 +2422,12 @@
 
 .skills-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 4.8vw, 3.1rem);
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #FFFFFF;
   line-height: 1.15;
-  margin: 0 0 0.65rem 0;
+  margin: 0 0 0.55rem 0;
 }
 
 .skills-text-gradient {
@@ -2437,9 +2437,9 @@
 }
 
 .skills-hero-subtitle {
-  font-size: clamp(0.88rem, 1.8vw, 0.98rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.86rem);
   color: #94A3B8;
-  max-width: 660px;
+  max-width: 600px;
   margin: 0 auto;
   line-height: 1.55;
 }
@@ -2560,7 +2560,7 @@
 
 .skills-cat-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  font-size: clamp(0.96rem, 1.4vw, 1.1rem);
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
@@ -2569,9 +2569,9 @@
 
 .skills-cat-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  padding: 0.22rem 0.6rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2581,10 +2581,10 @@
 
 /* Card Description */
 .skills-cat-desc {
-  font-size: 0.84rem;
+  font-size: 0.78rem;
   color: #94A3B8;
   line-height: 1.5;
-  margin: 0 0 1.15rem 0;
+  margin: 0 0 1rem 0;
 }
 
 /* 4. Dedicated Running Animation Inside Every Card */
@@ -2847,12 +2847,12 @@
 
 .projects-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 4.8vw, 3.1rem);
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #FFFFFF;
   line-height: 1.15;
-  margin: 0 0 0.65rem 0;
+  margin: 0 0 0.55rem 0;
 }
 
 .projects-text-gradient {
@@ -2862,9 +2862,9 @@
 }
 
 .projects-hero-subtitle {
-  font-size: clamp(0.88rem, 1.8vw, 0.98rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.86rem);
   color: #94A3B8;
-  max-width: 660px;
+  max-width: 600px;
   margin: 0 auto;
   line-height: 1.55;
 }
@@ -2875,17 +2875,17 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-bottom: 2.2rem;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
 }
 
 .projects-filter-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.42rem 1.15rem;
+  gap: 0.45rem;
+  padding: 0.34rem 0.95rem;
   border-radius: 9999px;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
   font-family: var(--font-sans);
   background: rgba(18, 12, 34, 0.65);
@@ -2951,9 +2951,9 @@
 
 /* Card Thumbnail */
 .project-neon-thumb-box {
-  width: 116px;
-  min-width: 116px;
-  height: 116px;
+  width: 104px;
+  min-width: 104px;
+  height: 104px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(139, 92, 246, 0.4);
@@ -3056,20 +3056,20 @@
 /* Card Title */
 .project-neon-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
-  margin: 0 0 0.35rem 0;
+  margin: 0 0 0.3rem 0;
   letter-spacing: -0.01em;
 }
 
 /* Card Description */
 .project-neon-desc {
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   color: #94A3B8;
   line-height: 1.45;
-  margin: 0 0 0.65rem 0;
+  margin: 0 0 0.55rem 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -3445,11 +3445,11 @@
 
 .cert-title {
   font-family: var(--font-heading);
-  font-size: clamp(0.96rem, 2.2vw, 1.08rem);
+  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.35;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 
 .cert-issuer-row {
@@ -3676,12 +3676,12 @@
 
 .contact-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
   font-weight: 900;
   letter-spacing: 0.04em;
   color: #FFFFFF;
   line-height: 1.05;
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .contact-text-gradient {
@@ -3693,11 +3693,11 @@
 
 .contact-hero-subtitle {
   font-family: var(--font-body);
-  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.86rem);
   color: #94A3B8;
-  max-width: 580px;
+  max-width: 540px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.58;
 }
 
 /* 3. Two-Column Glowing Cards Layout */
@@ -3746,12 +3746,12 @@
 
 .contact-card-main-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   font-weight: 800;
   color: #FFFFFF;
   line-height: 1.3;
   letter-spacing: 0.02em;
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .text-electric-glow {
@@ -4130,39 +4130,39 @@
 
 .footer-logo {
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 3vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.25rem);
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   color: var(--color-text);
 }
 
 .footer-tagline {
-  font-size: clamp(0.85rem, 2vw, 0.92rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.84rem);
   color: var(--color-text-muted);
   max-width: 320px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .footer-heading {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--color-light-violet);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .footer-nav-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
 .footer-nav-list a {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
   transition: var(--transition-smooth);
 }
@@ -5733,6 +5733,74 @@ section[id],
 
 .pfl-sub.show .pfl-ln {
   width: clamp(50px, 14vw, 240px);
+}
+
+/* Mobile Preloader Only (<= 768px) - Proportional fit for FULL STACK DEVELOPER */
+@media (max-width: 768px) {
+  .pfl-sub {
+    top: 65%;
+    gap: 10px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pfl-sub.show .pfl-ln {
+    width: clamp(14px, 5vw, 36px);
+    flex-shrink: 0;
+  }
+
+  .pfl-role {
+    font-size: clamp(9.5px, 2.7vw, 13px);
+    font-weight: 700;
+    letter-spacing: clamp(0.18em, 0.4vw, 0.28em);
+    gap: 2px;
+    white-space: nowrap;
+    max-width: calc(100vw - 44px);
+    overflow: visible;
+    text-align: center;
+  }
+
+  .pfl-role span {
+    transform: translateY(16px) scale(1.3);
+  }
+}
+
+/* Extra Compact Mobile Preloader (<= 420px: 375px / 390px / 360px) */
+@media (max-width: 420px) {
+  .pfl-sub {
+    top: 66%;
+    gap: 6px;
+    padding: 0 10px;
+  }
+
+  .pfl-sub.show .pfl-ln {
+    width: clamp(8px, 3.5vw, 18px);
+  }
+
+  .pfl-role {
+    font-size: clamp(8.5px, 2.6vw, 11px);
+    letter-spacing: 0.16em;
+    gap: 1px;
+    max-width: calc(100vw - 28px);
+  }
+}
+
+@media (max-width: 340px) {
+  .pfl-sub {
+    gap: 4px;
+    padding: 0 6px;
+  }
+
+  .pfl-sub.show .pfl-ln {
+    width: 8px;
+  }
+
+  .pfl-role {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    gap: 0;
+  }
 }
 
 .pfl-ring {
