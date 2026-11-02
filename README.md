@@ -100,5 +100,6 @@ npm run preview
 - **Name:** Karthick
 - **Education:** BSc Computer Science, Madurai Kamaraj University
 - **Title:** Aspiring Full Stack Developer & Data Analyst
-- **GitHub:** [github.com/dineshkarthickd](https://github.com/dineshkarthickd)
-- **Email:** [dineshkarthick1610@gmail.com](mailto:dineshkarthick1610@gmail.com)
+- **GitHub:** [github.com/KARTHICKT2007](https://github.com/KARTHICKT2007)
+- **Email:** [karthickt6190@gmail.com](mailto:karthickt6190@gmail.com)
+- **Phone:** [+91 78452 38807](tel:7845238807)

@@ -26,6 +26,8 @@ export const personalInfo = {
   ],
   contact: {
     email: "karthickt6190@gmail.com",
+    phone: "7845238807",
+    phoneDisplay: "+91 78452 38807",
     github: "https://github.com/KARTHICKT2007",
     linkedin: "https://www.linkedin.com/in/karthick-thilagar-257a90375",
     location: "Dindigul, Tamil Nadu, India"

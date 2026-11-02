@@ -119,9 +119,9 @@ export function processResumeQuestion(rawQuery) {
   }
 
   // 9. Contact details
-  if (/contact|email|phone|reach|linkedin|github|message|touch/i.test(q)) {
+  if (/contact|email|phone|mobile|call|reach|linkedin|github|message|touch/i.test(q)) {
     return {
-      text: "You can reach Karthick by email at dineshkarthick1610@gmail.com, connect with him on LinkedIn at dineshkarthick16, or view his code repositories on GitHub at dineshkarthickd.",
+      text: "You can reach Karthick by email at karthickt6190@gmail.com, by phone at 7845238807, or connect on LinkedIn at karthick-thilagar-257a90375 and GitHub at KARTHICKT2007.",
       category: 'contact'
     };
   }
@@ -136,7 +136,7 @@ export function processResumeQuestion(rawQuery) {
 
   // 11. Strict Fallback for any unknown or off-topic questions
   return {
-    text: "I don't have that information in Karthick's resume. You can contact him for more details at dineshkarthick1610@gmail.com.",
+    text: "I don't have that information in Karthick's resume. You can contact him for more details at karthickt6190@gmail.com or call 7845238807.",
     category: 'fallback'
   };
 }

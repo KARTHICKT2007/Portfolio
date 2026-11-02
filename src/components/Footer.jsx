@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
 
@@ -58,8 +58,17 @@ export default function Footer() {
               href={`mailto:${personalInfo.contact.email}`}
               aria-label="Email Karthick"
               className="footer-icon-link"
+              title={`Email ${personalInfo.contact.email}`}
             >
               <Mail size={18} />
+            </a>
+            <a
+              href={`tel:${personalInfo.contact.phone}`}
+              aria-label="Call Karthick"
+              className="footer-icon-link"
+              title={`Call ${personalInfo.contact.phone}`}
+            >
+              <Phone size={18} />
             </a>
           </div>
         </div>

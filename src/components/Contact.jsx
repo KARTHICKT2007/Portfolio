@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Mail, 
+  Phone,
   MapPin, 
   Copy, 
   Check, 
@@ -15,11 +16,18 @@ import { personalInfo } from '../data/portfolioData';
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(personalInfo.contact.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
+  const copyPhoneToClipboard = () => {
+    navigator.clipboard.writeText(personalInfo.contact.phone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   return (
@@ -90,6 +98,30 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* 2. Phone */}
+              <div className="contact-detail-row">
+                <div className="contact-icon-square">
+                  <Phone size={18} />
+                </div>
+                <div className="contact-info-col">
+                  <span className="contact-label-micro">PHONE</span>
+                  <div className="contact-value-copy-group">
+                    <a href={`tel:${personalInfo.contact.phone}`} className="contact-val-text link">
+                      {personalInfo.contact.phoneDisplay || personalInfo.contact.phone}
+                    </a>
+                    <button
+                      onClick={copyPhoneToClipboard}
+                      className="contact-copy-inline-btn"
+                      title="Copy phone number to clipboard"
+                      aria-label="Copy phone number"
+                    >
+                      {copiedPhone ? <Check size={13} className="copied-check" /> : <Copy size={13} />}
+                    </button>
+                    {copiedPhone && <span className="contact-inline-toast">Copied!</span>}
+                  </div>
+                </div>
+              </div>
+
               {/* 2. Location */}
               <div className="contact-detail-row">
                 <div className="contact-icon-square">
@@ -151,6 +183,15 @@ export default function Contact() {
               >
                 <Mail size={15} />
                 <span>Direct Mail</span>
+              </a>
+
+              <a
+                href={`tel:${personalInfo.contact.phone}`}
+                className="contact-social-pill"
+                title="Direct Phone Call"
+              >
+                <Phone size={15} />
+                <span>Call</span>
               </a>
             </div>
           </div>

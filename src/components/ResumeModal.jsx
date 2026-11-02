@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Download, Printer, ExternalLink, FileText, FileCode, Mail, MapPin, Code2 } from 'lucide-react';
+import { X, Download, Printer, ExternalLink, FileText, FileCode, Mail, Phone, MapPin, Code2 } from 'lucide-react';
 import { personalInfo, skillsData, projectsData, certificationsData } from '../data/portfolioData';
 
 export default function ResumeModal({ isOpen, onClose }) {
@@ -111,6 +111,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               </div>
               <div className="resume-meta">
                 <div><Mail size={13} /> {personalInfo.contact.email}</div>
+                <div><Phone size={13} /> {personalInfo.contact.phoneDisplay || personalInfo.contact.phone}</div>
                 <div><MapPin size={13} /> {personalInfo.contact.location}</div>
                 <div><Code2 size={13} /> github.com/KARTHICKT2007</div>
               </div>
