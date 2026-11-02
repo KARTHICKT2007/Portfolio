@@ -6136,67 +6136,79 @@ section[id],
 /* Mobile Preloader Only (<= 768px) - Proportional fit for FULL STACK DEVELOPER */
 @media (max-width: 768px) {
   .pfl-sub {
-    top: 65%;
-    gap: 10px;
+    top: 62%;
+    gap: 8px;
     padding: 0 16px;
     width: 100%;
     box-sizing: border-box;
   }
 
   .pfl-sub.show .pfl-ln {
-    width: clamp(14px, 5vw, 36px);
+    width: clamp(14px, 4vw, 32px);
+    height: 1.5px;
     flex-shrink: 0;
   }
 
   .pfl-role {
-    font-size: clamp(9.5px, 2.7vw, 13px);
+    font-size: clamp(12px, 3.4vw, 15px);
     font-weight: 700;
-    letter-spacing: clamp(0.18em, 0.4vw, 0.28em);
+    letter-spacing: clamp(0.16em, 0.35vw, 0.24em);
     gap: 2px;
     white-space: nowrap;
-    max-width: calc(100vw - 44px);
+    max-width: calc(100vw - 36px);
     overflow: visible;
     text-align: center;
   }
 
   .pfl-role span {
-    transform: translateY(16px) scale(1.3);
+    transform: translateY(14px) scale(1.25);
+    color: #DDD6FE;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
   }
 }
 
 /* Extra Compact Mobile Preloader (<= 420px: 375px / 390px / 360px) */
 @media (max-width: 420px) {
   .pfl-sub {
-    top: 66%;
+    top: 61%;
     gap: 6px;
     padding: 0 10px;
   }
 
   .pfl-sub.show .pfl-ln {
-    width: clamp(8px, 3.5vw, 18px);
+    width: clamp(10px, 3vw, 18px);
+    height: 1.5px;
   }
 
   .pfl-role {
-    font-size: clamp(8.5px, 2.6vw, 11px);
-    letter-spacing: 0.16em;
+    font-size: clamp(11.5px, 3.2vw, 13.5px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
     gap: 1px;
-    max-width: calc(100vw - 28px);
+    max-width: calc(100vw - 24px);
+  }
+
+  .pfl-role span {
+    color: #EDE9FE;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
   }
 }
 
 @media (max-width: 340px) {
   .pfl-sub {
+    top: 60%;
     gap: 4px;
     padding: 0 6px;
   }
 
   .pfl-sub.show .pfl-ln {
     width: 8px;
+    height: 1px;
   }
 
   .pfl-role {
-    font-size: 8px;
-    letter-spacing: 0.12em;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
     gap: 0;
   }
 }

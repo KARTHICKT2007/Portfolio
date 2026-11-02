@@ -25,7 +25,8 @@ export default function Preloader({ onComplete }) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       const ac = new AudioCtx();
       const master = ac.createGain();
-      master.gain.value = isMutedRef.current ? 0 : 0.6;
+      // Gentle, non-intrusive master volume
+      master.gain.value = isMutedRef.current ? 0 : 0.32;
       master.connect(ac.destination);
       audioCtxRef.current = ac;
       masterGainRef.current = master;
@@ -46,6 +47,7 @@ export default function Preloader({ onComplete }) {
     }
   };
 
+  // Warm, soothing, ambient cosmic drone (pure sine harmonics, zero harsh buzzing)
   const startDrone = () => {
     const ac = audioCtxRef.current;
     const master = masterGainRef.current;
@@ -54,38 +56,45 @@ export default function Preloader({ onComplete }) {
     try {
       const f = ac.createBiquadFilter();
       f.type = 'lowpass';
-      f.frequency.value = 180;
-      f.Q.value = 6;
+      f.frequency.value = 260;
+      f.Q.value = 1.0;
 
       const g = ac.createGain();
       g.gain.value = 0;
-      g.gain.linearRampToValueAtTime(0.16, ac.currentTime + 0.8);
+      g.gain.linearRampToValueAtTime(0.08, ac.currentTime + 1.2);
 
+      // Warm pure sine waves in consonant harmonic intervals (A2, E3, A3)
       const o1 = ac.createOscillator();
-      o1.type = 'sawtooth';
-      o1.frequency.value = 55;
+      o1.type = 'sine';
+      o1.frequency.value = 110; // A2 fundamental
 
       const o2 = ac.createOscillator();
-      o2.type = 'square';
-      o2.frequency.value = 82.5;
-      o2.detune.value = 7;
+      o2.type = 'sine';
+      o2.frequency.value = 164.81; // E3 perfect fifth
 
+      const o3 = ac.createOscillator();
+      o3.type = 'sine';
+      o3.frequency.value = 220; // A3 octave
+
+      // Gentle, slow organic breathing LFO (0.28Hz instead of frantic 5Hz)
       const lfo = ac.createOscillator();
-      lfo.frequency.value = 5;
+      lfo.frequency.value = 0.28;
       const lg = ac.createGain();
-      lg.gain.value = 30;
+      lg.gain.value = 12;
       lfo.connect(lg);
-      lg.connect(f.detune);
+      lg.connect(f.frequency);
 
       o1.connect(f);
       o2.connect(f);
+      o3.connect(f);
       f.connect(g);
       g.connect(master);
 
       o1.start();
       o2.start();
+      o3.start();
       lfo.start();
-      droneRef.current = { o1, o2, lfo, f, g };
+      droneRef.current = { o1, o2, o3, lfo, f, g };
     } catch {
       // Audio fallback silent
     }
@@ -97,9 +106,11 @@ export default function Preloader({ onComplete }) {
     if (!ac || !drone) return;
     try {
       const t = ac.currentTime;
-      drone.o1.frequency.setTargetAtTime(55 + e * 110, t, 0.1);
-      drone.o2.frequency.setTargetAtTime(82.5 + e * 165, t, 0.1);
-      drone.f.frequency.setTargetAtTime(180 + e * 3800, t, 0.1);
+      // Smooth, musical harmonic lift without high-frequency screeching
+      drone.o1.frequency.setTargetAtTime(110 + e * 45, t, 0.2);
+      drone.o2.frequency.setTargetAtTime(164.81 + e * 60, t, 0.2);
+      if (drone.o3) drone.o3.frequency.setTargetAtTime(220 + e * 80, t, 0.2);
+      drone.f.frequency.setTargetAtTime(260 + e * 280, t, 0.2);
     } catch {
       // Audio fallback
     }
@@ -112,22 +123,24 @@ export default function Preloader({ onComplete }) {
     try {
       const t = ac.currentTime;
       drone.g.gain.cancelScheduledValues(t);
-      drone.g.gain.setTargetAtTime(0, t, 0.2);
+      drone.g.gain.setTargetAtTime(0, t, 0.35);
       setTimeout(() => {
         try {
           drone.o1.stop();
           drone.o2.stop();
+          if (drone.o3) drone.o3.stop();
           drone.lfo.stop();
         } catch {
           // Ignore
         }
-      }, 1200);
+      }, 700);
       droneRef.current = null;
     } catch {
       // Audio fallback
     }
   };
 
+  // Delicate celestial stardust sparkle (gentle sine wave, zero harsh square buzz)
   const tick = (fr) => {
     const ac = audioCtxRef.current;
     const master = masterGainRef.current;
@@ -136,89 +149,95 @@ export default function Preloader({ onComplete }) {
       const t = ac.currentTime;
       const o = ac.createOscillator();
       const g = ac.createGain();
-      o.type = 'square';
-      o.frequency.value = fr;
-      g.gain.setValueAtTime(0.05, t);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+      o.type = 'sine';
+      o.frequency.value = fr * 1.25;
+      g.gain.setValueAtTime(0.015, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
       o.connect(g);
       g.connect(master);
       o.start(t);
-      o.stop(t + 0.07);
+      o.stop(t + 0.04);
     } catch {
       // Audio fallback
     }
   };
 
+  // Soft cinematic atmospheric whoosh
   const whoosh = () => {
     const ac = audioCtxRef.current;
     const master = masterGainRef.current;
     if (!ac || !master) return;
     try {
       const t = ac.currentTime;
-      const len = Math.floor(ac.sampleRate * 1.4);
+      // Gentle filtered white noise breeze
+      const len = Math.floor(ac.sampleRate * 0.9);
       const b = ac.createBuffer(1, len, ac.sampleRate);
       const d = b.getChannelData(0);
-      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * 0.25;
 
       const s = ac.createBufferSource();
       s.buffer = b;
       const bp = ac.createBiquadFilter();
       bp.type = 'bandpass';
-      bp.Q.value = 1.2;
-      bp.frequency.setValueAtTime(200, t);
-      bp.frequency.exponentialRampToValueAtTime(7000, t + 0.9);
+      bp.Q.value = 0.9;
+      bp.frequency.setValueAtTime(350, t);
+      bp.frequency.exponentialRampToValueAtTime(2400, t + 0.6);
 
       const g = ac.createGain();
       g.gain.setValueAtTime(0.001, t);
-      g.gain.exponentialRampToValueAtTime(0.7, t + 0.7);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 1.4);
+      g.gain.exponentialRampToValueAtTime(0.06, t + 0.35);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
 
       s.connect(bp);
       bp.connect(g);
       g.connect(master);
       s.start(t);
 
+      // Warm sub-bass body
       const o = ac.createOscillator();
       const og = ac.createGain();
       o.type = 'sine';
-      o.frequency.setValueAtTime(70, t);
-      o.frequency.exponentialRampToValueAtTime(30, t + 0.9);
-      og.gain.setValueAtTime(0.5, t + 0.5);
-      og.gain.exponentialRampToValueAtTime(0.001, t + 1.3);
+      o.frequency.setValueAtTime(85, t);
+      o.frequency.exponentialRampToValueAtTime(42, t + 0.6);
+      og.gain.setValueAtTime(0.08, t + 0.15);
+      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
       o.connect(og);
       og.connect(master);
-      o.start(t + 0.5);
-      o.stop(t + 1.4);
+      o.start(t + 0.1);
+      o.stop(t + 0.85);
     } catch {
       // Audio fallback
     }
   };
 
+  // Celestial harmonious glass chimes on name reveal
   const chime = () => {
     const ac = audioCtxRef.current;
     const master = masterGainRef.current;
     if (!ac || !master) return;
     try {
-      const t = ac.currentTime + 0.05;
-      [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((fr, i) => {
+      const t = ac.currentTime + 0.04;
+      // Pleasant pentatonic frequencies: A4, C#5, E5, A5, C#6
+      [440, 554.37, 659.25, 880, 1108.73].forEach((fr, i) => {
         const o = ac.createOscillator();
         const g = ac.createGain();
-        const s = t + i * 0.09;
-        o.type = 'triangle';
+        const s = t + i * 0.08;
+        o.type = 'sine';
         o.frequency.value = fr;
         g.gain.setValueAtTime(0.001, s);
-        g.gain.exponentialRampToValueAtTime(0.16, s + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.001, s + 1.6);
+        g.gain.exponentialRampToValueAtTime(0.05, s + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, s + 1.4);
         o.connect(g);
         g.connect(master);
         o.start(s);
-        o.stop(s + 1.7);
+        o.stop(s + 1.45);
       });
     } catch {
       // Audio fallback
     }
   };
 
+  // Sweet crystal harp pluck
   const pluck = (fr) => {
     const ac = audioCtxRef.current;
     const master = masterGainRef.current;
@@ -227,15 +246,15 @@ export default function Preloader({ onComplete }) {
       const t = ac.currentTime;
       const o = ac.createOscillator();
       const g = ac.createGain();
-      o.type = 'triangle';
+      o.type = 'sine';
       o.frequency.value = fr;
       g.gain.setValueAtTime(0.001, t);
-      g.gain.exponentialRampToValueAtTime(0.18, t + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 0.7);
+      g.gain.exponentialRampToValueAtTime(0.06, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
       o.connect(g);
       g.connect(master);
       o.start(t);
-      o.stop(t + 0.75);
+      o.stop(t + 0.65);
     } catch {
       // Audio fallback
     }
@@ -246,7 +265,7 @@ export default function Preloader({ onComplete }) {
     setIsMuted(next);
     isMutedRef.current = next;
     if (masterGainRef.current && audioCtxRef.current) {
-      masterGainRef.current.gain.setTargetAtTime(next ? 0 : 0.6, audioCtxRef.current.currentTime, 0.05);
+      masterGainRef.current.gain.setTargetAtTime(next ? 0 : 0.32, audioCtxRef.current.currentTime, 0.05);
     }
   };
 
