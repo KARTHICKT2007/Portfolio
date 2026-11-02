@@ -13,20 +13,34 @@ import {
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
+import { useUI } from '../context/UIContext';
 
 export default function Contact() {
+  const { showToast, playSound } = useUI();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(personalInfo.contact.email);
     setCopiedEmail(true);
+    playSound('copy');
+    showToast({
+      type: 'success',
+      message: 'Email address copied to clipboard!',
+      duration: 3000
+    });
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
   const copyPhoneToClipboard = () => {
     navigator.clipboard.writeText(personalInfo.contact.phone);
     setCopiedPhone(true);
+    playSound('copy');
+    showToast({
+      type: 'success',
+      message: 'Phone number copied to clipboard!',
+      duration: 3000
+    });
     setTimeout(() => setCopiedPhone(false), 2500);
   };
 

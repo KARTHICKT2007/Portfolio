@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import { X, Download, Printer, ExternalLink, FileText, FileCode, Mail, Phone, MapPin, Code2 } from 'lucide-react';
 import { personalInfo, skillsData, projectsData, certificationsData } from '../data/portfolioData';
+import { useUI } from '../context/UIContext';
 
 export default function ResumeModal({ isOpen, onClose }) {
+  const { showToast, playSound } = useUI();
   const [viewMode, setViewMode] = useState('pdf'); // 'pdf' | 'formatted'
 
   if (!isOpen) return null;
 
   const handlePrint = () => {
+    playSound('click');
+    showToast({ type: 'info', message: 'Opening printable PDF document...', duration: 2500 });
     window.open(personalInfo.resume.pdfUrl, '_blank');
+  };
+
+  const handleDownload = () => {
+    playSound('success');
+    showToast({ type: 'success', message: 'Downloading official PDF resume...', duration: 3500 });
   };
 
   return (
@@ -60,6 +69,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <a
               href={personalInfo.resume.pdfUrl}
               download={personalInfo.resume.fileName}
+              onClick={handleDownload}
               className="modal-action-btn primary"
               title="Download Official PDF Resume"
             >

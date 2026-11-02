@@ -7,10 +7,14 @@ import {
   Award,
   Mail,
   Sun,
-  Moon
+  Moon,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
+import { useUI } from '../context/UIContext';
 
 export default function Navbar({ theme, toggleTheme }) {
+  const { soundEnabled, toggleSound } = useUI();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -76,6 +80,19 @@ export default function Navbar({ theme, toggleTheme }) {
         </a>
 
         <div className="mobile-top-actions">
+          <button
+            onClick={toggleSound}
+            className="mobile-sound-btn"
+            aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}
+            title={soundEnabled ? 'Sound: ON (Click to mute)' : 'Sound: MUTED (Click to enable)'}
+          >
+            {soundEnabled ? (
+              <Volume2 size={16} strokeWidth={2.2} className="theme-icon sound-icon" />
+            ) : (
+              <VolumeX size={16} strokeWidth={2.2} className="theme-icon sound-icon muted" />
+            )}
+          </button>
+
           <button
             onClick={toggleTheme}
             className="mobile-theme-btn"
@@ -163,6 +180,20 @@ export default function Navbar({ theme, toggleTheme }) {
 
           {/* Vertical Divider 2 */}
           <div className="capsule-divider" aria-hidden="true" />
+
+          {/* Sound Toggle Button */}
+          <button
+            onClick={toggleSound}
+            className="capsule-sound-btn"
+            aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}
+            title={soundEnabled ? 'Sound Effects: ON (Click to mute)' : 'Sound Effects: MUTED (Click to enable)'}
+          >
+            {soundEnabled ? (
+              <Volume2 size={16} strokeWidth={2.2} className="capsule-sound-icon" />
+            ) : (
+              <VolumeX size={16} strokeWidth={2.2} className="capsule-sound-icon muted" />
+            )}
+          </button>
 
           {/* Theme Toggle Button */}
           <button

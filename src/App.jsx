@@ -13,6 +13,9 @@ import BackToTop from './components/BackToTop';
 import ProjectModal from './components/ProjectModal';
 import ResumeModal from './components/ResumeModal';
 import KarthickAIAssistant from './components/KarthickAIAssistant';
+import ConfirmationModal from './components/ConfirmationModal';
+import ToastContainer from './components/ToastContainer';
+import { UIProvider } from './context/UIContext';
 import { useSectionTransitions } from './hooks/useScrollReveal';
 import './styles/App.css';
 import './styles/AIAssistant.css';
@@ -38,43 +41,51 @@ export default function App() {
   };
 
   return (
-    <div className={`app-root ${theme}-mode`}>
-      {/* Custom Animated Preloader */}
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+    <UIProvider>
+      <div className={`app-root ${theme}-mode`}>
+        {/* Custom Animated Preloader */}
+        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
 
-      {/* Cyber Ambient Background */}
-      <CyberBackground />
+        {/* Cyber Ambient Background */}
+        <CyberBackground />
 
-      {/* Main Layout */}
-      <div className="portfolio-wrapper">
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
+        {/* Main Layout */}
+        <div className="portfolio-wrapper">
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-        <main id="main-content">
-          <Hero onOpenResume={() => setIsResumeOpen(true)} />
-          <About onOpenResume={() => setIsResumeOpen(true)} />
-          <Skills />
-          <Projects onSelectProject={(project) => setSelectedProject(project)} />
-          <Certifications />
-          <Contact />
-        </main>
+          <main id="main-content">
+            <Hero onOpenResume={() => setIsResumeOpen(true)} />
+            <About onOpenResume={() => setIsResumeOpen(true)} />
+            <Skills />
+            <Projects onSelectProject={(project) => setSelectedProject(project)} />
+            <Certifications />
+            <Contact />
+          </main>
 
-        <Footer />
-        <BackToTop />
+          <Footer />
+          <BackToTop />
 
-        {/* 3D Floating Karthick AI Voice Assistant */}
-        <KarthickAIAssistant />
+          {/* 3D Floating Karthick AI Voice Assistant */}
+          <KarthickAIAssistant />
 
-        {/* Interactive Modals */}
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+          {/* Interactive Modals */}
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
 
-        <ResumeModal
-          isOpen={isResumeOpen}
-          onClose={() => setIsResumeOpen(false)}
-        />
+          <ResumeModal
+            isOpen={isResumeOpen}
+            onClose={() => setIsResumeOpen(false)}
+          />
+
+          {/* Global Confirmation Modal */}
+          <ConfirmationModal />
+
+          {/* Global Toast Notifications */}
+          <ToastContainer />
+        </div>
       </div>
-    </div>
+    </UIProvider>
   );
 }

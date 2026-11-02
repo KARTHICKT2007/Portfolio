@@ -4,16 +4,17 @@
  * and Web Speech API SpeechSynthesis with intelligent Young Male Voice selection.
  */
 
+import { isSoundEnabled, setSoundEnabled } from './soundEffects';
+
 // Shared Audio Context for UI Sound Effects
 let audioCtx = null;
-let soundMuted = false;
 
 export function setSoundMuted(muted) {
-  soundMuted = muted;
+  setSoundEnabled(!muted);
 }
 
 export function isSoundMuted() {
-  return soundMuted;
+  return !isSoundEnabled();
 }
 
 function getAudioContext() {
