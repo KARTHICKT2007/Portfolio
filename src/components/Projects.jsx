@@ -7,8 +7,12 @@ import {
   Sparkles,
   Globe,
   TrendingUp,
-  ArrowUpRight
+  ArrowUpRight,
+  ExternalLink,
+  CloudSun,
+  Calculator
 } from 'lucide-react';
+import { GithubIcon } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
 
 // Thumbnails cropped directly from reference mockup
@@ -23,8 +27,7 @@ export default function Projects({ onSelectProject }) {
   const filterTabs = [
     { id: 'all', label: 'All Projects', icon: LayoutGrid },
     { id: 'ai', label: 'AI & Systems', icon: Tag },
-    { id: 'frontend', label: 'React & Web', icon: Atom },
-    { id: 'database', label: 'Database & SQL', icon: Database }
+    { id: 'frontend', label: 'React & Web', icon: Atom }
   ];
 
   // Specific visual metadata matching user's design reference
@@ -41,29 +44,29 @@ export default function Projects({ onSelectProject }) {
     'kymorix': {
       thumb: thumbKymorix,
       categoryBadge: { label: 'Web', icon: Globe },
-      statusBadge: { label: 'Frontend', type: 'purple' },
-      cardTitle: 'Productivity & Task Manager',
+      statusBadge: { label: 'Featured', type: 'green' },
+      cardTitle: 'Kymorix — Productivity & Task Manager',
       cardDesc:
         'A modern, responsive task and workflow management web application built with React and Vite.',
-      cardTech: ['React', 'Vite', 'Tailwind CSS', 'LocalStorage']
+      cardTech: ['React', 'Vite', 'JavaScript', 'LocalStorage']
     },
-    'mobilehub': {
+    'weather-forecast': {
       thumb: thumbMobile,
-      categoryBadge: { label: 'Database', icon: Database },
-      statusBadge: { label: 'Frontend', type: 'purple' },
-      cardTitle: 'MobileHub – Tech Showcase & Catalog',
+      categoryBadge: { label: 'Web', icon: CloudSun },
+      statusBadge: { label: 'Live App', type: 'purple' },
+      cardTitle: 'Weather-Forecast',
       cardDesc:
-        'A dynamic React application showcasing mobile technology catalogs with advanced features.',
-      cardTech: ['React', 'JavaScript', 'CSS3', 'Responsive Design']
+        'Real-time weather forecast application with dynamic city search, atmospheric conditions, and 7-day outlook.',
+      cardTech: ['JavaScript', 'HTML5', 'CSS3', 'Weather API']
     },
-    'sql-analytics': {
+    'scientific-calculator': {
       thumb: thumbSql,
-      categoryBadge: { label: 'Analytics', icon: TrendingUp },
-      statusBadge: { label: 'Database', type: 'green' },
-      cardTitle: 'Relational Database Analytics & SQL Engine',
+      categoryBadge: { label: 'Web', icon: Calculator },
+      statusBadge: { label: 'Live App', type: 'purple' },
+      cardTitle: 'Scientific-Calculator',
       cardDesc:
-        'A comprehensive database solution with real-world business queries and data aggregation.',
-      cardTech: ['SQL', 'Query Optimization', 'Data Modeling', 'Indexing']
+        'Interactive glassmorphic scientific calculator with comprehensive arithmetic computations and keyboard support.',
+      cardTech: ['JavaScript', 'HTML5', 'CSS3', 'Math Engine']
     }
   };
 
@@ -79,7 +82,7 @@ export default function Projects({ onSelectProject }) {
         <div className="projects-pill-header-wrap reveal-header">
           <div className="projects-pill-header">
             <span className="projects-pill-dot" aria-hidden="true"></span>
-            <span className="projects-pill-label">03 / FEATURED WORK</span>
+            <span className="projects-pill-label"> FEATURED WORK</span>
           </div>
         </div>
 
@@ -175,59 +178,105 @@ export default function Projects({ onSelectProject }) {
                   {/* Concise Description */}
                   <p className="project-neon-desc">{meta.cardDesc}</p>
 
-                  {/* Bottom Row: Running Technology Chips + Arrow Action */}
-                  <div className="project-neon-bottom-row">
+                  {/* Technology Chips Marquee */}
+                  <div
+                    className="project-tech-marquee-container"
+                    aria-label="Technologies used"
+                  >
                     <div
-                      className="project-tech-marquee-container"
-                      aria-label="Technologies used"
+                      className="project-tech-marquee-track"
+                      style={{
+                        '--proj-marquee-duration': `${Math.max(16, meta.cardTech.length * 4.5)}s`
+                      }}
                     >
-                      <div
-                        className="project-tech-marquee-track"
-                        style={{
-                          '--proj-marquee-duration': `${Math.max(16, meta.cardTech.length * 4.5)}s`
-                        }}
-                      >
-                        {/* Primary Set */}
-                        <div className="project-tech-marquee-group">
-                          {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
-                            <span key={`pt1-${idx}`} className="project-tech-chip">
-                              <span
-                                className="project-chip-dot"
-                                aria-hidden="true"
-                              ></span>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Duplicate Set for Seamless Infinite Loop */}
-                        <div
-                          className="project-tech-marquee-group"
-                          aria-hidden="true"
-                        >
-                          {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
-                            <span key={`pt2-${idx}`} className="project-tech-chip">
-                              <span
-                                className="project-chip-dot"
-                                aria-hidden="true"
-                              ></span>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                      {/* Primary Set */}
+                      <div className="project-tech-marquee-group">
+                        {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
+                          <span key={`pt1-${idx}`} className="project-tech-chip">
+                            <span
+                              className="project-chip-dot"
+                              aria-hidden="true"
+                            ></span>
+                            {tech}
+                          </span>
+                        ))}
                       </div>
+
+                      {/* Duplicate Set for Seamless Infinite Loop */}
+                      <div
+                        className="project-tech-marquee-group"
+                        aria-hidden="true"
+                      >
+                        {[...meta.cardTech, ...meta.cardTech].map((tech, idx) => (
+                          <span key={`pt2-${idx}`} className="project-tech-chip">
+                            <span
+                              className="project-chip-dot"
+                              aria-hidden="true"
+                            ></span>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Separate GitHub & Live Demo Action Buttons Row */}
+                  <div className="project-neon-actions-row">
+                    <div className="project-card-btn-group">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card-btn project-btn-github"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`View ${meta.cardTitle} GitHub repository`}
+                        title="Source Code on GitHub"
+                      >
+                        <GithubIcon size={13} />
+                        <span>GitHub</span>
+                      </a>
+
+                      {project.demo && project.demo !== '#' ? (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-card-btn project-btn-demo"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Open live website of ${meta.cardTitle}`}
+                          title="Open Live Website"
+                        >
+                          <ExternalLink size={13} />
+                          <span>Live Demo</span>
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          className="project-card-btn project-btn-demo"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectProject(project);
+                          }}
+                          aria-label={`Inspect ${meta.cardTitle} live details`}
+                          title="Inspect Architecture"
+                        >
+                          <ExternalLink size={13} />
+                          <span>Live Demo</span>
+                        </button>
+                      )}
                     </div>
 
                     <button
+                      type="button"
                       className="project-neon-arrow-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectProject(project);
                       }}
-                      aria-label={`View details of ${meta.cardTitle}`}
-                      title="Inspect Architecture & Demo Details"
+                      aria-label={`Inspect architecture details of ${meta.cardTitle}`}
+                      title="Inspect Architecture"
                     >
-                      <ArrowUpRight size={17} />
+                      <ArrowUpRight size={15} />
                     </button>
                   </div>
                 </div>

@@ -61,7 +61,7 @@ export function processResumeQuestion(rawQuery) {
   }
 
   // 5. Projects
-  if (/project|portfolio work|built|apps|applications|desktop assistant|kymorix|mobilehub/i.test(q)) {
+  if (/project|portfolio work|built|apps|applications|desktop assistant|kymorix|weather|calculator/i.test(q)) {
     // Specific project queries
     if (/voice|desktop assistant|offline|whisper/i.test(q)) {
       return {
@@ -75,21 +75,21 @@ export function processResumeQuestion(rawQuery) {
         category: 'project-detail'
       };
     }
-    if (/mobilehub|phone|catalog|device/i.test(q)) {
+    if (/weather|forecast|climate|atmosphere/i.test(q)) {
       return {
-        text: "MobileHub is a responsive React showcase catalog built by Karthick, featuring interactive device spec comparisons, dynamic filtering, and detailed specification modals.",
+        text: "Weather-Forecast is Karthick's real-time atmospheric forecast application featuring live weather conditions, hourly trends, 7-day outlook, and dynamic city search in an elegant glassmorphism UI.",
         category: 'project-detail'
       };
     }
-    if (/database|relational|schema|sql project/i.test(q)) {
+    if (/calculator|scientific|math/i.test(q)) {
       return {
-        text: "Karthick designed a Relational Database Analytics architecture using SQL with normalized schemas, complex join queries, and indexing for academic performance metrics.",
+        text: "Scientific-Calculator is an interactive glassmorphic web calculator built by Karthick, featuring comprehensive arithmetic computations, keyboard support, and responsive keypad controls.",
         category: 'project-detail'
       };
     }
 
     return {
-      text: "Karthick has developed several standout projects: an AI Voice-Controlled Desktop Assistant using Whisper and Win32, Kymorix Productivity Suite with Pomodoro cycles, MobileHub React Tech Showcase, and Relational Database Analytics in SQL.",
+      text: "Karthick has developed several standout projects: an AI Voice-Controlled Desktop Assistant using Whisper and Win32, Kymorix Productivity Suite, Weather-Forecast atmospheric application, and a Scientific-Calculator web app.",
       category: 'projects'
     };
   }

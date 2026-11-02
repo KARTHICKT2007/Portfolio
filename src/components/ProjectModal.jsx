@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, CheckCircle2, Cpu, Layers, Smartphone, Database, ArrowRight } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, Cpu, Layers, Smartphone, Database, ArrowRight, CloudSun, Calculator } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
 export default function ProjectModal({ project, onClose }) {
@@ -11,6 +11,8 @@ export default function ProjectModal({ project, onClose }) {
       case 'Layers': return <Layers size={28} className="modal-icon-glow" />;
       case 'Smartphone': return <Smartphone size={28} className="modal-icon-glow" />;
       case 'Database': return <Database size={28} className="modal-icon-glow" />;
+      case 'CloudSun': return <CloudSun size={28} className="modal-icon-glow" />;
+      case 'Calculator': return <Calculator size={28} className="modal-icon-glow" />;
       default: return <Cpu size={28} className="modal-icon-glow" />;
     }
   };
