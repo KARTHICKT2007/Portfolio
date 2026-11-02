@@ -15,11 +15,11 @@ import {
 import { GithubIcon } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
 
-// Thumbnails cropped directly from reference mockup
+// Thumbnails: 3D neon icons matching futuristic cyberpunk portfolio style
 import thumbVoice from '../assets/project_thumb_1.png';
 import thumbKymorix from '../assets/project_thumb_2.png';
-import thumbMobile from '../assets/project_thumb_3.png';
-import thumbSql from '../assets/project_thumb_4.png';
+import thumbMobile from '../assets/project_thumb_3.jpg';
+import thumbSql from '../assets/project_thumb_4.jpg';
 
 export default function Projects({ onSelectProject }) {
   const [filter, setFilter] = useState('all');
