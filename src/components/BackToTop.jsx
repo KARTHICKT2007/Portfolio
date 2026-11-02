@@ -39,7 +39,7 @@ export default function BackToTop() {
       aria-label="Scroll back to top of page"
       title="Back to Top"
     >
-      <svg className="progress-ring" width="48" height="48">
+      <svg className="progress-ring" width="100%" height="100%" viewBox="0 0 48 48">
         <circle
           className="progress-ring-bg"
           stroke="rgba(139, 92, 246, 0.2)"
@@ -62,7 +62,7 @@ export default function BackToTop() {
           cy="24"
         />
       </svg>
-      <ArrowUp size={18} className="arrow-icon" />
+      <ArrowUp size={16} className="arrow-icon" />
     </button>
   );
 }
