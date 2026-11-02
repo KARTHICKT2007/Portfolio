@@ -20,22 +20,21 @@ export default function About({ onOpenResume }) {
           {/* Column 1: Profile Portrait with Glowing Neon Polygon */}
           <div className="about-portrait-col reveal-child-1">
             <div className="about-neon-wrapper">
-              {/* Neon Angled Geometric Polygon */}
-              <div className="about-neon-polygon" aria-hidden="true"></div>
-
               {/* Ambient Backlight Flare */}
               <div className="about-neon-glow" aria-hidden="true"></div>
 
-              {/* Cutout Portrait */}
-              <div className="about-portrait-frame">
-                <img
-                  src={aboutPortrait}
-                  alt="Karthick - Aspiring Full Stack Developer & Data Analyst"
-                  className="about-portrait-img"
-                  loading="lazy"
-                  width="420"
-                  height="380"
-                />
+              {/* Neon Angled Geometric Polygon enclosing Cutout Portrait */}
+              <div className="about-neon-polygon">
+                <div className="about-portrait-frame">
+                  <img
+                    src={aboutPortrait}
+                    alt="Karthick - Aspiring Full Stack Developer & Data Analyst"
+                    className="about-portrait-img"
+                    loading="lazy"
+                    width="420"
+                    height="380"
+                  />
+                </div>
               </div>
             </div>
           </div>

@@ -2040,29 +2040,27 @@
 .about-neon-wrapper {
   position: relative;
   width: 100%;
-  max-width: 250px;
-  aspect-ratio: 420 / 380;
+  max-width: 275px;
+  aspect-ratio: 420 / 400;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .about-neon-polygon {
-  position: absolute;
-  top: 10%;
-  left: 2%;
-  width: 96%;
-  height: 82%;
+  position: relative;
+  width: 100%;
+  height: 100%;
   border: 1.8px solid #8B5CF6;
-  border-radius: 20px;
-  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.25) 0%, rgba(23, 13, 43, 0.5) 60%, rgba(9, 7, 16, 0.8) 100%);
+  border-radius: 24px;
+  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.25) 0%, rgba(23, 13, 43, 0.5) 60%, rgba(9, 7, 16, 0.85) 100%);
   box-shadow: 
     0 0 20px rgba(139, 92, 246, 0.6),
     0 0 40px rgba(168, 85, 247, 0.3),
     inset 0 0 16px rgba(139, 92, 246, 0.25);
   transform: skew(-7deg, -2deg) rotate(-2deg);
-  pointer-events: none;
-  z-index: 0;
+  overflow: hidden;
+  z-index: 1;
   transition: all 0.5s ease;
 }
 
@@ -2085,8 +2083,6 @@
 }
 
 .about-portrait-frame {
-  position: relative;
-  z-index: 1;
   width: 100%;
   height: 100%;
   display: flex;
@@ -2096,16 +2092,15 @@
 
 .about-portrait-img {
   width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.85));
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
   transition: transform 0.4s ease;
 }
 
 .about-neon-wrapper:hover .about-portrait-img {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 /* Column 2: Personal Narrative */
@@ -2332,7 +2327,7 @@
   }
 
   .about-neon-wrapper {
-    max-width: 250px;
+    max-width: 260px;
     margin: 0 auto;
   }
 
@@ -5407,9 +5402,13 @@
 }
 
 [data-theme="light"] .about-neon-polygon {
-  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.12) 0%, rgba(220, 200, 255, 0.2) 60%, rgba(247, 245, 252, 0.8) 100%);
+  background: radial-gradient(circle at 45% 45%, rgba(139, 92, 246, 0.12) 0%, rgba(220, 200, 255, 0.25) 60%, rgba(247, 245, 252, 0.95) 100%);
   border-color: #8B5CF6;
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.18);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.2), 0 0 15px rgba(139, 92, 246, 0.25);
+}
+
+[data-theme="light"] .about-portrait-img {
+  filter: drop-shadow(0 6px 14px rgba(124, 58, 237, 0.2));
 }
 
 [data-theme="light"] .about-glass-card {
