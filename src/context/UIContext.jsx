@@ -149,9 +149,14 @@ export function UIProvider({ children }) {
     setConfirmation((prev) => ({ ...prev, isOpen: false }));
   }, [confirmation]);
 
-  // Global Click Interceptor for external links & micro-interactions
+  // Global Click Interceptor for external links & universal click sounds on every click
   useEffect(() => {
+    let lastClickTime = 0;
+
     const handleGlobalClick = (e) => {
+      const now = Date.now();
+      const canPlayClickSound = now - lastClickTime > 35;
+
       // Find closest anchor tag
       const anchor = e.target.closest('a');
       if (anchor) {
@@ -169,18 +174,25 @@ export function UIProvider({ children }) {
         }
         // Smooth internal navigation sound
         if (href && href.startsWith('#')) {
+          lastClickTime = now;
           playSound('nav');
           return;
         }
       }
 
-      // Button click feedback sound (if not an ignored element)
-      const button = e.target.closest('button');
-      if (button && !button.hasAttribute('data-no-sound')) {
-        // Exclude AI assistant buttons which handle their own custom audio
-        if (!button.closest('.ai-assistant-modal') && !button.closest('.ai-floating-orb-wrapper')) {
-          playSound('click');
-        }
+      // Check for specialized UI components that handle their own dedicated audio
+      const isAiOrb = e.target.closest('.ai-floating-orb-wrapper');
+      const isAiModal = e.target.closest('.ai-assistant-modal');
+      const isConfirmAction = e.target.closest('.confirm-modal-actions');
+
+      if (isAiOrb || isAiModal || isConfirmAction) {
+        return;
+      }
+
+      // Play responsive tactile click sound on every single click
+      if (canPlayClickSound) {
+        lastClickTime = now;
+        playSound('click');
       }
     };
 

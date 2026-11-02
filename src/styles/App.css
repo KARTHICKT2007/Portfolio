@@ -4705,17 +4705,33 @@
 
 /* Resume Modal Specific Styling */
 .resume-modal-container {
-  max-width: 860px;
+  max-width: 880px;
+  width: min(94vw, 880px);
+  max-height: 90vh;
+  border-radius: 12px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 25px rgba(139, 92, 246, 0.15);
+  animation: modalScale 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .resume-modal-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem clamp(0.8rem, 2.5vw, 1.5rem);
+  padding: 0.75rem 1.25rem;
   background: var(--color-card-inner);
   border-bottom: 1px solid var(--color-border);
-  gap: 0.5rem;
+  gap: 0.75rem;
+}
+
+.resume-bar-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
 }
 
 .modal-bar-title {
@@ -4733,19 +4749,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-@media (max-width: 520px) {
-  .modal-title-text {
-    display: none;
-  }
-}
-
-.modal-bar-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
 }
 
 /* Resume View Toggle */
@@ -4784,10 +4787,23 @@
   color: #FFFFFF;
 }
 
-@media (max-width: 640px) {
-  .resume-view-toggle {
-    display: none;
-  }
+.resume-bar-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Mobile Hint Bar */
+.resume-mobile-hint-bar {
+  display: none;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.68rem;
+  background: rgba(139, 92, 246, 0.12);
+  color: #C4B5FD;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  text-align: center;
+  line-height: 1.35;
 }
 
 /* Resume PDF Container */
@@ -4802,10 +4818,20 @@
   position: relative;
 }
 
+.resume-iframe-wrapper {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  overflow: hidden;
+  position: relative;
+  background: #110B22;
+  -webkit-overflow-scrolling: touch;
+}
+
 .resume-pdf-frame {
   width: 100%;
-  flex: 1;
-  min-height: 480px;
+  height: 100%;
   border: none;
   background: #110B22;
 }
@@ -4814,11 +4840,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 1.2rem;
+  padding: 0.55rem 1.15rem;
   background: rgba(16, 10, 32, 0.95);
   border-top: 1px solid rgba(139, 92, 246, 0.25);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--color-text-muted);
+}
+
+.resume-pdf-mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resume-inline-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(139, 92, 246, 0.2);
+  color: #DDD6FE;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  padding: 0.22rem 0.55rem;
+  border-radius: 5px;
+  font-size: 0.70rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resume-inline-mode-btn:hover {
+  background: rgba(139, 92, 246, 0.35);
+  color: #FFFFFF;
 }
 
 .resume-inline-drive-btn {
@@ -4828,6 +4880,7 @@
   color: #A78BFA;
   font-weight: 600;
   text-decoration: none;
+  font-size: 0.74rem;
   transition: color 0.2s ease;
 }
 
@@ -4881,12 +4934,8 @@
   border: 1px solid var(--color-border);
   color: var(--color-text);
   transition: var(--transition-smooth);
-}
-
-@media (max-width: 480px) {
-  .modal-action-btn span {
-    font-size: 0.74rem;
-  }
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .modal-action-btn.primary {
@@ -4922,20 +4971,20 @@
 
 .resume-name {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
   color: var(--color-text);
 }
 
 .resume-role {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--color-light-violet);
   font-weight: 600;
 }
 
 .resume-meta {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.80rem;
   color: var(--color-text-muted);
   display: flex;
   flex-direction: column;
@@ -4951,33 +5000,33 @@
 .resume-divider {
   height: 1px;
   background: var(--color-border);
-  margin: 1.6rem 0;
+  margin: 1.2rem 0;
 }
 
 .resume-section {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.3rem;
 }
 
 .resume-section-heading {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-light-violet);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.4rem;
-  margin-bottom: 0.8rem;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.7rem;
 }
 
 .resume-text {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--color-text-muted);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 .resume-item {
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .resume-item-top {
@@ -4989,31 +5038,31 @@
 
 .resume-item-title {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-text);
 }
 
 .resume-item-date {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--color-text-dim);
 }
 
 .resume-item-sub {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: var(--color-light-violet);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .resume-item-desc {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
-  line-height: 1.5;
+  line-height: 1.48;
 }
 
 .resume-item-badge {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--color-light-violet);
   background: var(--color-surface-tint);
   padding: 0.15rem 0.5rem;
@@ -5023,8 +5072,8 @@
 .resume-skills-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.92rem;
+  gap: 0.45rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
 }
 
@@ -5032,9 +5081,152 @@
   padding-left: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.92rem;
+  gap: 0.35rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   MOBILE VIEW OPTIMIZATIONS FOR RESUME MODAL
+   ========================================================================== */
+@media (max-width: 640px) {
+  .resume-modal-container {
+    width: 95vw;
+    max-width: 95vw;
+    max-height: 93vh;
+    border-radius: 10px;
+  }
+
+  .resume-modal-bar {
+    flex-direction: column;
+    padding: 0.65rem 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .resume-bar-top-row {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.4rem;
+  }
+
+  .modal-bar-title .modal-title-text {
+    display: inline-block;
+    max-width: 110px;
+    font-size: 0.72rem;
+  }
+
+  .resume-view-toggle {
+    display: flex;
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .resume-toggle-btn {
+    padding: 0.22rem 0.48rem;
+    font-size: 0.68rem;
+    gap: 0.25rem;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .resume-bar-actions-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .resume-bar-actions-row .modal-action-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.42rem 0.6rem;
+    font-size: 0.74rem;
+  }
+
+  .resume-bar-actions-row .print-btn {
+    display: none;
+  }
+
+  .resume-mobile-hint-bar {
+    display: block;
+  }
+
+  .resume-pdf-container {
+    height: calc(88vh - 120px);
+    min-height: 380px;
+  }
+
+  .resume-iframe-wrapper {
+    min-height: 340px;
+  }
+
+  .resume-pdf-mobile-bar {
+    padding: 0.45rem 0.75rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .resume-pdf-host-text {
+    font-size: 0.68rem;
+  }
+
+  .resume-pdf-mobile-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .resume-paper {
+    padding: 0.9rem 0.8rem;
+  }
+
+  .resume-name {
+    font-size: 1.3rem;
+  }
+
+  .resume-role {
+    font-size: 0.85rem;
+  }
+
+  .resume-meta {
+    font-size: 0.74rem;
+  }
+
+  .resume-section-heading {
+    font-size: 0.92rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .resume-text {
+    font-size: 0.78rem;
+  }
+
+  .resume-item-title {
+    font-size: 0.86rem;
+  }
+
+  .resume-item-date {
+    font-size: 0.70rem;
+  }
+
+  .resume-item-sub {
+    font-size: 0.78rem;
+  }
+
+  .resume-item-desc {
+    font-size: 0.75rem;
+  }
+
+  .resume-skills-grid,
+  .resume-cert-list {
+    font-size: 0.78rem;
+  }
 }
 
 /* ==========================================================================

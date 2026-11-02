@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { X, Download, Printer, ExternalLink, FileText, FileCode, Mail, Phone, MapPin, Code2 } from 'lucide-react';
-import { personalInfo, skillsData, projectsData, certificationsData } from '../data/portfolioData';
+import { personalInfo, projectsData, certificationsData } from '../data/portfolioData';
 import { useUI } from '../context/UIContext';
 
 export default function ResumeModal({ isOpen, onClose }) {
-  const { showToast, playSound } = useUI();
+  const { showToast, playSound, confirmExternal } = useUI();
   const [viewMode, setViewMode] = useState('pdf'); // 'pdf' | 'formatted'
 
   if (!isOpen) return null;
@@ -20,48 +20,63 @@ export default function ResumeModal({ isOpen, onClose }) {
     showToast({ type: 'success', message: 'Downloading official PDF resume...', duration: 3500 });
   };
 
+  const handleDriveClick = (e) => {
+    e.preventDefault();
+    confirmExternal(personalInfo.resume.driveUrl, "Open Original Resume in Google Drive");
+  };
+
+  const handleClose = () => {
+    playSound('modalClose');
+    onClose();
+  };
+
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={handleClose}>
       <div className="resume-modal-container" onClick={(e) => e.stopPropagation()}>
         {/* Modal Top Bar */}
         <div className="resume-modal-bar">
-          <div className="modal-bar-title">
-            <span className="dot dot-red"></span>
-            <span className="dot dot-yellow"></span>
-            <span className="dot dot-green"></span>
-            <span className="modal-title-text">{personalInfo.resume.fileName}</span>
+          <div className="resume-bar-top-row">
+            <div className="modal-bar-title">
+              <span className="dot dot-red"></span>
+              <span className="dot dot-yellow"></span>
+              <span className="dot dot-green"></span>
+              <span className="modal-title-text">{personalInfo.resume.fileName}</span>
+            </div>
+
+            {/* View Mode Toggle */}
+            <div className="resume-view-toggle">
+              <button
+                onClick={() => { setViewMode('pdf'); playSound('click'); }}
+                className={`resume-toggle-btn ${viewMode === 'pdf' ? 'active' : ''}`}
+                title="View Official PDF Document"
+              >
+                <FileText size={13} />
+                <span>PDF Preview</span>
+              </button>
+              <button
+                onClick={() => { setViewMode('formatted'); playSound('click'); }}
+                className={`resume-toggle-btn ${viewMode === 'formatted' ? 'active' : ''}`}
+                title="View Responsive Web Resume"
+              >
+                <FileCode size={13} />
+                <span>Web View</span>
+              </button>
+            </div>
+
+            <button onClick={handleClose} className="modal-close-btn" aria-label="Close modal">
+              <X size={18} />
+            </button>
           </div>
 
-          {/* View Mode Toggle */}
-          <div className="resume-view-toggle">
-            <button
-              onClick={() => setViewMode('pdf')}
-              className={`resume-toggle-btn ${viewMode === 'pdf' ? 'active' : ''}`}
-              title="View Official PDF Document"
-            >
-              <FileText size={13} />
-              <span>Official PDF</span>
-            </button>
-            <button
-              onClick={() => setViewMode('formatted')}
-              className={`resume-toggle-btn ${viewMode === 'formatted' ? 'active' : ''}`}
-              title="View Formatted Web Resume"
-            >
-              <FileCode size={13} />
-              <span>Web View</span>
-            </button>
-          </div>
-
-          <div className="modal-bar-actions">
+          <div className="resume-bar-actions-row">
             {/* Direct Google Drive Link */}
             <a
               href={personalInfo.resume.driveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleDriveClick}
               className="modal-action-btn"
               title="Open Original Document in Google Drive"
             >
-              <ExternalLink size={14} />
+              <ExternalLink size={13} />
               <span>Google Drive</span>
             </a>
 
@@ -73,17 +88,13 @@ export default function ResumeModal({ isOpen, onClose }) {
               className="modal-action-btn primary"
               title="Download Official PDF Resume"
             >
-              <Download size={14} />
+              <Download size={13} />
               <span>Download PDF</span>
             </a>
 
-            <button onClick={handlePrint} className="modal-action-btn" title="Open Fullscreen / Print">
-              <Printer size={14} />
+            <button onClick={handlePrint} className="modal-action-btn print-btn" title="Open Fullscreen / Print">
+              <Printer size={13} />
               <span>Print</span>
-            </button>
-
-            <button onClick={onClose} className="modal-close-btn" aria-label="Close modal">
-              <X size={20} />
             </button>
           </div>
         </div>
@@ -91,23 +102,37 @@ export default function ResumeModal({ isOpen, onClose }) {
         {/* Modal Body: PDF Viewer or Formatted Web View */}
         {viewMode === 'pdf' ? (
           <div className="resume-pdf-container">
-            <iframe
-              src={`${personalInfo.resume.pdfUrl}#view=FitH`}
-              className="resume-pdf-frame"
-              title="Karthick Official Resume Document"
-            />
-            {/* Fallback Notice for Mobile / Small Screens */}
+            <div className="resume-mobile-hint-bar">
+              <span>Tip: For optimal reading on mobile, tap <strong>Web View</strong> above or <strong>Google Drive</strong> to pan & zoom.</span>
+            </div>
+            <div className="resume-iframe-wrapper">
+              <iframe
+                src={`${personalInfo.resume.pdfUrl}#view=FitH`}
+                className="resume-pdf-frame"
+                title="Karthick Official Resume Document"
+              />
+            </div>
+            {/* Footer with quick action controls */}
             <div className="resume-pdf-mobile-bar">
-              <span>Original resume hosted on Google Drive</span>
-              <a
-                href={personalInfo.resume.driveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="resume-inline-drive-btn"
-              >
-                <ExternalLink size={13} />
-                <span>Open in Drive</span>
-              </a>
+              <span className="resume-pdf-host-text">Original document hosted on Google Drive</span>
+              <div className="resume-pdf-mobile-actions">
+                <button
+                  onClick={() => { setViewMode('formatted'); playSound('click'); }}
+                  className="resume-inline-mode-btn"
+                  title="Switch to readable web view"
+                >
+                  <FileCode size={12} />
+                  <span>Web View</span>
+                </button>
+                <a
+                  href={personalInfo.resume.driveUrl}
+                  onClick={handleDriveClick}
+                  className="resume-inline-drive-btn"
+                >
+                  <ExternalLink size={12} />
+                  <span>Open in Drive</span>
+                </a>
+              </div>
             </div>
           </div>
         ) : (

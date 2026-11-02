@@ -18,6 +18,7 @@ export function isSoundMuted() {
 }
 
 function getAudioContext() {
+  if (typeof window === 'undefined') return null;
   if (!audioCtx) {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (AudioCtx) {
@@ -35,7 +36,7 @@ function getAudioContext() {
  * Types: 'open', 'close', 'mic', 'listen', 'finish'
  */
 export function playAiSound(type) {
-  if (soundMuted) return;
+  if (isSoundMuted()) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -148,59 +149,100 @@ export function playAiSound(type) {
 }
 
 /**
- * Intelligent selection of a natural, friendly Young Male English Voice.
- * Searches browser voices for quality English male voices.
+ * Intelligent voice caching and selection of a natural, friendly Young Male English Voice.
  */
+let cachedVoices = [];
+
+function loadVoices() {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return [];
+  try {
+    cachedVoices = window.speechSynthesis.getVoices() || [];
+  } catch {
+    cachedVoices = [];
+  }
+  return cachedVoices;
+}
+
+// Preload voices as early as possible
+if (typeof window !== 'undefined' && window.speechSynthesis) {
+  loadVoices();
+  if (typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
+    window.speechSynthesis.onvoiceschanged = () => {
+      loadVoices();
+    };
+  }
+}
+
 export function getYoungMaleVoice() {
   if (typeof window === 'undefined' || !window.speechSynthesis) return null;
-  const voices = window.speechSynthesis.getVoices();
+  const voices = cachedVoices.length > 0 ? cachedVoices : loadVoices();
   if (!voices || voices.length === 0) return null;
 
   // Filter English voices
-  const enVoices = voices.filter(v => v.lang.startsWith('en'));
+  const enVoices = voices.filter((v) => v.lang && v.lang.toLowerCase().startsWith('en'));
+  const candidatePool = enVoices.length > 0 ? enVoices : voices;
 
-  // Priority 1: Preferred young/friendly male voice identifiers
-  const preferredMaleNames = [
-    'guy', // Natural US male (Google / Microsoft Guy Online)
-    'david', // Microsoft David - clear English male
-    'george', // Microsoft George - UK male
-    'james', // Microsoft James
-    'daniel', // Daniel (UK English male - Siri/Apple/Browser)
-    'alex', // Alex (Apple US English male)
+  // Female voice names to filter OUT so we don't accidentally pick a female voice
+  const femaleKeywords = [
+    'zira', 'jenny', 'aria', 'sonia', 'female', 'samantha', 'victoria',
+    'karen', 'susan', 'hazel', 'linda', 'heather', 'catherine', 'helena',
+    'amy', 'emma', 'olivia', 'ava', 'sophia', 'isabella', 'mia'
+  ];
+
+  const isFemaleVoice = (voiceName) => {
+    const lower = voiceName.toLowerCase();
+    return femaleKeywords.some((f) => lower.includes(f));
+  };
+
+  // Male / Young male identifiers in priority order
+  const preferredMaleKeywords = [
+    'guy online', // Microsoft Guy Online (Natural) - excellent US English young male
+    'guy',
+    'microsoft david', // Clear, standard US English male
+    'david',
+    'microsoft mark', // Microsoft Mark
+    'mark',
+    'microsoft george', // UK Male
+    'george',
+    'microsoft ryan', // Microsoft Ryan
+    'ryan',
+    'daniel', // Siri / Apple UK English male
+    'alex', // Apple US English male
+    'nathan',
+    'aaron',
+    'evan',
     'rishi', // Google English India male
     'en-us-male',
     'en-gb-male',
-    'mark',
-    'andrew'
+    'male'
   ];
 
-  for (const name of preferredMaleNames) {
-    const found = enVoices.find(v => v.name.toLowerCase().includes(name));
+  // Pass 1: Look for highest priority young male voices
+  for (const keyword of preferredMaleKeywords) {
+    const found = candidatePool.find((v) => {
+      const name = (v.name || '').toLowerCase();
+      return name.includes(keyword) && !isFemaleVoice(name);
+    });
     if (found) return found;
   }
 
-  // Priority 2: Any English voice with "male" in name or gender attribute
-  const maleVoice = enVoices.find(v => {
-    const n = v.name.toLowerCase();
-    return n.includes('male') && !n.includes('female');
-  });
-  if (maleVoice) return maleVoice;
+  // Pass 2: Any English voice that does NOT match female keywords
+  const nonFemaleEnglish = candidatePool.find((v) => !isFemaleVoice(v.name || ''));
+  if (nonFemaleEnglish) return nonFemaleEnglish;
 
-  // Priority 3: Google US English / Natural English
-  const googleVoice = enVoices.find(v => v.name.includes('Google US English') || v.name.includes('Natural'));
-  if (googleVoice) return googleVoice;
-
-  // Priority 4: Default English voice
-  const defaultEn = enVoices.find(v => v.default) || enVoices[0];
+  // Pass 3: Default English voice
+  const defaultEn = candidatePool.find((v) => v.default) || candidatePool[0];
   if (defaultEn) return defaultEn;
 
   return voices[0] || null;
 }
 
 /**
- * Speak text aloud using the young male voice configuration
+ * Speak text aloud using the young male voice configuration.
+ * Includes anti-stuck handling and garbage collection protection.
  */
-let activeUtterance = null;
+let currentSpeechUtterance = null;
+let speechTimeoutId = null;
 
 export function speakText(text, { onStart, onEnd, onError } = {}) {
   if (typeof window === 'undefined' || !window.speechSynthesis) {
@@ -208,60 +250,97 @@ export function speakText(text, { onStart, onEnd, onError } = {}) {
     return;
   }
 
-  // Stop any currently speaking utterance
-  stopSpeaking();
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  activeUtterance = utterance;
-
-  // Voice selection
-  const voice = getYoungMaleVoice();
-  if (voice) {
-    utterance.voice = voice;
-    utterance.lang = voice.lang || 'en-US';
-  } else {
-    utterance.lang = 'en-US';
-  }
-
-  // Natural young male voice pacing:
-  // Rate ~1.0 for conversational natural speed; pitch ~1.02 for bright, young male tone
-  utterance.rate = 1.0;
-  utterance.pitch = 1.04;
-
-  utterance.onstart = () => {
-    if (onStart) onStart();
-  };
-
-  utterance.onend = () => {
-    activeUtterance = null;
+  if (!text || !text.trim()) {
     if (onEnd) onEnd();
-  };
-
-  utterance.onerror = (e) => {
-    activeUtterance = null;
-    if (onError) onError(e);
-    else if (onEnd) onEnd();
-  };
-
-  try {
-    window.speechSynthesis.speak(utterance);
-  } catch (err) {
-    activeUtterance = null;
-    if (onError) onError(err);
-    else if (onEnd) onEnd();
+    return;
   }
+
+  // Clear any pending speak timeout
+  if (speechTimeoutId) {
+    clearTimeout(speechTimeoutId);
+    speechTimeoutId = null;
+  }
+
+  // Stop any currently speaking utterance and un-pause if needed
+  try {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+    window.speechSynthesis.cancel();
+  } catch {
+    // ignore
+  }
+
+  // Small tick delay to let the browser cancel previous speech cleanly
+  speechTimeoutId = setTimeout(() => {
+    try {
+      const utterance = new SpeechSynthesisUtterance(text);
+      currentSpeechUtterance = utterance;
+      // Also pin to window to prevent garbage collection mid-speech in Chromium
+      window.__karthickActiveUtterance = utterance;
+
+      // Select natural young male voice
+      const voice = getYoungMaleVoice();
+      if (voice) {
+        utterance.voice = voice;
+        utterance.lang = voice.lang || 'en-US';
+      } else {
+        utterance.lang = 'en-US';
+      }
+
+      // Natural young male voice tuning:
+      // Rate 0.98 for clear, friendly, human pacing without rush
+      // Pitch 0.98 for a rich, warm, young male tone without high-pitched squeakiness
+      utterance.rate = 0.98;
+      utterance.pitch = 0.98;
+      utterance.volume = 1.0;
+
+      utterance.onstart = () => {
+        if (onStart) onStart();
+      };
+
+      utterance.onend = () => {
+        currentSpeechUtterance = null;
+        window.__karthickActiveUtterance = null;
+        if (onEnd) onEnd();
+      };
+
+      utterance.onerror = (e) => {
+        currentSpeechUtterance = null;
+        window.__karthickActiveUtterance = null;
+        if (onError) onError(e);
+        else if (onEnd) onEnd();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      currentSpeechUtterance = null;
+      window.__karthickActiveUtterance = null;
+      if (onError) onError(err);
+      else if (onEnd) onEnd();
+    }
+  }, 40);
 }
 
 /**
  * Stop any current speech synthesis immediately
  */
 export function stopSpeaking() {
+  if (speechTimeoutId) {
+    clearTimeout(speechTimeoutId);
+    speechTimeoutId = null;
+  }
+
   if (typeof window !== 'undefined' && window.speechSynthesis) {
     try {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
       window.speechSynthesis.cancel();
     } catch {
       // ignore
     }
-    activeUtterance = null;
+    currentSpeechUtterance = null;
+    window.__karthickActiveUtterance = null;
   }
 }
