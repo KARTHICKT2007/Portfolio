@@ -242,7 +242,13 @@ export function speakText(text, { onStart, onEnd, onError } = {}) {
     else if (onEnd) onEnd();
   };
 
-  window.speechSynthesis.speak(utterance);
+  try {
+    window.speechSynthesis.speak(utterance);
+  } catch (err) {
+    activeUtterance = null;
+    if (onError) onError(err);
+    else if (onEnd) onEnd();
+  }
 }
 
 /**
@@ -250,7 +256,11 @@ export function speakText(text, { onStart, onEnd, onError } = {}) {
  */
 export function stopSpeaking() {
   if (typeof window !== 'undefined' && window.speechSynthesis) {
-    window.speechSynthesis.cancel();
+    try {
+      window.speechSynthesis.cancel();
+    } catch {
+      // ignore
+    }
     activeUtterance = null;
   }
 }

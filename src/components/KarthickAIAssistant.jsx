@@ -340,33 +340,35 @@ export default function KarthickAIAssistant() {
   return (
     <>
       {/* ====================================================================
-          3D FLOATING AI ASSISTANT ORB BUTTON
+          3D FLOATING AI ASSISTANT ORB BUTTON (Hidden when modal is open)
           ==================================================================== */}
-      <div className="ai-floating-orb-wrapper">
-        <button
-          className={`ai-floating-orb-btn ${isOpen ? 'active' : ''}`}
-          onClick={() => (isOpen ? handleCloseAssistant() : handleOpenAssistant())}
-          aria-label={isOpen ? 'Close Karthick AI' : 'Open Karthick AI Voice Assistant'}
-          title="Karthick AI Voice Assistant"
-        >
-          {/* Outer Rotating Orbital Rings */}
-          <span className="orb-orbital-ring ring-1" aria-hidden="true" />
-          <span className="orb-orbital-ring ring-2" aria-hidden="true" />
+      {!isOpen && (
+        <div className="ai-floating-orb-wrapper">
+          <button
+            className="ai-floating-orb-btn"
+            onClick={handleOpenAssistant}
+            aria-label="Open Karthick AI Voice Assistant"
+            title="Karthick AI Voice Assistant"
+          >
+            {/* Outer Rotating Orbital Rings */}
+            <span className="orb-orbital-ring ring-1" aria-hidden="true" />
+            <span className="orb-orbital-ring ring-2" aria-hidden="true" />
 
-          {/* Glowing Aura & Core */}
-          <span className="orb-glow-aura" aria-hidden="true" />
-          <span className="orb-3d-sphere">
-            <span className="orb-sphere-core" />
-            <Sparkles size={18} className="orb-sparkle-icon" />
-          </span>
+            {/* Glowing Aura & Core */}
+            <span className="orb-glow-aura" aria-hidden="true" />
+            <span className="orb-3d-sphere">
+              <span className="orb-sphere-core" />
+              <Sparkles size={18} className="orb-sparkle-icon" />
+            </span>
 
-          {/* Floating Pill Tag */}
-          <span className="orb-floating-tag">
-            <span className="tag-pulse-dot" />
-            <span className="tag-text">Karthick AI</span>
-          </span>
-        </button>
-      </div>
+            {/* Floating Pill Tag */}
+            <span className="orb-floating-tag">
+              <span className="tag-pulse-dot" />
+              <span className="tag-text">Karthick AI</span>
+            </span>
+          </button>
+        </div>
+      )}
 
       {/* ====================================================================
           KARTHICK AI VOICE ASSISTANT MODAL INTERFACE
@@ -384,7 +386,7 @@ export default function KarthickAIAssistant() {
             <header className="ai-modal-header">
               <div className="ai-brand-group">
                 <div className="ai-brand-icon-box">
-                  <Sparkles size={16} className="text-electric" />
+                  <Sparkles size={15} className="text-electric" />
                 </div>
                 <h2 id="ai-modal-title" className="ai-brand-title">
                   Karthick AI
@@ -394,7 +396,8 @@ export default function KarthickAIAssistant() {
               <div className="ai-header-actions">
                 <span className="ai-voice-badge">
                   <span className="voice-badge-dot" />
-                  Voice enabled
+                  <span className="voice-badge-text-full">Voice enabled</span>
+                  <span className="voice-badge-text-short">Voice</span>
                 </span>
 
                 <button
@@ -403,7 +406,7 @@ export default function KarthickAIAssistant() {
                   aria-label={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
                   title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
                 >
-                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
                 </button>
 
                 <button
@@ -412,7 +415,7 @@ export default function KarthickAIAssistant() {
                   aria-label="Close Assistant"
                   title="Close Assistant (Esc)"
                 >
-                  <X size={18} />
+                  <X size={17} />
                 </button>
               </div>
             </header>
@@ -559,7 +562,7 @@ export default function KarthickAIAssistant() {
                 </div>
 
                 <div className="suggestions-chips-grid">
-                  {RESUME_SUGGESTED_QUESTIONS.map((question, index) => (
+                  {RESUME_SUGGESTED_QUESTIONS.slice(0, 4).map((question, index) => (
                     <button
                       key={index}
                       className="suggestion-chip-btn"
